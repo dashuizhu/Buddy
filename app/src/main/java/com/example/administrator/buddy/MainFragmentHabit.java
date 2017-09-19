@@ -14,6 +14,9 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import com.example.administrator.buddy.adapter.HabitRVAdapter;
 import com.example.administrator.buddy.bean.HabitBean;
+import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
+import com.example.administrator.buddy.injector.components.PresenterComponent;
+import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +42,10 @@ public class MainFragmentHabit extends BaseFragment implements
             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         //对View中控件的操作方法
-        mLoginPresenter = new LoginPresenter(this);
+        PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
+                .presenterModule(new PresenterModule(this))
+                .build();
+        mLoginPresenter = authenticationComponent.getLoginPresenter();
         View view = inflater.inflate(R.layout.fragment_habit, container, false);
         mLayout  = (BGARefreshLayout) view.findViewById(R.id.gharl_bgar);
         initRefreshLayout(mLayout);

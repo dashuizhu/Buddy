@@ -14,6 +14,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.example.administrator.buddy.bean.HabitBean;
 import com.example.administrator.buddy.controls.CombinationControlsTwo;
+import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
+import com.example.administrator.buddy.injector.components.PresenterComponent;
+import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -61,7 +64,10 @@ public class BabySetupAcivity extends BaseActivity {
         //map();
         String url = "http://ww3.sinaimg.cn/large/610dc034jw1f6m4aj83g9j20zk1hcww3.jpg";
         mImageviewBabysetup1.setImageURI(url);
-        mLoginPresenter =new LoginPresenter(this);
+        PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
+                .presenterModule(new PresenterModule(this))
+                .build();
+        mLoginPresenter = authenticationComponent.getLoginPresenter();
         mLoginPresenter.babysetupMdel();
         //name = (CombinationControlsTwo) findViewById(R.id.tv_baby_name);
         //local = (CombinationControlsTwo) findViewById(R.id.tv_baby_local);

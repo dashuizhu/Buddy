@@ -10,7 +10,9 @@ public class NetworkResult {
     String nickName;
     String avatar;
     String userId;
-
+    public boolean isSuccess() {
+        return code==0;
+    }
     public String getTimestamp() {
         return timestamp;
     }
@@ -45,9 +47,7 @@ public class NetworkResult {
     public String getAvatar() {
         return avatar;
     }
-    public boolean isSuccess() {
-        return code==0;
-    }
+
 
     public int getCode() {
         return code;

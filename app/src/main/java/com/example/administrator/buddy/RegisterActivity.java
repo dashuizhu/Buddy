@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
+import com.example.administrator.buddy.injector.components.PresenterComponent;
+import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import java.util.concurrent.TimeUnit;
 import rx.Observable;
@@ -28,7 +31,10 @@ public class RegisterActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mLoginPresenter = new LoginPresenter(this);
+        PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
+                .presenterModule(new PresenterModule(this))
+                .build();
+        mLoginPresenter = authenticationComponent.getLoginPresenter();
         regis();
     }
 
