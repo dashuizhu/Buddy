@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+   >
+
+    <LinearLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="#E8E8E8"
+        >
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        >
+        <TextView
+            android:id="@+id/tv_habit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/tv_tvhabit"
+            android:drawablePadding="3dp"
+            android:text="习惯"
+            android:textColor="@drawable/tv_text"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tv_tvmap"
+            android:gravity="center"
+            android:text="地图"
+            android:textColor="@drawable/tv_text"
+            />
+        <TextView
+            android:id="@+id/tv_baby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tv_tvbaby"
+            android:gravity="center"
+            android:text="地图"
+            android:textColor="@drawable/tv_text"
+            />
+
+        <TextView
+            android:id="@+id/tv_setup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/tv_tvsetup"
+            android:drawablePadding="3dp"
+            android:text="设置"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@drawable/tv_text"
+            />
+    </LinearLayout>
+</LinearLayout>

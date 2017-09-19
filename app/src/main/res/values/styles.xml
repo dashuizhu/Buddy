@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="mydialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">#33000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="btn">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/btn_blue</item>
+    </style>
+
+    <style name="font_twen_bul">
+        <item name="android:textSize">@dimen/text_Twenty</item>
+        <item name="android:textColor">@color/colorBule</item>
+    </style>
+
+    <style name="font_twen_bule">
+        <item name="android:textSize">@dimen/text_twentytwo</item>
+        <item name="android:textColor">@color/colorBule</item>
+    </style>
+    <style name="font_big_black">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/colorgrayblack</item>
+    </style>
+    <style name="font_twen_black">
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/colorheise</item>
+    </style>
+    <style name="font_bootinter">
+        <item name="android:textColor">@color/colorblack</item>
+        <item name="android:textSize">@dimen/text_Twenty</item>
+    </style>
+    <style name="font_bootintertwo">
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:textColor">@color/colorgrayblack</item>
+    </style>
+
+</resources>

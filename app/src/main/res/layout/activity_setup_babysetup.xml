@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zxc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="#E8E8E8"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBule"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_babysetup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="6dp"
+            android:padding="10dp"
+            android:src="@mipmap/nav_left_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="设置宝贝资料"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_baby_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="保存"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="宝贝头像"
+            android:textSize="16sp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imageview_babysetup1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/iamgeview_babysetup2"
+            fresco:placeholderImage="@mipmap/tabbar_head_default_img"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:roundAsCircle="true"
+            />
+        <!--android:src="@mipmap/babys_watch_headphoto_img"-->
+
+        <ImageView
+            android:id="@+id/iamgeview_babysetup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/list_right_arrow" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                zxc:merge_setup_right_text="柠檬"
+                zxc:merge_setup_text="姓名"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="深圳"
+                zxc:merge_setup_text="所在地"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="女"
+                zxc:merge_setup_text="性别"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="2010-01-01"
+                zxc:merge_setup_text="宝贝生日"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="向日葵幼儿园"
+                zxc:merge_setup_text="学校"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_schoolYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="2016年"
+                zxc:merge_setup_text="入学年"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+
+            <com.example.administrator.buddy.controls.CombinationControlsTwo
+                android:id="@+id/tv_baby_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="青苹果班"
+                zxc:merge_setup_text="班级"
+                zxc:merge_setup_text_color="@color/colorblack"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControlsTwo>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

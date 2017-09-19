@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="小游戏"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:textColor="@color/colorwhite"
+        android:background="@color/colorBule"
+        android:gravity="center_horizontal"
+        >
+
+    </TextView>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_map"
+        fresco:placeholderImage="@mipmap/tabbar_head_default_img"
+        fresco:placeholderImageScaleType="fitCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rlv_baby"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

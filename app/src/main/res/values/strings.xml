@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Buddy</string>
+    <string name="app_logo_name">请输入账号</string>
+    <string name="app_logo_password">请输入密码</string>
+    <string name="app_logo_regiter">请入验证码</string>
+    <string name="app_logo_yzm">获取验证码</string>
+</resources>

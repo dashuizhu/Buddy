@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:gravity="center_horizontal">
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bg_guide3"
+        android:layout_gravity="center_horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:src="@drawable/line_guide"
+            />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/image3"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="育儿宝典  专家辅导  自定义提醒"
+            style="@style/font_bootinter"
+            android:padding="10dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BUDDY智慧家长端"
+            style="@style/font_bootintertwo"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="爸妈育儿管家"
+        style="@style/font_bootintertwo"
+        />
+</LinearLayout>
+    <Button
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="立即体验 "
+            android:background="@drawable/btn_whitechangeblue"
+            android:textColor="@drawable/text_whitechangblue"
+        android:layout_gravity="bottom|center"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+
+
+</LinearLayout>

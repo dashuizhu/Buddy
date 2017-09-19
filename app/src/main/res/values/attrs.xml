@@ -1,0 +1,12 @@
+<resources>
+
+
+
+    <declare-styleable name="CombinationControls">
+        <attr name="merge_setup_text" format="string" />
+        <attr name="merge_setup_right_text" format="string" />
+        <attr name="merge_setup_text_color" format="color" />
+        <attr name="right_button" format="reference" />
+    </declare-styleable>
+
+</resources>
