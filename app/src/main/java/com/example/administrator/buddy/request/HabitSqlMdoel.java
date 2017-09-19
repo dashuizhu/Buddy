@@ -79,12 +79,12 @@ public class HabitSqlMdoel {
             for (int i = 0; i < cursor.getCount(); i++) {
                 cursor.move(i);
                 //获得ID
-                int id = cursor.getInt(0);
+                String playTime = cursor.getString(0);
                 //获得用户名
-                String username = cursor.getString(1);
+                String state = cursor.getString(1);
                 //获得密码
                 String password = cursor.getString(2);
-                //输出用户信息 System.out.println(id+":"+sname+":"+snumber);
+                //输出用户信息 System.out.println(id+":"+playTime+":"+state);
             }
         }
     }
