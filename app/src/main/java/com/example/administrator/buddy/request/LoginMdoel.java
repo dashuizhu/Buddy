@@ -15,6 +15,7 @@ public class LoginMdoel {
 
     public Observable<LoginResult> login(final String acctount, final String password) {
         IHttpAPI iHttpAPI = MyApplication.getIHttpApi() ;
+
         return iHttpAPI.login(acctount, Md5Tools.MD5(password), "a123af4e331cf61c0324cd43cbc2135d")
                 .doOnNext(new Action1<LoginResult>() {
                     @Override public void call(LoginResult loginResult) {
