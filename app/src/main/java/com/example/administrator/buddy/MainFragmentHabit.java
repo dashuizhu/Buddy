@@ -13,26 +13,23 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import com.example.administrator.buddy.adapter.HabitRVAdapter;
-import com.example.administrator.buddy.bean.HabitBean;
+import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import java.util.ArrayList;
 import java.util.List;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by zhuj on 2017/8/16 14:41.
  */
-public class MainFragmentHabit extends BaseFragment implements
-        BGARefreshLayout.BGARefreshLayoutDelegate {
+public class MainFragmentHabit extends BaseFragment
+        implements BGARefreshLayout.BGARefreshLayoutDelegate {
     protected ListView mlv;
     //protected HabitAdapter mAdapter;
     protected HabitRVAdapter mAdapter;
-    protected List<HabitBean> mList;
+    protected List<HabitResult.DataBean> mList;
     public Thread thread;
     LoginPresenter mLoginPresenter;
     RecyclerView mView;
@@ -47,7 +44,7 @@ public class MainFragmentHabit extends BaseFragment implements
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         View view = inflater.inflate(R.layout.fragment_habit, container, false);
-        mLayout  = (BGARefreshLayout) view.findViewById(R.id.gharl_bgar);
+        mLayout = (BGARefreshLayout) view.findViewById(R.id.gharl_bgar);
         initRefreshLayout(mLayout);
         //mlv = (RecyclerView) view.findViewById(R.id.tv_fraghabit);
         reg();
@@ -62,22 +59,23 @@ public class MainFragmentHabit extends BaseFragment implements
 
     @Override public void success(final Object o) {
         super.success(o);
-        mList = (List<HabitBean>) o;
-        Observable.just(o)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
-                    @Override public void onCompleted() {
-                    }
 
-                    @Override public void onError(Throwable e) {
-                    }
-
-                    @Override public void onNext(Object o) {
-                        mAdapter.setList(mList);//将构造器里的mlist重新赋值
-                        mAdapter.notifyDataSetChanged();
-                        mLayout.endRefreshing();
-                    }
-                });
+        mList = (List<HabitResult.DataBean>) o;
+        mAdapter.setList(mList);//将构造器里的mlist重新赋值
+        mAdapter.notifyDataSetChanged();
+        //Observable.just(o)
+        //        .observeOn(AndroidSchedulers.mainThread())
+        //        .subscribe(new Subscriber<Object>() {
+        //            @Override public void onCompleted() {
+        //            }
+        //
+        //            @Override public void onError(Throwable e) {
+        //            }
+        //            @Override public void onNext(Object o) {
+        //
+        //                //mLayout.endRefreshing();
+        //            }
+        //        });
 
         //if (o instanceof List) {
         //    //mList = (List<HabitBean>) o;得到的mlist不能更新主线程的mlist用message方法封装得到的o传递给Handler更新UI
@@ -204,6 +202,7 @@ public class MainFragmentHabit extends BaseFragment implements
             thread = null;
         }
     }
+
     private void initRefreshLayout(BGARefreshLayout refreshLayout) {
         // 为BGARefreshLayout 设置代理
         mLayout.setDelegate(this);
@@ -231,7 +230,6 @@ public class MainFragmentHabit extends BaseFragment implements
 
     @Override public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mLoginPresenter.habitMdel();
-
     }
 
     @Override public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
@@ -243,10 +241,11 @@ public class MainFragmentHabit extends BaseFragment implements
 
         mHandler.sendEmptyMessage(1);
     }
-    Handler mHandler=new Handler(){
+
+    Handler mHandler = new Handler() {
         @Override public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     mLayout.endRefreshing();
                     break;

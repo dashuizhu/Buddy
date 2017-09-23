@@ -72,6 +72,8 @@
             android:layout_toRightOf="@+id/layout1"
             android:padding="10dp"
             android:text="培养晨读习惯"
+            android:gravity="center"
+            android:maxLength="9"
             android:textSize="14sp" />
 
         <Button

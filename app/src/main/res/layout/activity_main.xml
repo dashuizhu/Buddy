@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="5dp"
+        android:padding="5dp"
         >
         <TextView
             android:id="@+id/tv_habit"
@@ -54,7 +54,7 @@
             android:drawablePadding="3dp"
             android:drawableTop="@drawable/tv_tvbaby"
             android:gravity="center"
-            android:text="地图"
+            android:text="游戏"
             android:textColor="@drawable/tv_text"
             />
 

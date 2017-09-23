@@ -1,10 +1,12 @@
 package com.example.administrator.buddy;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.qqtheme.framework.picker.DatePicker;
 import com.example.administrator.buddy.bean.HabitBean;
 import com.example.administrator.buddy.controls.CombinationControlsTwo;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
@@ -19,12 +22,11 @@ import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+import me.iwf.photopicker.PhotoPicker;
 
 /**
  * Created by zhuj on 2017/8/24 14:20.
@@ -40,20 +42,23 @@ public class BabySetupAcivity extends BaseActivity {
     @BindView(R.id.tv_baby_school) CombinationControlsTwo mTvBabySchool;
     @BindView(R.id.tv_baby_schoolYear) CombinationControlsTwo mTvBabySchoolYear;
     @BindView(R.id.tv_baby_class) CombinationControlsTwo mTvBabyClass;
-    private ImageView setup;
-    private TextView save;
-    private LoadDialog mLoadDialog;
     private PoputextDialog mPoputextDialog;
     private LoginPresenter mLoginPresenter;
     private List<HabitBean> mList;
+    private ImageView setup;
+    private TextView save;
+    private LoadDialog mLoadDialog;
     private TimerTask task;
     private SharedPreferences userInfo;
-    CombinationControlsTwo name;
-    CombinationControlsTwo local;
-    CombinationControlsTwo birthday;
-    CombinationControlsTwo school;
-    CombinationControlsTwo schoolYear;
-    CombinationControlsTwo mclass;
+    //CombinationControlsTwo name;
+    //CombinationControlsTwo local;
+    //CombinationControlsTwo birthday;
+    //CombinationControlsTwo school;
+    //CombinationControlsTwo schoolYear;
+    //CombinationControlsTwo mclass;
+    private String url = null;
+    private String urllabel;
+    private SharedPreferences mapurl;
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         Fresco.initialize(this);
@@ -62,8 +67,10 @@ public class BabySetupAcivity extends BaseActivity {
         setContentView(R.layout.activity_setup_babysetup);
         ButterKnife.bind(this);
         //map();
-        String url = "http://ww3.sinaimg.cn/large/610dc034jw1f6m4aj83g9j20zk1hcww3.jpg";
+        mapurl =getSharedPreferences("mapurl", 0);
+        url=mapurl.getString("url", "");
         mImageviewBabysetup1.setImageURI(url);
+        //P层对象初始化
         PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
                 .presenterModule(new PresenterModule(this))
                 .build();
@@ -77,20 +84,38 @@ public class BabySetupAcivity extends BaseActivity {
         //mclass = (CombinationControlsTwo) findViewById(R.id.tv_baby_class);
         //babysetup();
     }
-    protected void map(){
-        GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
-        /**
-         * 设置淡入淡出效果的显示时间
-         * */
-        GenericDraweeHierarchy hierarchy = builder.setFadeDuration(1000).build();
-        DraweeController placeHolderDraweeController = Fresco.newDraweeControllerBuilder()
-                .setUri("mipmap-xhdpi/babys_watch_headphoto_img.png") //为图片设置url
-                .setTapToRetryEnabled(true)   //设置在加载失败后,能否重试
-                .setOldController(mImageviewBabysetup1.getController())
-                .build();
-        mImageviewBabysetup1.setController(placeHolderDraweeController);
-        mImageviewBabysetup1.setHierarchy(hierarchy);
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PhotoPicker.REQUEST_CODE){
+            ArrayList<String> photos= data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+            url="file://"+photos.get(0);
+            Log.e("url",url);
+            mImageviewBabysetup1.setImageURI(url);
+            SharedPreferences userInfo;
+            userInfo = MyApplication.getContext()
+                    .getSharedPreferences("mapurl", 0);
+            SharedPreferences.Editor editor = userInfo.edit();
+            editor.putString("url",url);
+            editor.commit();
+        }
     }
+
+    //默认图片加载，设置
+    //protected void map(){
+    //    GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(getResources());
+    //    /**
+    //     * 设置淡入淡出效果的显示时间
+    //     * */
+    //    GenericDraweeHierarchy hierarchy = builder.setFadeDuration(1000).build();
+    //    DraweeController placeHolderDraweeController = Fresco.newDraweeControllerBuilder()
+    //            .setUri("mipmap-xhdpi/babys_watch_headphoto_img.png") //为图片设置url
+    //            .setTapToRetryEnabled(true)   //设置在加载失败后,能否重试
+    //            .setOldController(mImageviewBabysetup1.getController())
+    //            .build();
+    //    mImageviewBabysetup1.setController(placeHolderDraweeController);
+    //    mImageviewBabysetup1.setHierarchy(hierarchy);
+    //}
 
     //protected void babysetup() {
     //    setup = (ImageView) findViewById(R.id.imageview_babysetup);
@@ -136,27 +161,53 @@ public class BabySetupAcivity extends BaseActivity {
                 twoseconds();
                 break;
             case R.id.imageview_babysetup1:
+              PhotoPicker picker= new  PhotoPicker();
+                picker.builder()
+                        .setPhotoCount(1)
+                        .setShowCamera(true)
+                        .setShowGif(true)
+                        .setPreviewEnabled(false)
+                        .start(this, PhotoPicker.REQUEST_CODE);
+
                 break;
             case R.id.iamgeview_babysetup2:
                 break;
             case R.id.tv_baby_name:
-                mPoputextDialog = new PoputextDialog(BabySetupAcivity.this);
-                mPoputextDialog.show();
-                String text = name.getcontent().getText().toString();
-                mPoputextDialog.setmText(text);
-                mPoputextDialog.setOnClickconfirm(new PoputextDialog.onClickconfirm() {
-                    @Override public void onClickcon(String s) {
-                        name.getcontent().setText(s);
-                        mPoputextDialog.dismiss();
-                    }
-                    @Override public void onClickcancel() {
-                        mPoputextDialog.dismiss();
-                    }
-                });
+                //mPoputextDialog = new PoputextDialog(BabySetupAcivity.this);
+                //mPoputextDialog.show();
+                //String text = mTvBabyName.getcontent().getText().toString();
+                //mPoputextDialog.setmText(text);
+                //mPoputextDialog.setOnClickconfirm(new PoputextDialog.onClickconfirm() {
+                //    @Override public void onClickcon(String s) {
+                //        mTvBabyName.getcontent().setText(s);
+                //        mPoputextDialog.dismiss();
+                //    }
+                //
+                //    @Override public void onClickcancel() {
+                //        mPoputextDialog.dismiss();
+                //    }
+                //});
                 break;
             case R.id.tv_baby_local:
                 break;
             case R.id.tv_baby_birthday:
+                int year,  month, day;
+                DatePicker datePicker=new DatePicker(BabySetupAcivity.this);
+                datePicker.setRangeStart(2000,1,1);
+                datePicker.setRangeEnd(2020,12,31);
+                String text=mTvBabyBirthday.getcontent().getText().toString();
+                String time[] =text.split("-");
+                year= Integer.parseInt(time[0]);
+                month= Integer.parseInt(time[1]);
+                day= Integer.parseInt(time[2]);
+                datePicker.setSelectedItem(year,month,day);
+                datePicker.show();
+                datePicker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
+                    @Override public void onDatePicked(String year, String month, String day) {
+                        mTvBabyBirthday.getcontent().setText(year+"-"+month+"-"+day);
+                        Log.e("DateDilog",year+month+day);
+                    }
+                });
                 break;
             case R.id.tv_baby_school:
                 break;
@@ -166,6 +217,7 @@ public class BabySetupAcivity extends BaseActivity {
                 break;
         }
     }
+
     Handler mHandler = new Handler() {
         @Override public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -180,14 +232,14 @@ public class BabySetupAcivity extends BaseActivity {
                     mLoadDialog.dismiss();
                     break;
                 case 4:
-                    mList =  (List<HabitBean>) msg.obj;
-                    for (int i=0;i<mList.size();i++) {
+                    mList = (List<HabitBean>) msg.obj;
+                    for (int i = 0; i < mList.size(); i++) {
                         try {
                             HabitBean habit = mList.get(i);
                             mTvBabyName.getcontent().setText(habit.getName());
                             mTvBabyBirthday.getcontent().setText(habit.getBirthday());
                             mTvBabySchool.getcontent().setText(habit.getSchool());
-                        }catch (Exception e ){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -195,18 +247,18 @@ public class BabySetupAcivity extends BaseActivity {
             }
         }
     };
+
     @Override public void success(final Object o) {
         super.success(o);
         if (o instanceof List) {
             //mList = (List<HabitBean>) o;得到的mlist不能更新主线程的mlist用message方法封装得到的o传递给Handler更新UI
             //mAdapter.notifyDataSetChanged();
-            Message mess= new Message();
+            Message mess = new Message();
             mess.obj = o;
             mess.what = 1;
             mHandler.sendMessage(mess);
         }
     }
-
 
     //private void requestGet() {
     //    try {
@@ -252,8 +304,6 @@ public class BabySetupAcivity extends BaseActivity {
     //    }
     //    mHandler.sendEmptyMessage(3);
     //}
-
-
 
     //protected boolean requsetPost(String data) {
     //    try {
@@ -335,8 +385,10 @@ public class BabySetupAcivity extends BaseActivity {
     //}
 
     private void twoseconds() {
-        mLoginPresenter.babySetupMdelPost(mTvBabyName.getcontent().getText().toString(),mTvBabyBirthday.getcontent().getText().toString()
-                                        ,mTvBabySchool.getcontent().getText().toString(),mTvBabySchoolYear.getcontent().getText().toString());
+        mLoginPresenter.babySetupMdelPost(mTvBabyName.getcontent().getText().toString(),
+                mTvBabyBirthday.getcontent().getText().toString(),
+                mTvBabySchool.getcontent().getText().toString(),
+                mTvBabySchoolYear.getcontent().getText().toString());
         //mLoadDialog = new LoadDialog(this);
         //mLoadDialog.show();
         //new Thread(new Runnable() {
@@ -376,8 +428,4 @@ public class BabySetupAcivity extends BaseActivity {
             task.cancel();
         }
     }
-
-
-
-
 }

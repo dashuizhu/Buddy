@@ -1,10 +1,15 @@
 package com.example.administrator.buddy.request;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.LoginResult;
+import com.example.administrator.buddy.injector.modules.Requestbody;
 import com.example.administrator.buddy.network.IHttpAPI;
 import com.example.administrator.buddy.utils.Md5Tools;
+import okhttp3.RequestBody;
+import org.json.JSONException;
+import org.json.JSONObject;
 import rx.Observable;
 import rx.functions.Action1;
 
@@ -13,10 +18,20 @@ import rx.functions.Action1;
  */
 public class LoginMdoel {
 
-    public Observable<LoginResult> login(final String acctount, final String password) {
-        IHttpAPI iHttpAPI = MyApplication.getIHttpApi() ;
 
-        return iHttpAPI.login(acctount, Md5Tools.MD5(password), "a123af4e331cf61c0324cd43cbc2135d")
+    public Observable<LoginResult> login(final String accountId, final String password) {
+        IHttpAPI iHttpAPI = MyApplication.getIHttpApi() ;
+        JSONObject json = new JSONObject();
+                try {
+                    json.put("accountId", accountId);
+                    json.put("password", Md5Tools.MD5(password));//加密密码
+                    json.put("clientSecret", "a123af4e331cf61c0324cd43cbc2135d");
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+        RequestBody body =  Requestbody.toRequestBody(json);
+                    Log.e("login", json.toString());
+        return iHttpAPI.login(body)
                 .doOnNext(new Action1<LoginResult>() {
                     @Override public void call(LoginResult loginResult) {
                             if (loginResult.isSuccess()) {
@@ -24,9 +39,9 @@ public class LoginMdoel {
                                 userInfo = MyApplication.getContext()
                                         .getSharedPreferences("userInfo", 0);
                                 SharedPreferences.Editor editor = userInfo.edit();
-                                editor.putString("USER_NAME", acctount);
+                                editor.putString("USER_NAME", accountId);
                                 editor.putString("PASSWORD", password);
-                                editor.putString("userId", loginResult.getData().getUserId());
+                                editor.putString("UserId", loginResult.getData().getUserId());
                                 editor.putString("nickName", loginResult.getData().getNickName());
                                 editor.putString("avatar", loginResult.getData().getAvatar());
                                 editor.putBoolean("login", true);//提交 true

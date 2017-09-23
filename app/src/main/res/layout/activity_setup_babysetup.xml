@@ -25,10 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:text="设置宝贝资料"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/tv_baby_save"
@@ -38,7 +38,7 @@
             android:layout_marginRight="10dp"
             android:text="保存"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:id="@+id/imageview_babysetup1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginRight="10dp"
+            android:layout_margin="5dp"
             android:layout_toLeftOf="@+id/iamgeview_babysetup2"
             fresco:placeholderImage="@mipmap/tabbar_head_default_img"
             fresco:placeholderImageScaleType="fitCenter"
@@ -72,6 +72,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/list_right_arrow" />
 
     </RelativeLayout>

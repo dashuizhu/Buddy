@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 /**
  * Created by zhuj on 2017/8/16 14:41.
  */
 public class MainFragmentSetup extends Fragment {
     Button dropOut;
-    ImageView setup1;
+    RelativeLayout setup1;
     private SharedPreferences userInfo;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class MainFragmentSetup extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setup, container, false);
         userInfo =getActivity().getSharedPreferences("userInfo", 0);
         dropOut =(Button)view.findViewById(R.id.tv_setup_dropOut);
-        setup1 =(ImageView)view.findViewById(R.id.imageview_setup2);
+        setup1 =(RelativeLayout)view.findViewById(R.id.imageview_setup2);
         signOntButton();
         babysetup();
         return view;

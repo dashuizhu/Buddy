@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.example.administrator.buddy.Helper.HabitSql;
-import com.example.administrator.buddy.bean.HabitBean;
+import com.example.administrator.buddy.bean.HabitResult;
 import java.util.List;
 
 /**
@@ -33,13 +33,13 @@ public class HabitSqlMdoel {
         Log.e("habit","插入数据库");
         db.close();
     }
-    public void addtoSqlList(List<HabitBean> l){
+    public void addtoSqlList(List<HabitResult.DataBean> l){
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         ContentValues cv;
 
         for (int i=0;i<l.size();i++) {
            try {
-               HabitBean habit = l.get(i);
+               HabitResult.DataBean habit = l.get(i);
                int j = habit.getHabitId();
                cv = new ContentValues();
                cv.put("id", j);

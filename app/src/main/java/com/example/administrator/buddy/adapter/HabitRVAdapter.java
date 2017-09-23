@@ -11,20 +11,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.administrator.buddy.R;
-import com.example.administrator.buddy.bean.HabitBean;
+import com.example.administrator.buddy.bean.HabitResult;
 import java.util.List;
 
 /**
  * Created by zhuj on 2017/9/12 17:11.
  */
 public class HabitRVAdapter extends RecyclerView.Adapter{
-    private List<HabitBean>  mList;
+    private List<HabitResult.DataBean>  mList;
     private Context mContext;
 
-    public void setList(List<HabitBean> list) {
+    public void setList(List<HabitResult.DataBean> list) {
         this.mList = list;
     }
-    public HabitRVAdapter(Context context, List<HabitBean> data) {
+    public HabitRVAdapter(Context context, List<HabitResult.DataBean> data) {
         super();
         mList =data;
         mContext =context;
@@ -67,7 +67,11 @@ public class HabitRVAdapter extends RecyclerView.Adapter{
     }
 
     @Override public int getItemCount() {
-        return mList.size();
+        if (mList==null){
+            return 0;
+        }else {
+            return mList.size();
+        }
     }
     private class rViewholder  extends RecyclerView.ViewHolder
     {

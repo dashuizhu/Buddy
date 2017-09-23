@@ -6,19 +6,15 @@ package com.example.administrator.buddy.bean;
  * Gen
  */
 public class HabitBean {
-    protected String title ;
+    protected String title;
     protected String playTime;
     protected int state;
-    protected int flag;
     protected int playState;
-    protected int habitId;
     protected int code;
     protected String messge;
     protected String name;
     protected String birthday;
     protected String school;
-
-
 
     public String getName() {
         return name;
@@ -45,15 +41,6 @@ public class HabitBean {
     }
 
 
-
-
-    public int getHabitId() {
-        return habitId;
-    }
-
-    public void setHabitId(int habitId) {
-        this.habitId = habitId;
-    }
 
     public int getCode() {
         return code;
@@ -94,19 +81,17 @@ public class HabitBean {
     public void setState(int state) {
         this.state = state;
     }
-    public int getFlag() {
-        return flag;
-    }
-    public void setFlag(int flag) {
-        this.flag = flag;
-    }
+
+
     public int getPlayState() {
         return playState;
     }
+
     public void setPlayState(int playState) {
         this.playState = playState;
     }
+
     public boolean isSuccess() {
-        return code==0;
+        return code == 0;
     }
 }

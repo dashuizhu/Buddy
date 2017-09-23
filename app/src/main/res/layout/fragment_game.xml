@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="小游戏"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:padding="10dp"
         android:textColor="@color/colorwhite"
         android:background="@color/colorBule"

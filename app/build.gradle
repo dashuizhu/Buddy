@@ -77,6 +77,13 @@ dependencies {
   compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
     transitive = true;
   }
+  compile('cn.qqtheme.framework:WheelPicker:1.5.5') {
+    exclude group: 'com.android.support'
+  }
+  compile 'me.iwf.photopicker:PhotoPicker:0.9.5@aar'
+  compile 'com.android.support:design:25.3.1'
+  compile 'com.nineoldandroids:library:2.4.0'
+  compile 'com.github.bumptech.glide:glide:3.7.0'
   compile 'com.jakewharton:butterknife-compiler:8.8.1'
   compile 'com.jakewharton:butterknife:8.8.1'
   compile 'io.reactivex:rxandroid:1.1.0'

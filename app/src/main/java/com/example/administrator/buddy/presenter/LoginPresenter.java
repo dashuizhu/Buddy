@@ -77,6 +77,34 @@ public class LoginPresenter {
 
     }
 
+    public void habitMdel() {
+        //mIBaseView.displayDialog();
+
+        mHabitMdoel.habi()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<HabitResult>() {
+            @Override public void onCompleted() {
+
+            }
+
+            @Override public void onError(Throwable e) {
+                mIBaseView.shutDialg();
+                mIBaseView.success(e.getMessage());
+            }
+
+            @Override public void onNext(HabitResult habitResult) {
+                mIBaseView.shutDialg();
+                mIBaseView.success(habitResult.getData());
+            }
+        });
+
+
+
+    }
+
+
+
     public void register(final String acctount, final String password, final String verifyCode,
             final boolean b) {
         mIBaseView.displayDialog();
@@ -108,29 +136,28 @@ public class LoginPresenter {
                         }
                     }
                 });
-
-        //Thread thread = new Thread(new Runnable() {
-        //    @Override public void run() {
-        //        NetworkResult reg = null;
-        //        if (b) {
-        //            reg = mRegisterMdel.register(acctount, password, verifyCode);
-        //        } else {
-        //            reg = mRegisterMdel.reset(acctount, password, verifyCode);
-        //        }
-        //        Looper.prepare();
-        //        mIBaseView.shutDialg();
-        //        if (reg == null) {
-        //            mIBaseView.onError(null);
-        //        } else if (reg.isSuccess()) {
-        //            mIBaseView.success(reg);
-        //        } else {
-        //            mIBaseView.onError(reg.getMessge());
-        //        }
-        //        Looper.loop();
-        //    }
-        //});
-        //thread.start();
     }
+    //Thread thread = new Thread(new Runnable() {
+    //    @Override public void run() {
+    //        NetworkResult reg = null;
+    //        if (b) {
+    //            reg = mRegisterMdel.register(acctount, password, verifyCode);
+    //        } else {
+    //            reg = mRegisterMdel.reset(acctount, password, verifyCode);
+    //        }
+    //        Looper.prepare();
+    //        mIBaseView.shutDialg();
+    //        if (reg == null) {
+    //            mIBaseView.onError(null);
+    //        } else if (reg.isSuccess()) {
+    //            mIBaseView.success(reg);
+    //        } else {
+    //            mIBaseView.onError(reg.getMessge());
+    //        }
+    //        Looper.loop();
+    //    }
+    //});
+    //thread.start();
 
     public void verMdoel(final String accoutId) {
         mIBaseView.displayDialog();
@@ -143,26 +170,6 @@ public class LoginPresenter {
                     mIBaseView.onError(null);
                 } else {
                     mIBaseView.onError(ver.getMessge());
-                }
-                Looper.loop();
-            }
-        });
-        thread.start();
-    }
-
-    public void habitMdel() {
-        //mIBaseView.displayDialog();
-        Thread thread = new Thread(new Runnable() {
-            @Override public void run() {
-                HabitResult habit = mHabitMdoel.habi();
-                Looper.prepare();
-                mIBaseView.shutDialg();
-                if (habit == null) {
-                    mIBaseView.onError(null);
-                } else if (habit.isSuccess()) {
-                    mIBaseView.success(habit.getList());
-                } else {
-                    mIBaseView.onError(habit.getMessge());
                 }
                 Looper.loop();
             }

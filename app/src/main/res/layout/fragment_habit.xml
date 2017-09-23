@@ -5,17 +5,18 @@
     android:layout_height="match_parent"
     android:background="#E8E8E8"
     >
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="习惯养成"
-        android:textSize="20dp"
-        android:padding="10dp"
-        android:textColor="@color/colorwhite"
         android:background="@color/colorBule"
         android:gravity="center_horizontal"
-        >
-    </TextView>
+        android:padding="10dp"
+        android:text="习惯养成"
+        android:textColor="@color/colorwhite"
+        android:textSize="18sp"></TextView>
+
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/gharl_bgar"
         android:layout_width="match_parent"
