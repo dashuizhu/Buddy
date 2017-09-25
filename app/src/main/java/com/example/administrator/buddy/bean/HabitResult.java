@@ -57,11 +57,11 @@ public class HabitResult extends HabitBean {
     }
 
 
-    public List<DataBean> getData() {
+    public List<HabitResult.DataBean> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<HabitResult.DataBean> data) {
         this.data = data;
     }
 }

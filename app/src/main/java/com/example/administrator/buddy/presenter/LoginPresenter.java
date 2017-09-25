@@ -40,7 +40,7 @@ public class LoginPresenter {
 
     public void login(final String accout, final String password) {
         mIBaseView.displayDialog();
-
+        //Rxjava
         mLoginMdoel.login(accout, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -90,7 +90,7 @@ public class LoginPresenter {
 
             @Override public void onError(Throwable e) {
                 mIBaseView.shutDialg();
-                mIBaseView.success(e.getMessage());
+                mIBaseView.onError(e.getMessage());
             }
 
             @Override public void onNext(HabitResult habitResult) {

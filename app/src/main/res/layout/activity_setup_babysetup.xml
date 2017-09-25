@@ -38,44 +38,9 @@
             android:layout_marginRight="10dp"
             android:text="保存"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="14sp" />
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:text="宝贝头像"
-            android:textSize="16sp" />
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/imageview_babysetup1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:layout_toLeftOf="@+id/iamgeview_babysetup2"
-            fresco:placeholderImage="@mipmap/tabbar_head_default_img"
-            fresco:placeholderImageScaleType="fitCenter"
-            fresco:roundAsCircle="true"
-            />
-        <!--android:src="@mipmap/babys_watch_headphoto_img"-->
-
-        <ImageView
-            android:id="@+id/iamgeview_babysetup2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/list_right_arrow" />
-
-    </RelativeLayout>
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -85,7 +50,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:text="宝贝头像"
+                    android:textSize="16sp" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/imageview_babysetup1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:layout_toLeftOf="@+id/iamgeview_babysetup2"
+                    fresco:placeholderImage="@mipmap/tabbar_head_default_img"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundAsCircle="true"
+                    />
+                <!--android:src="@mipmap/babys_watch_headphoto_img"-->
+
+                <ImageView
+                    android:id="@+id/iamgeview_babysetup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/list_right_arrow" />
+
+            </RelativeLayout>
             <com.example.administrator.buddy.controls.CombinationControlsTwo
                 android:id="@+id/tv_baby_name"
                 android:layout_width="wrap_content"

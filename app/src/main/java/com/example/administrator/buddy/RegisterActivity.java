@@ -1,8 +1,6 @@
 package com.example.administrator.buddy;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,39 +36,39 @@ public class RegisterActivity extends BaseActivity {
         regis();
     }
 
-    Handler mHandler = new Handler() {
-        @Override public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1:
-                    yzm.setText("" + msg.arg1);
-                    break;
-                case 2:
-                    yzm.setText(R.string.app_logo_yzm);
-                    yzm.setBackgroundResource(R.color.colorBule);
-                    yzm.setEnabled(true);
-                    break;
-                case 3:
-                    Toast.makeText(RegisterActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
-                    break;
-                case 4:
-                    mLoadDialog.dismiss();
-                    break;
-                case 5:
-                    Toast.makeText(RegisterActivity.this, "发送成功", Toast.LENGTH_SHORT).show();
-                    break;
-                case 6:
-                    Toast.makeText(RegisterActivity.this, "发送失败", Toast.LENGTH_SHORT).show();
-                    break;
-                case 7:
-                    Toast.makeText(RegisterActivity.this, "" + msg.obj, Toast.LENGTH_SHORT).show();
-                    break;
-                case 8:
-                    Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        }
-    };
+    //Handler mHandler = new Handler() {
+    //    @Override public void handleMessage(Message msg) {
+    //        super.handleMessage(msg);
+    //        switch (msg.what) {
+    //            case 1:
+    //                yzm.setText("" + msg.arg1);
+    //                break;
+    //            case 2:
+    //                yzm.setText(R.string.app_logo_yzm);
+    //                yzm.setBackgroundResource(R.color.colorBule);
+    //                yzm.setEnabled(true);
+    //                break;
+    //            case 3:
+    //                Toast.makeText(RegisterActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+    //                break;
+    //            case 4:
+    //                mLoadDialog.dismiss();
+    //                break;
+    //            case 5:
+    //                Toast.makeText(RegisterActivity.this, "发送成功", Toast.LENGTH_SHORT).show();
+    //                break;
+    //            case 6:
+    //                Toast.makeText(RegisterActivity.this, "发送失败", Toast.LENGTH_SHORT).show();
+    //                break;
+    //            case 7:
+    //                Toast.makeText(RegisterActivity.this, "" + msg.obj, Toast.LENGTH_SHORT).show();
+    //                break;
+    //            case 8:
+    //                Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+    //                break;
+    //        }
+    //    }
+    //};
 
     protected void regis() {
         acctount = (EditText) findViewById(R.id.et_zh2);

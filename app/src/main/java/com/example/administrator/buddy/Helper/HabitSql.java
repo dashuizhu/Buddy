@@ -25,7 +25,6 @@ public class HabitSql extends SQLiteOpenHelper {
             Log.e("tag", "onCreate " +TABLE_NAME + "Error" + e.toString());
             return;
         }
-
     }
 
 

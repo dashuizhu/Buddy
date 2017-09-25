@@ -14,17 +14,13 @@ import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 import java.util.TimerTask;
 
-
-
-
-
 public class LoginActivity extends BaseActivity {
 
-    EditText acctount ;
-    EditText password ;
+    EditText acctount;
+    EditText password;
     private Button button;
     private SharedPreferences userInfo;
-    private TimerTask task ;
+    private TimerTask task;
     LoginPresenter mLoginPresenter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +34,25 @@ public class LoginActivity extends BaseActivity {
         login();
     }
 
-
-
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode!= RESULT_OK) {
+        if (resultCode != RESULT_OK) {
             //
             return;
         }
-        if(requestCode==12){//得到返回启动参数
-            String acc=data.getStringExtra("dengr");
+        if (requestCode == 12) {//得到返回启动参数
+            String acc = data.getStringExtra("dengr");
             acctount.setText(acc);
-            String pas=data.getStringExtra("mima0");
+            String pas = data.getStringExtra("mima0");
             password.setText(pas);
         }
-        if(requestCode==11){//得到返回启动参数
-            String acc=data.getStringExtra("dengr");
+        if (requestCode == 11) {//得到返回启动参数
+            String acc = data.getStringExtra("dengr");
             acctount.setText(acc);
-            String pas=data.getStringExtra("mima0");
+            String pas = data.getStringExtra("mima0");
             password.setText(pas);
         }
-
-
     }
-
 
     //Handler mHandler = new Handler(){
     //    @Override public void handleMessage(Message msg) {
@@ -81,89 +72,91 @@ public class LoginActivity extends BaseActivity {
     //        }
     //    }
     //};
-    protected  void  login(){
-        acctount =(EditText)findViewById(R.id.et_zh);
-        password =(EditText)findViewById(R.id.et_pssword);
-        button =(Button)findViewById(R.id.btn_login);
-        userInfo =getSharedPreferences("userInfo", 0);//打开Preferences，名称为userInfo，如果存在则打开它，否则创建新的Preferencesw文件
-        final String name=userInfo.getString("USER_NAME", "");
-        final String passw =userInfo.getString("PASSWORD", "");
+    protected void login() {
+        acctount = (EditText) findViewById(R.id.et_zh);
+        password = (EditText) findViewById(R.id.et_pssword);
+        button = (Button) findViewById(R.id.btn_login);
+        userInfo = getSharedPreferences("userInfo",
+                0);//打开Preferences，名称为userInfo，如果存在则打开它，否则创建新的Preferencesw文件
+        final String name = userInfo.getString("USER_NAME", "");
+        final String passw = userInfo.getString("PASSWORD", "");
         acctount.setText(name);
         password.setText(passw);
         button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                String acc=acctount.getText().toString();
-                String pass=password.getText().toString();
+                String acc = acctount.getText().toString();
+                String pass = password.getText().toString();
                 //让userInfo处于编辑状态
-                if(acc.length()==0){
-                    Toast.makeText(LoginActivity.this,"账号不能为空",Toast.LENGTH_SHORT).show();
+                if (acc.length() == 0) {
+                    Toast.makeText(LoginActivity.this, "账号不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(acc.length()<6 ) {
-                    Toast.makeText(LoginActivity.this,"请输入不少于或等于6位数的账号",Toast.LENGTH_SHORT).show();
-                    Log.i("acc",""+acc);
+                if (acc.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "请输入不少于或等于6位数的账号", Toast.LENGTH_SHORT)
+                            .show();
+                    Log.i("acc", "" + acc);
                     return;
                 }
-                if(pass.length()==0){
-                    Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
+                if (pass.length() == 0) {
+                    Toast.makeText(LoginActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(pass.length()<6){
-                    Toast.makeText(LoginActivity.this,"请输入不少于或等于6位数的密码",Toast.LENGTH_SHORT).show();
+                if (pass.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "请输入不少于或等于6位数的密码", Toast.LENGTH_SHORT)
+                            .show();
                     return;
                 } else {
-                        twoseconds();
-                   // SharedPreferences.Editor editor=userInfo.edit();
-                      // editor.putString("USER_NAME", acc);//提交名字为USER_NAME ，String类型的acc内容
-                     //  editor.putString("PASSWORD", pass);
-                      // editor.putBoolean("login",true);//提交 true
-                      // editor.commit();//完成提交
+                    twoseconds();
+                    // SharedPreferences.Editor editor=userInfo.edit();
+                    // editor.putString("USER_NAME", acc);//提交名字为USER_NAME ，String类型的acc内容
+                    //  editor.putString("PASSWORD", pass);
+                    // editor.putBoolean("login",true);//提交 true
+                    // editor.commit();//完成提交
                     //equals:被用来检测两个对象是否相等，即两个对象的内容是否相等，区分大小写
                     //else {
-                      //  Toast.makeText(LoginActivity.this, "账号或者密码不正确，请重新输入", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(LoginActivity.this, "账号或者密码不正确，请重新输入", Toast.LENGTH_SHORT).show();
                     //}
                 }
             }
         });
 
-
-        findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             //启动
             @Override public void onClick(View v) {
-                Intent intent= new Intent(LoginActivity.this, RegisterActivity.class);
-                intent.putExtra("wczc",1);
-                //12启动标志
-                startActivityForResult(intent,12);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("wczc", 1);
+                //"12"启动标志
+                startActivityForResult(intent, 12);
             }
         });
 
-        findViewById(R.id.tv_ftp).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.tv_ftp).setOnClickListener(new View.OnClickListener() {
             //启动
             @Override public void onClick(View v) {
-                Intent intent= new Intent(LoginActivity.this, RestPasswordActivity.class);
-                intent.putExtra("wczc",1);
-                //12启动标志
-                startActivityForResult(intent,11);
+                Intent intent = new Intent(LoginActivity.this, RestPasswordActivity.class);
+                intent.putExtra("wczc", 1);
+                startActivityForResult(intent, 11);
             }
         });
-
-
     }
+
     @Override public void success(Object o) {
 
-        Intent intent=new Intent(LoginActivity.this,MainActivity.class);//跳转
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
         //intent.putExtra("user",nickName);//传递数据
         startActivity(intent);//执行跳转
         finish();
         super.success(o);
     }
+
     @Override protected void onDestroy() {
         super.onDestroy();
-        if(task!=null) {
+        if (task != null) {
             task.cancel();
         }
     }
-    private void twoseconds(){
+
+    private void twoseconds() {
         mLoginPresenter.login(acctount.getText().toString(), password.getText().toString());
         //displayDialog();
         //new Thread(new Runnable() {
@@ -275,11 +268,5 @@ public class LoginActivity extends BaseActivity {
     //    }
     //}
 
-
-
-
     //关闭时线程动作
-
-
-
 }

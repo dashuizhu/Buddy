@@ -59,10 +59,15 @@ public class MainFragmentHabit extends BaseFragment
 
     @Override public void success(final Object o) {
         super.success(o);
+        // instanceof 判断数据类型
 
-        mList = (List<HabitResult.DataBean>) o;
-        mAdapter.setList(mList);//将构造器里的mlist重新赋值
-        mAdapter.notifyDataSetChanged();
+        if (o instanceof Object)
+        {
+            mList = (List<HabitResult.DataBean>) o;
+            mAdapter.setList(mList);//将构造器里的mlist重新赋值
+            mAdapter.notifyDataSetChanged();
+        }
+
         //Observable.just(o)
         //        .observeOn(AndroidSchedulers.mainThread())
         //        .subscribe(new Subscriber<Object>() {

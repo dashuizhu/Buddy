@@ -1,6 +1,7 @@
 package com.example.administrator.buddy.request;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.network.IHttpAPI;
@@ -23,10 +24,11 @@ public class HabitMdoel {
         return iHttpAPI.habit("777777777777777",userInfo.getString("UserId","")).doOnNext(new Action1<HabitResult>() {
             @Override public void call(HabitResult habitResult) {
                 if (habitResult.isSuccess()) {
-                    mList =  habitResult.getData();
-                    HabitSqlMdoel mHabitSql;
-                    mHabitSql = new HabitSqlMdoel(MyApplication.getContext());
-                    mHabitSql.addtoSqlList(mList);
+                    Log.e("habit",habitResult.getData().toString());
+                    //mList =  habitResult.getData();
+                    //HabitSqlMdoel mHabitSql;
+                    //mHabitSql = new HabitSqlMdoel(MyApplication.getContext());
+                    //mHabitSql.addtoSqlList(mList);
                 }else {
                      new Exception(habitResult.getMessage());
                 }

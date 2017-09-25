@@ -32,7 +32,7 @@ import me.iwf.photopicker.PhotoPicker;
  * Created by zhuj on 2017/8/24 14:20.
  */
 public class BabySetupAcivity extends BaseActivity {
-    @BindView(R.id.imageview_babysetup) ImageView mImageviewBabysetup;
+    @BindView(R.id.imageview_babysetup) ImageView mImageviewBabysetup;//
     @BindView(R.id.tv_baby_save) TextView mTvBabySave;
     @BindView(R.id.imageview_babysetup1) SimpleDraweeView mImageviewBabysetup1;
     @BindView(R.id.iamgeview_babysetup2) ImageView mIamgeviewBabysetup2;
@@ -86,7 +86,8 @@ public class BabySetupAcivity extends BaseActivity {
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PhotoPicker.REQUEST_CODE){
+
+        if(resultCode== RESULT_OK&&requestCode == PhotoPicker.REQUEST_CODE){
             ArrayList<String> photos= data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
             url="file://"+photos.get(0);
             Log.e("url",url);
@@ -154,6 +155,8 @@ public class BabySetupAcivity extends BaseActivity {
     }) public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.imageview_babysetup:
+                getIntent().putExtra("avatarurl", url);
+                setResult(RESULT_OK,getIntent());
                 finish();
                 break;
             case R.id.tv_baby_save:
