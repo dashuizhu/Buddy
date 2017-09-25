@@ -9,4 +9,14 @@
         <attr name="right_button" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="BuddyCircleGroupView">
+        <attr name="startAngle" format="integer"></attr>
+        <attr name="intervalAngle" format="integer"></attr>
+        <attr name="circleColor" format="color"></attr>
+        <attr name="ringRadius" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+
+
 </resources>

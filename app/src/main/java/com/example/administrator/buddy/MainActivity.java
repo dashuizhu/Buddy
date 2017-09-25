@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import com.example.administrator.buddy.ui.device.GuardFragment;
 
 public class MainActivity extends FragmentActivity {
     LinearLayout mLayoutMain;
@@ -20,7 +21,7 @@ public class MainActivity extends FragmentActivity {
     MainFragmentHabit mMainFragmentHabit;
     MainFragmentSetup mMainFragmentSetup;
     MainFragmentMap mMainFragmentMap;
-    MainFragmentGame mMainFragmentBaby;
+    Fragment mMainFragmentBaby;
     Fragment mFragment;
     BGARefreshLayout mLayout;
     //TextView tvmap;
@@ -171,7 +172,7 @@ public class MainActivity extends FragmentActivity {
                 break;
             case R.id.tv_baby:
                 if (mMainFragmentBaby == null) {
-                    mMainFragmentBaby = new MainFragmentGame();
+                    mMainFragmentBaby = new GuardFragment();
                     ft.add(R.id.layout_main, mMainFragmentBaby);
                 } else {
                     ft.show(mMainFragmentBaby);

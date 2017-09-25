@@ -55,6 +55,7 @@
         </activity>
         <activity android:name=".BabySetupAcivity"></activity>
         <activity android:name=".MyServiceActivity"></activity>
+        <activity android:name=".ui.device.GuardActivity" android:screenOrientation="portrait"/>
         <service android:name=".MyService"></service>
 
 

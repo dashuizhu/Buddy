@@ -61,7 +61,6 @@ public class BabySetupAcivity extends BaseActivity {
     private SharedPreferences mapurl;
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Fresco.initialize(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_setup_babysetup);
