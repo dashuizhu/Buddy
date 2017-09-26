@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -26,7 +25,6 @@ public class MainFragmentSetup extends Fragment {
             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         //对View中控件的操作方法
-        Fresco.initialize(getContext());
         View view = inflater.inflate(R.layout.fragment_setup, container, false);
         userInfo =getActivity().getSharedPreferences("mapurl", 0);
         dropOut =(Button)view.findViewById(R.id.tv_setup_dropOut);

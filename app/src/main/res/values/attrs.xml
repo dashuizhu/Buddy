@@ -10,6 +10,7 @@
     </declare-styleable>
 
     <declare-styleable name="BuddyCircleGroupView">
+        <!--起始角度,间隔角度,圈颜色,环半径,半径-->
         <attr name="startAngle" format="integer"></attr>
         <attr name="intervalAngle" format="integer"></attr>
         <attr name="circleColor" format="color"></attr>

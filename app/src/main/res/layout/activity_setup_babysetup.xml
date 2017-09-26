@@ -61,6 +61,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:text="宝贝头像"
+                    android:textColor="@color/colorblack"
                     android:textSize="16sp" />
 
                 <com.facebook.drawee.view.SimpleDraweeView

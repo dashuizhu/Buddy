@@ -13,6 +13,7 @@ import rx.Observable;
 /**
  * Created by zhuj on 2017/9/19 22:06.
  */
+//封装网络请求数据
 public interface IHttpAPI {
     //@Path("accountId") String accountId,
     @POST("api/apps/BUDDY_API_TEST/accounts/login")

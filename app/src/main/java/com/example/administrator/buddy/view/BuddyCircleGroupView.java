@@ -63,7 +63,7 @@ public class BuddyCircleGroupView extends ViewGroup {
 
   public BuddyCircleGroupView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BuddyCircleGroupView);
+    TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.BuddyCircleGroupView);
     startAngle = ta.getInteger(R.styleable.BuddyCircleGroupView_startAngle, 270);
     intervalAngle = ta.getInteger(R.styleable.BuddyCircleGroupView_intervalAngle, 30);
     circleColor = ta.getColor(R.styleable.BuddyCircleGroupView_circleColor, Color.CYAN);
@@ -73,7 +73,7 @@ public class BuddyCircleGroupView extends ViewGroup {
     //默认viewGroup不设置背景，是不会执行onDraw的，这里无论设置无论是否有背景都要执行onDraw
     setWillNotDraw(false);
   }
-
+//设置大小
   @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
     //寻找圆心
     circleCenterX = getWidth() / 2;
@@ -101,7 +101,7 @@ public class BuddyCircleGroupView extends ViewGroup {
       childView.layout(cl, ct, cr, cb);
     }
   }
-
+//设置子控件
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     measureChildren(widthMeasureSpec, heightMeasureSpec);
 
@@ -142,7 +142,7 @@ public class BuddyCircleGroupView extends ViewGroup {
     setMeasuredDimension(width, height);
     //super.onMeasure(widthMeasureSpec, heightMeasureSpec);
   }
-
+//绘制view内容
   @Override protected void onDraw(Canvas canvas) {
     //if (mPaint == null) {
     //  mPaint = new Paint();

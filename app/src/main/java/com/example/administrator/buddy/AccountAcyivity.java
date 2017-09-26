@@ -28,7 +28,6 @@ public class AccountAcyivity extends Activity {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_accout);
-
         twoseconds();
     }
 
