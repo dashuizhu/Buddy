@@ -19,9 +19,8 @@ import com.example.administrator.buddy.bean.HabitBean;
 import com.example.administrator.buddy.controls.CombinationControlsTwo;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
-import com.example.administrator.buddy.injector.modules.PresenterModule;
+import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class BabySetupAcivity extends BaseActivity {
         mImageviewBabysetup1.setImageURI(url);
         //P层对象初始化
         PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
-                .presenterModule(new PresenterModule(this))
+                .modelModule(new ModelModule(this))
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         mLoginPresenter.babysetupMdel();

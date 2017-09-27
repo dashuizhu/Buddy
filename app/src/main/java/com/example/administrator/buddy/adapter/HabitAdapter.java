@@ -53,10 +53,14 @@ public class HabitAdapter extends BaseAdapter  {
         View view =inflater.inflate(R.layout.listview_habit_item ,null);
         TextView tvTime =(TextView)view.findViewById(R.id.tv_tmie);
         TextView tvText =(TextView)view.findViewById(R.id.textv_text);
+        TextView tvAm =(TextView)view.findViewById(R.id.tv_am);
         ImageView imstate = (ImageView)view.findViewById(R.id.tv_state);
         Button   btnplayState= (Button)view.findViewById(R.id.btn_playState) ;
         tvText.setText(getItem(position).getTitle());
-        tvTime.setText(getItem(position).getPlayTime());
+
+        tvTime.setText(getItem(position).getTimeFormat12());
+        tvAm.setText(getItem(position).getTimeByAM());
+
         GradientDrawable drawable = (GradientDrawable) btnplayState.getBackground();
         if (getItem(position).getState()==0){
             imstate.setBackgroundResource(R.mipmap.home_point_gray_img);

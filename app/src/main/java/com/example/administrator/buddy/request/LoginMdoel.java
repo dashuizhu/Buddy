@@ -87,7 +87,7 @@ public class LoginMdoel {
         //                //
         //                NetworkResult mess = new NetworkResult();
         //                mess.setCode(code);
-        //                mess.setMessge(message);
+        //                mess.setMessage(message);
         //                callback.callback(mess);
         //                return;
         //            }

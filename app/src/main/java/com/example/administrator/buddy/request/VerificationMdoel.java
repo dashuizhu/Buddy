@@ -26,7 +26,7 @@ public class VerificationMdoel {
                         String message = jsonobjiect.getString("message");
                         NetworkResult mess = new NetworkResult();
                         mess.setCode(code);
-                        mess.setMessge(message);
+                        mess.setMessage(message);
                         return mess;
                     }
                 } catch (JSONException e) {

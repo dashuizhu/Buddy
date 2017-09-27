@@ -15,7 +15,6 @@ public class LoginResult extends NetworkResult {
      * data : {"userId":"13813800001","nickName":"foo","avatar":"http://xxx","accessToken":"0f229945-fb3b-46b1-8c11-5cb390952b4f","refreshToken":"12329945-fb3b-46b1-8c11-5cb390952321","expiresIn":3600}
      */
 
-    private String message;
     /**
      * userId : 13813800001
      * nickName : foo

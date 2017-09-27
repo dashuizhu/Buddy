@@ -1,5 +1,7 @@
 package com.example.administrator.buddy;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,11 +15,14 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import com.example.administrator.buddy.adapter.HabitRVAdapter;
+import com.example.administrator.buddy.adapter.RecyclerItemClickListener;
+import com.example.administrator.buddy.bean.HabitBean;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
-import com.example.administrator.buddy.injector.modules.PresenterModule;
+import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
+import com.example.administrator.buddy.ui.habit.UserHabitSystemEditActivity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,18 +34,18 @@ public class MainFragmentHabit extends BaseFragment
     protected ListView mlv;
     //protected HabitAdapter mAdapter;
     protected HabitRVAdapter mAdapter;
-    protected List<HabitResult.DataBean> mList;
+    protected List<HabitBean> mList;
     public Thread thread;
     LoginPresenter mLoginPresenter;
     RecyclerView mView;
     protected BGARefreshLayout mLayout;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         //对View中控件的操作方法
         PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
-                .presenterModule(new PresenterModule(this))
+                .modelModule(new ModelModule(this))
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         View view = inflater.inflate(R.layout.fragment_habit, container, false);
@@ -54,7 +59,25 @@ public class MainFragmentHabit extends BaseFragment
         //mAdapter =new HabitAdapter(getContext() ,mList);
         mAdapter = new HabitRVAdapter(getContext(), mList);
         mView.setAdapter(mAdapter);
+
+
+        mView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getContext(), UserHabitSystemEditActivity.class);
+                        intent.putExtra(AppString.KEY_HABIT_BEAN, mList.get(position));
+                        startActivityForResult(intent, 0);
+                    }
+                }));
         return view;
+    }
+
+    @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode!= Activity.RESULT_OK) return;
+        if (requestCode == 0) {
+            mLayout.beginRefreshing();
+        }
     }
 
     @Override public void success(final Object o) {
@@ -63,7 +86,7 @@ public class MainFragmentHabit extends BaseFragment
 
         if (o instanceof Object)
         {
-            mList = (List<HabitResult.DataBean>) o;
+            mList = (List<HabitBean>) o;
             mAdapter.setList(mList);//将构造器里的mlist重新赋值
             mAdapter.notifyDataSetChanged();
         }

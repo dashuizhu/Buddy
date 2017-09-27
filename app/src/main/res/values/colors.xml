@@ -17,4 +17,6 @@
     <color name="colorhabitGreen">#FF53CD4E</color>
     <color name="colorhabitgreen">#FFE7FFE1</color>
     <color name="colorwhh">#999999</color>
+
+    <color name="divide_line">#EAEAEA</color>
 </resources>

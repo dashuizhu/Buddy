@@ -68,7 +68,7 @@ public class LoginPresenter {
         //        } else if (result.isSuccess()) {
         //            mIBaseView.success(result);
         //        } else {
-        //            mIBaseView.onError(result.getMessge());
+        //            mIBaseView.onError(result.getMessage());
         //        }
         //        // 把刚才初始化的Looper对象运行起来，循环消息队列的消息
         //        Looper.loop();
@@ -132,7 +132,7 @@ public class LoginPresenter {
                         } else if (result.isSuccess()) {
                             mIBaseView.success(result);
                         } else {
-                            mIBaseView.onError(result.getMessge());
+                            mIBaseView.onError(result.getMessage());
                         }
                     }
                 });
@@ -152,7 +152,7 @@ public class LoginPresenter {
     //        } else if (reg.isSuccess()) {
     //            mIBaseView.success(reg);
     //        } else {
-    //            mIBaseView.onError(reg.getMessge());
+    //            mIBaseView.onError(reg.getMessage());
     //        }
     //        Looper.loop();
     //    }
@@ -169,7 +169,7 @@ public class LoginPresenter {
                 if (ver == null) {
                     mIBaseView.onError(null);
                 } else {
-                    mIBaseView.onError(ver.getMessge());
+                    mIBaseView.onError(ver.getMessage());
                 }
                 Looper.loop();
             }
@@ -189,7 +189,7 @@ public class LoginPresenter {
                 } else if (habit.isSuccess()) {
                     mIBaseView.success(habit.getList());
                 } else {
-                    mIBaseView.onError(habit.getMessge());
+                    mIBaseView.onError(habit.getMessage());
                 }
                 Log.e("baby", "得到数据成功");
                 Looper.loop();
@@ -211,7 +211,7 @@ public class LoginPresenter {
                 } else if (reg.isSuccess()) {
                     mIBaseView.success(reg);
                 } else {
-                    mIBaseView.onError(reg.getMessge());
+                    mIBaseView.onError(reg.getMessage());
                 }
                 Log.e("baby", "发送数据成功");
                 Looper.loop();

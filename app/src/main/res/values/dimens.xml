@@ -6,4 +6,9 @@
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_Twenty">20sp</dimen>
 
+
+    <dimen name="view_padding">6dp</dimen>
+    <dimen name="activity_horizontal_margin">16sp</dimen>
+    <dimen name="divide_line_height">1px</dimen>
+
 </resources>

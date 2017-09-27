@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
-import com.example.administrator.buddy.injector.modules.PresenterModule;
+import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
 
 public class RestPasswordActivity extends BaseActivity {
@@ -27,7 +27,7 @@ public class RestPasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
         PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
-                .presenterModule(new PresenterModule(this))
+                .modelModule(new ModelModule(this))
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         regis();

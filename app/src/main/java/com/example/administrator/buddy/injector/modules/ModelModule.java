@@ -16,15 +16,15 @@ import com.example.administrator.buddy.view.IBaseView;
 import dagger.Module;
 import dagger.Provides;
 
-@Module public class PresenterModule {
+@Module public class ModelModule {
   private Context mContext;
   private IBaseView mBaseView;
 
-  public PresenterModule(IBaseView baseView) {
+  public ModelModule(IBaseView baseView) {
     mBaseView = baseView;
   }
 
-  public PresenterModule(Context context, IBaseView baseView) {
+  public ModelModule(Context context, IBaseView baseView) {
     mContext = context;
     mBaseView = baseView;
   }

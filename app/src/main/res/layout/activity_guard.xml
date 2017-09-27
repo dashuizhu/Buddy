@@ -90,7 +90,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@mipmap/logo"
+        android:background="@mipmap/img_header_default"
         app:actualImageScaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/buddyCircleView"
         app:layout_constraintLeft_toLeftOf="@+id/buddyCircleView"

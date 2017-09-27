@@ -38,7 +38,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".AccountAcyivity">
+        <activity android:name=".AccountAcyivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -56,6 +57,9 @@
         <activity android:name=".BabySetupAcivity"></activity>
         <activity android:name=".MyServiceActivity"></activity>
         <activity android:name=".ui.device.GuardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.habit.UserHabitSystemEditActivity" android:screenOrientation="portrait"/>
+
+
         <service android:name=".MyService"></service>
 
 

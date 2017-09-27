@@ -36,7 +36,7 @@ public class GuardFragment extends BaseFragment {
           @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.activity_guard, container, false);
     ButterKnife.bind(this, view);
-    String head = getContext().getSharedPreferences("userInfo", 0).getString("mapurl", "");
+    String head = getContext().getSharedPreferences("mapurl", 0).getString("url", "");
     if (!TextUtils.isEmpty(head)) {
       mDraweeView.setImageURI(Uri.parse(head));
     }

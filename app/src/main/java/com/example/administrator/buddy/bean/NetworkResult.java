@@ -5,11 +5,13 @@ package com.example.administrator.buddy.bean;
  */
 public class NetworkResult {
     int code;
-    String messge;
+    String message;
     String time;
     String nickName;
     String avatar;
     String userId;
+
+
     public boolean isSuccess() {
         return code==0;
     }
@@ -57,12 +59,12 @@ public class NetworkResult {
         this.code = code;
     }
 
-    public String getMessge() {
-        return messge;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessge(String messge) {
-        this.messge = messge;
+    public void setMessage(String messge) {
+        this.message = messge;
     }
 
     public String getTime() {
