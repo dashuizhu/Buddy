@@ -7,6 +7,7 @@ import com.example.administrator.buddy.bean.LoginResult;
 import com.example.administrator.buddy.injector.modules.Requestbody;
 import com.example.administrator.buddy.network.IHttpAPI;
 import com.example.administrator.buddy.utils.Md5Tools;
+import com.example.administrator.buddy.utils.SharedPreUser;
 import okhttp3.RequestBody;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +47,9 @@ public class LoginMdoel {
                                 editor.putString("avatar", loginResult.getData().getAvatar());
                                 editor.putBoolean("login", true);//提交 true
                                 editor.commit();
+
+                              SharedPreUser.getInstance().put(MyApplication.getContext(),
+                                      SharedPreUser.KEY_USER_ID, loginResult.getData().getUserId());
                             }else {
                                 new Exception(loginResult.getMessage());
                             }

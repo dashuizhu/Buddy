@@ -105,6 +105,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_contacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="手表通讯录"

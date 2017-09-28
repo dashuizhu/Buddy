@@ -31,4 +31,16 @@
         <attr format="string" name="item_content_hint" />
     </declare-styleable>
 
+    //标题栏
+    <declare-styleable name="HeaderView">
+        <attr format="string" name="titleText"/>
+        <attr format="string" name="rightText"/>
+        <attr format="string" name="leftText"/>
+        <attr format="reference" name="titleIcon"/>
+        <attr format="reference" name="rightIcon"/>
+        <attr format="reference" name="leftIcon"/>
+        <attr format="boolean" name="showRight"/>
+        <attr format="boolean" name="showBack"/>
+    </declare-styleable>
+
 </resources>

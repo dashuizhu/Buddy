@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="2dp"
+    android:background="@drawable/layout_selector"
+    app:bga_sil_bottomMode="pullOut"
+    app:bga_sil_springDistance="10dp"
+    app:bga_sil_swipeDirection="left">
+  <!-- BGASwipeItemLayout 的 layout_marginLeft 设置成了 2dp，以便触发滑动返回 -->
+
+  <TextView
+      android:id="@+id/tv_delete"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:background="@color/red"
+      android:clickable="true"
+      android:gravity="center"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:text="@string/label_delete"
+      android:textColor="@android:color/white" />
+
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:layout_marginBottom="@dimen/view_padding"
+      android:layout_marginTop="@dimen/view_padding"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/draweeView"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@mipmap/img_relation_other"
+        app:actualImageScaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:progressBarAutoRotateInterval="5000"
+        app:progressBarImage="@mipmap/head_progress"
+        app:progressBarImageScaleType="centerInside"
+        app:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/tv_family_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="故事名"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintLeft_toRightOf="@+id/draweeView"
+        style="@style/text_normal" />
+
+    <TextView
+        android:id="@+id/tv_family_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/draweeView"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        style="@style/text_normal" />
+
+    <CheckBox
+        android:id="@+id/cb_family_sos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/cb_status_sos"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+  </android.support.constraint.ConstraintLayout>
+</cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>

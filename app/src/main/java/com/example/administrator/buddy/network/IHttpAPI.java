@@ -1,5 +1,6 @@
 package com.example.administrator.buddy.network;
 
+import com.example.administrator.buddy.bean.DeviceContactsResult;
 import com.example.administrator.buddy.bean.HabitDetailResult;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.LoginResult;
@@ -55,4 +56,61 @@ public interface IHttpAPI {
     @PUT("api/devices/{deviceId}/habits/subscribe") Observable<NetworkResult> modifyHabit(
             @Path("deviceId") String deviceId, @Query("userId") String userId,
             @Body RequestBody body);
+
+
+    /**
+     * 获得白名单列表
+     * @param deviceId
+     * @param userId
+     * @return
+     */
+    @GET("api/devices/{deviceId}/contacts")
+    @Headers({
+            "Connection:close"
+    })
+    Observable<DeviceContactsResult> getDeviceContactsList(
+            @Path("deviceId") String deviceId,@Query("userId") String userId);
+
+    /**
+     * 添加白名单
+     * @param deviceId
+     * @param userId
+     * @param data
+     * @return
+     */
+    @POST("api/devices/{deviceId}/contacts") Observable<NetworkResult> addContacts(
+            @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
+
+    /**
+     * 修改联系人(白名单)
+     * @param deviceId
+     * @param userId
+     * @return
+     */
+    @PUT("api/devices/{deviceId}/contacts") Observable<NetworkResult> modifyContacts(
+            @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
+
+    /**
+     * 删除联系人(白名单)
+     * @param deviceId
+     * @param userId
+     * @param data
+     * @return
+     */
+    @POST("api/devices/{deviceId}/contacts/delete")
+    Observable<NetworkResult> deleteContacts(
+            @Path("deviceId") String deviceId, @Query("userId") String userId,
+            @Body RequestBody data);
+
+    /**
+     * 设置SOS(白名单)
+     * @param deviceId
+     * @param userId
+     * @param data
+     * @return
+     */
+    @POST("api/devices/{deviceId}/contacts/sos")
+    Observable<NetworkResult> setSos(
+            @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
+
 }

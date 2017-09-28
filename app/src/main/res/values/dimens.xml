@@ -11,4 +11,8 @@
     <dimen name="activity_horizontal_margin">16sp</dimen>
     <dimen name="divide_line_height">1px</dimen>
 
+
+    <!-- 行高 -->
+    <dimen name="layout_height">45dp</dimen>
+
 </resources>

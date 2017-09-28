@@ -88,4 +88,7 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.1.0'
   compile 'io.reactivex:rxjava:1.1.3'
   provided 'org.projectlombok:lombok:1.16.8'
+
+  compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'
+  compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'
 }

@@ -58,6 +58,9 @@
         <activity android:name=".MyServiceActivity"></activity>
         <activity android:name=".ui.device.GuardActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.habit.UserHabitSystemEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.device.DeviceContactsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.device.DeviceContactsEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.device.DeviceRelationSelectActivity" android:screenOrientation="portrait"/>
 
 
         <service android:name=".MyService"></service>

@@ -38,4 +38,30 @@
     <string name="toast_repeat_time_first">请选择时间</string>
     <string name="toast_repeat_date_first">请选择重复周期</string>
     <string name="toast_habit_ring_first">先选择铃声</string>
+
+    <string name="title_device_contacts_add">添加联系人</string>
+    <string name="title_device_contacts_edit">编辑联系人</string>
+    <string name="label_contacts_name">联系人关系</string>
+    <string name="label_contacts_phone">联系人电话</string>
+    <string name="label_confirm_add">确认添加</string>
+    <string name="label_device_relation_header">头像</string>
+
+    <string name="label_device_relation">关系</string>
+    <string name="label_device_nick">昵称</string>
+    <string name="title_device_relation">与宝贝关系</string>
+    <string name="label_save">保存</string>
+    <string name="relation_father">爸爸</string>
+    <string name="relation_mother">妈妈</string>
+    <string name="relation_grand_father">爷爷</string>
+    <string name="relation_grand_mother">奶奶</string>
+    <string name="relation_grand_pa">外公</string>
+    <string name="relation_grand_ma">外婆</string>
+    <string name="relation_other">其他</string>
+    <string name="label_device_phone">电话</string>
+    <string name="label_device_phone_input">请输入联系人电话</string>
+    <string name="label_device_nick_input">请输入联系人昵称</string>
+
+    <string name="label_contacts">联系人</string>
+    <string name="label_delete">删除</string>
+    <string name="label_confirm">确认</string>
 </resources>

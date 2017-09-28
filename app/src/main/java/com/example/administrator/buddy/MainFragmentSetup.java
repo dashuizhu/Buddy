@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import com.example.administrator.buddy.controls.CombinationControls;
+import com.example.administrator.buddy.ui.device.DeviceContactsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -21,6 +23,9 @@ public class MainFragmentSetup extends Fragment {
     private SharedPreferences userInfo;
     private SimpleDraweeView iamgeview_setup1;
     private String url=null;
+
+    private CombinationControls mItemContacts;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -30,6 +35,9 @@ public class MainFragmentSetup extends Fragment {
         dropOut =(Button)view.findViewById(R.id.tv_setup_dropOut);
         setup1 =(RelativeLayout)view.findViewById(R.id.imageview_setup2);
         iamgeview_setup1=(SimpleDraweeView) view.findViewById(R.id.iamgeview_setup1);
+
+        mItemContacts = (CombinationControls) view.findViewById(R.id.item_contacts);
+
         url=userInfo.getString("url", "");
         iamgeview_setup1.setImageURI(url);
         signOntButton();
@@ -65,6 +73,12 @@ public class MainFragmentSetup extends Fragment {
                 Intent intent = new Intent(getContext(),BabySetupAcivity.class);
                 intent.putExtra("Avatar", 1);
                 startActivityForResult(intent, 11);
+            }
+        });
+        mItemContacts.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DeviceContactsActivity.class);
+                startActivity(intent);
             }
         });
     }

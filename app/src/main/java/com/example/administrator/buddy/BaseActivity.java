@@ -29,6 +29,7 @@ public class BaseActivity extends Activity implements IBaseView{
     }
 
     @Override public void onError(String meg) {
+        shutDialg();
         if (meg!=null){
             Toast.makeText(this,meg,Toast.LENGTH_LONG).show();
         }

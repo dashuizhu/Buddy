@@ -9,4 +9,7 @@ public class AppString {
 
   public static final String KEY_HABIT_BEAN = "habitBean";
   public static final String KEY_HABIT_DETAIL_BEAN = "habitDetailBean";
+  public static final String KEY_RELATION_BEAN = "relation_bean";
+  public static final String KEY_RELATION = "relation";
+  public static final String KEY_DEVICE_CONTACTS = "device_contacts";
 }
