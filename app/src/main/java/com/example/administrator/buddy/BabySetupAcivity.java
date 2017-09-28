@@ -21,7 +21,6 @@ import com.example.administrator.buddy.injector.components.DaggerPresenterCompon
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.PresenterModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
@@ -170,25 +169,11 @@ public class BabySetupAcivity extends BaseActivity {
                         .setShowGif(true)
                         .setPreviewEnabled(false)
                         .start(this, PhotoPicker.REQUEST_CODE);
-
                 break;
             case R.id.iamgeview_babysetup2:
                 break;
             case R.id.tv_baby_name:
-                //mPoputextDialog = new PoputextDialog(BabySetupAcivity.this);
-                //mPoputextDialog.show();
-                //String text = mTvBabyName.getcontent().getText().toString();
-                //mPoputextDialog.setmText(text);
-                //mPoputextDialog.setOnClickconfirm(new PoputextDialog.onClickconfirm() {
-                //    @Override public void onClickcon(String s) {
-                //        mTvBabyName.getcontent().setText(s);
-                //        mPoputextDialog.dismiss();
-                //    }
-                //
-                //    @Override public void onClickcancel() {
-                //        mPoputextDialog.dismiss();
-                //    }
-                //});
+
                 break;
             case R.id.tv_baby_local:
                 break;

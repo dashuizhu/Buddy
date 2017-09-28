@@ -46,7 +46,7 @@
         </activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".RestPasswordActivity"></activity>
-        <activity android:name=".WActivity" />
+
         <activity android:name=".BootInterfaceActivity"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
