@@ -7,7 +7,9 @@
     <RelativeLayout
         android:id="@+id/rlayout_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/btn_white2grey">
 
         <LinearLayout
             android:id="@+id/line_zuhe"

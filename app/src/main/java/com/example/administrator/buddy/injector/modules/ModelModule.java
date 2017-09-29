@@ -12,19 +12,20 @@ import com.example.administrator.buddy.request.LoginMdoel;
 import com.example.administrator.buddy.request.RegisterMdel;
 import com.example.administrator.buddy.request.SetupMdoel;
 import com.example.administrator.buddy.request.VerificationMdoel;
+import com.example.administrator.buddy.ui.device.model.DeviceContactsModel;
 import com.example.administrator.buddy.view.IBaseView;
 import dagger.Module;
 import dagger.Provides;
 
-@Module public class PresenterModule {
+@Module public class ModelModule {
   private Context mContext;
   private IBaseView mBaseView;
 
-  public PresenterModule(IBaseView baseView) {
+  public ModelModule(IBaseView baseView) {
     mBaseView = baseView;
   }
 
-  public PresenterModule(Context context, IBaseView baseView) {
+  public ModelModule(Context context, IBaseView baseView) {
     mContext = context;
     mBaseView = baseView;
   }
@@ -48,6 +49,9 @@ import dagger.Provides;
   }
   @Provides @Activity SetupMdoel provideSetupModel() {
     return new SetupMdoel();
+  }
+  @Provides @Activity DeviceContactsModel provideDeviceContactsModel() {
+    return new DeviceContactsModel();
   }
   @Provides @Activity VerificationMdoel provideVerificationModel() {
     return new VerificationMdoel();

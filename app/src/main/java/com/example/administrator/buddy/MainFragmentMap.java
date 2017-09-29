@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.ZoomControls;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -31,7 +34,7 @@ public class MainFragmentMap extends Fragment {
     public MyLocationListener myListener = new MyLocationListener();
     private MyLocationConfiguration.LocationMode mCurrentMode;
     BitmapDescriptor mCurrentMarker;
-    Button requestLocButton;
+    TextView requestLocButton;
     private int mCurrentDirection = 0;
     private double mCurrentLat = 0.0;
     private double mCurrentLon = 0.0;
@@ -46,14 +49,26 @@ public class MainFragmentMap extends Fragment {
         SDKInitializer.initialize(getContext().getApplicationContext());
         SDKInitializer.setCoordType(CoordType.BD09LL);
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        requestLocButton = (Button) view.findViewById(R.id.button1);
+        requestLocButton = (TextView) view.findViewById(R.id.tv_map_location);
         mMapView = (MapView) view.findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
+
         //开启交通图
         mLocationClient = new LocationClient(getContext().getApplicationContext());
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         mBaiduMap.setTrafficEnabled(true);
+
+        // 隐藏百度 logo
+        View child = mMapView.getChildAt(1);
+        if (child != null && (child instanceof ImageView || child instanceof ZoomControls)){
+            child.setVisibility(View.INVISIBLE);
+        }
+        //地图上比例尺
+        mMapView.showScaleControl(false);
+        // 隐藏缩放控件
+        mMapView.showZoomControls(false);
+
         initLocation();
 
         mBaiduMap.setMyLocationEnabled(true);

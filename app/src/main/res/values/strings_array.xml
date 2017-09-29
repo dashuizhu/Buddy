@@ -1,0 +1,35 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="arrays_location_freq_high">高频模式（1分钟）</string>
+    <string name="arrays_location_freq_middle">中频模式（10分钟）</string>
+    <string name="arrays_location_freq_normal">普通模式（30分钟）</string>
+    <string name="arrays_location_freq_low">省电模式（60分钟）</string>
+
+    <string name="arrays_setting_mute">静音</string>
+    <string name="arrays_setting_shock">震动</string>
+    <string name="arrays_setting_standard">标准</string>
+
+
+    <string name="arrays_habit_repeat_year">每年重复</string>
+    <string name="arrays_habit_repeat_month">每月重复</string>
+    <string name="arrays_habit_repeat_week">每周重复</string>
+    <string name="arrays_habit_repeat_none">不重复</string>
+    <string name="arrays_habit_repeat_everyDay">每天重复</string>
+
+
+    <string name="arrays_holder_school_no">未上学</string>
+    <string name="arrays_holder_school_Kindergarten_small">幼儿园小班</string>
+    <string name="arrays_holder_school_Kindergarten_middle">幼儿园中班</string>
+    <string name="arrays_holder_school_Kindergarten_big">幼儿园大班</string>
+    <string name="arrays_holder_school_Kindergarten_max">学前班</string>
+    <string name="arrays_holder_school_primary_1">小学一年级</string>
+    <string name="arrays_holder_school_primary_2">小学二年级</string>
+    <string name="arrays_holder_school_primary_3">小学三年级</string>
+    <string name="arrays_holder_school_primary_4">小学四年级</string>
+    <string name="arrays_holder_school_primary_5">小学五年级</string>
+    <string name="arrays_holder_school_primary_6">小学六年级</string>
+    <string name="arrays_holder_school_high_1">初中一年级</string>
+    <string name="arrays_holder_school_high_2">初中二年级</string>
+    <string name="arrays_holder_school_high_3">初中三年级</string>
+    <string name="arrays_holder_school_other">其他</string>
+</resources>

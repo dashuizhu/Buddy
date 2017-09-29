@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.WindowManager;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import java.util.TimerTask;
@@ -44,6 +45,11 @@ public class AccountAcyivity extends Activity {
                         onCompleted();
                     }
                     @Override public void onNext(Long aLong) {
+
+                        //退出全屏
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
+                                WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+
                         Intent intent;
                         userInfo = getSharedPreferences("userInfo", 0);
                         Boolean name = userInfo.getBoolean("login", false);//设置 Boolean类型的name 存储的消息login 是false

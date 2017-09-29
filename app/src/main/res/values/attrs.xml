@@ -18,6 +18,29 @@
         <attr name="radius" format="dimension"/>
     </declare-styleable>
 
+    //我的页面itemView属性
+    <declare-styleable name="MyItemView">
+        <attr format="reference" name="item_icon"/>
+        <attr format="reference" name="item_arrows"/>
+        <attr format="string" name="item_title"/>
+        <attr format="string" name="item_content"/>
+        <attr format="boolean" name="item_enable"/>
+        <attr format="boolean" name="item_divide"/>
+        <attr format="boolean" name="item_checked"/>
+        <attr format="boolean" name="item_arrows_show"/>
+        <attr format="string" name="item_content_hint" />
+    </declare-styleable>
 
+    //标题栏
+    <declare-styleable name="HeaderView">
+        <attr format="string" name="titleText"/>
+        <attr format="string" name="rightText"/>
+        <attr format="string" name="leftText"/>
+        <attr format="reference" name="titleIcon"/>
+        <attr format="reference" name="rightIcon"/>
+        <attr format="reference" name="leftIcon"/>
+        <attr format="boolean" name="showRight"/>
+        <attr format="boolean" name="showBack"/>
+    </declare-styleable>
 
 </resources>

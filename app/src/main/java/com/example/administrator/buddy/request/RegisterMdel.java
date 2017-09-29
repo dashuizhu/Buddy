@@ -41,7 +41,7 @@ public class RegisterMdel {
                         }
                         NetworkResult mess = new NetworkResult();
                         mess.setCode(code);
-                        mess.setMessge(message);
+                        mess.setMessage(message);
                         subscriber.onNext(mess);
                     }
                 } catch (JSONException e) {
@@ -76,7 +76,7 @@ public class RegisterMdel {
         //                }
         //                NetworkResult mess = new NetworkResult();
         //                mess.setCode(code);
-        //                mess.setMessge(message);
+        //                mess.setMessage(message);
         //                return mess;
         //            }
         //        } catch (JSONException e) {
@@ -103,7 +103,7 @@ public class RegisterMdel {
                         String message = jsonObject.getString("message");
                         NetworkResult mess = new NetworkResult();
                         mess.setCode(code);
-                        mess.setMessge(message);
+                        mess.setMessage(message);
                         subscriber.onNext(mess);
                     }
                 } catch (JSONException e) {

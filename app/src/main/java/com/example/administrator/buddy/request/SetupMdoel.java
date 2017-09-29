@@ -43,7 +43,7 @@ public class SetupMdoel {
                     HabitResult map = new HabitResult();
                     map.setList(mlist);
                     map.setCode(code);
-                    map.setMessge(message);
+                    map.setMessage(message);
                     return map;
                 }
             }
@@ -73,7 +73,7 @@ public class SetupMdoel {
                 NetworkResult map = new NetworkResult();
                 map.setTimestamp(timestamp);
                 map.setCode(code);
-                map.setMessge(message);
+                map.setMessage(message);
                 return map;
             }
         } catch (Exception e) {

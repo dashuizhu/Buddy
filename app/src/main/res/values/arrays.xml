@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="habit_repeat_type">
+        <item>@string/arrays_habit_repeat_none</item>
+        <item>@string/arrays_habit_repeat_week</item>
+        <item>@string/arrays_habit_repeat_month</item>
+        <item>@string/arrays_habit_repeat_year</item>
+        <item>@string/arrays_habit_repeat_everyDay</item>
+    </string-array>
+
+</resources>

@@ -39,7 +39,7 @@ public class GuardActivity extends BaseActivity {
   }
 
   private void initViews() {
-    String head = getSharedPreferences("userInfo", 0).getString("mapurl", "");
+    String head = getSharedPreferences("mapurl", 0).getString("url", "");
     if (!TextUtils.isEmpty(head)) {
       mDraweeView.setImageURI(Uri.parse(head));
     }

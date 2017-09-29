@@ -6,15 +6,19 @@
 package com.example.administrator.buddy.injector.components;
 
 import com.example.administrator.buddy.injector.Activity;
-import com.example.administrator.buddy.injector.modules.PresenterModule;
+import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
+import com.example.administrator.buddy.ui.device.presenter.DeviceContactsPresenter;
+import com.example.administrator.buddy.ui.habit.HabitPresenter;
 import dagger.Component;
 
 /**
  * 身份验证组件
  */
-@Activity @Component(modules = { PresenterModule.class }) public interface PresenterComponent {
+@Activity @Component(modules = { ModelModule.class }) public interface PresenterComponent {
 
   LoginPresenter getLoginPresenter();
+  HabitPresenter getHabitPresenter();
+  DeviceContactsPresenter getDeviceContactsPresenter();
 
 }
