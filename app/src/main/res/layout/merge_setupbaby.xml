@@ -26,7 +26,6 @@
         android:layout_toLeftOf="@+id/btn_setup1"
         android:layout_centerVertical="true"
         android:padding="10dp"
-
         android:text=" "
         android:background="@null"
         android:singleLine="true"
