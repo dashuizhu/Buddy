@@ -5,6 +5,7 @@ import com.example.administrator.buddy.bean.HabitDetailResult;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.LoginResult;
 import com.example.administrator.buddy.bean.NetworkResult;
+import com.example.administrator.buddy.bean.UserConcernsResult;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -21,15 +22,26 @@ import rx.Observable;
 //封装网络请求数据
 public interface IHttpAPI {
     //@Path("accountId") String accountId,
+    /**
+     * 请求登入
+     */
     @POST("api/apps/BUDDY_API_TEST/accounts/login")
     Observable<LoginResult> login(
           @Body RequestBody data);
-
+    /**
+     *获取用户习惯
+     */
     @GET("api/devices/{deviceId}/habits/today")
     Observable<HabitResult> habit(
             @Path("deviceId")String deviceId
             ,@Query("userId") String userId);
-
+    /**
+     * 获取用户关注设备的列表
+     */
+    @GET("api/devices/holder/list")
+    Observable<UserConcernsResult>getuserconcerns(
+            @Query("userId")String userId
+    );
     /**
      * 获取用户习惯详情
      */

@@ -17,7 +17,7 @@ public class SetupMdoel {
     public HabitResult setupget() {
         try {
             JSONObject object = new JSONObject();
-            String req = new Model().requsetGet(object.toString(),
+            String req = new Model().requsetGet(object.toString(),//access_token : 单点登入账号
                     "http://47.92.49.151:8080/api/devices/777777777777777/holder/profile?access_token=c2c5e568-4a15-40c1-b890-e1bcabc566a4&userId=4bc7e2383c404841b6b66b18ac1c9321");
             if (req == null) {
                 return null;

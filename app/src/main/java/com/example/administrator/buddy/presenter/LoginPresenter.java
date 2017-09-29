@@ -85,7 +85,6 @@ public class LoginPresenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<HabitResult>() {
             @Override public void onCompleted() {
-
             }
 
             @Override public void onError(Throwable e) {

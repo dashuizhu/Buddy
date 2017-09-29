@@ -6,8 +6,7 @@ import lombok.EqualsAndHashCode;
 /**
  * Created by zhuj on 2017/9/19 22:15.
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Data @EqualsAndHashCode(callSuper = false)
 public class LoginResult extends NetworkResult {
 
     /**
@@ -26,16 +25,12 @@ public class LoginResult extends NetworkResult {
 
     private DataBean data;
 
-
-    @Data
-    public static class DataBean {
+    @Data public static class DataBean {
         private String userId;
         private String nickName;
         private String avatar;
         private String accessToken;
         private String refreshToken;
         private int expiresIn;
-
-
     }
 }

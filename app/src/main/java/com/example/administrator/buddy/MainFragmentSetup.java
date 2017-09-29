@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.example.administrator.buddy.controls.CombinationControls;
 import com.example.administrator.buddy.ui.device.DeviceContactsActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -22,6 +23,7 @@ public class MainFragmentSetup extends Fragment {
     private RelativeLayout setup1;
     private SharedPreferences userInfo;
     private SimpleDraweeView iamgeview_setup1;
+    private TextView mname;
     private String url=null;
 
     private CombinationControls mItemContacts;
@@ -35,10 +37,10 @@ public class MainFragmentSetup extends Fragment {
         dropOut =(Button)view.findViewById(R.id.tv_setup_dropOut);
         setup1 =(RelativeLayout)view.findViewById(R.id.imageview_setup2);
         iamgeview_setup1=(SimpleDraweeView) view.findViewById(R.id.iamgeview_setup1);
-
         mItemContacts = (CombinationControls) view.findViewById(R.id.item_contacts);
-
+        mname=(TextView)view.findViewById(R.id.textview_setup1);
         url=userInfo.getString("url", "");
+        mname.setText(userInfo.getString("name",""));
         iamgeview_setup1.setImageURI(url);
         signOntButton();
         babysetup();

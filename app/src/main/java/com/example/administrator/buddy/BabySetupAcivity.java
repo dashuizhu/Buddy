@@ -48,13 +48,6 @@ public class BabySetupAcivity extends BaseActivity {
     private TextView save;
     private LoadDialog mLoadDialog;
     private TimerTask task;
-    private SharedPreferences userInfo;
-    //CombinationControlsTwo name;
-    //CombinationControlsTwo local;
-    //CombinationControlsTwo birthday;
-    //CombinationControlsTwo school;
-    //CombinationControlsTwo schoolYear;
-    //CombinationControlsTwo mclass;
     private String url = null;
     private String urllabel;
     private SharedPreferences mapurl;
@@ -74,13 +67,6 @@ public class BabySetupAcivity extends BaseActivity {
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         mLoginPresenter.babysetupMdel();
-        //name = (CombinationControlsTwo) findViewById(R.id.tv_baby_name);
-        //local = (CombinationControlsTwo) findViewById(R.id.tv_baby_local);
-        //birthday = (CombinationControlsTwo) findViewById(R.id.tv_baby_birthday);
-        //school = (CombinationControlsTwo) findViewById(R.id.tv_baby_school);
-        //schoolYear = (CombinationControlsTwo) findViewById(R.id.tv_baby_schoolYear);
-        //mclass = (CombinationControlsTwo) findViewById(R.id.tv_baby_class);
-        //babysetup();
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -91,10 +77,7 @@ public class BabySetupAcivity extends BaseActivity {
             url="file://"+photos.get(0);
             Log.e("url",url);
             mImageviewBabysetup1.setImageURI(url);
-            SharedPreferences userInfo;
-            userInfo = MyApplication.getContext()
-                    .getSharedPreferences("mapurl", 0);
-            SharedPreferences.Editor editor = userInfo.edit();
+            SharedPreferences.Editor editor = mapurl.edit();
             editor.putString("url",url);
             editor.commit();
         }
