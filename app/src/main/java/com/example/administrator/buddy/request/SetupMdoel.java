@@ -5,7 +5,6 @@ import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.NetworkResult;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -27,19 +26,15 @@ public class SetupMdoel {
                 String message = jsonObject.getString("message");
                 mlist = new ArrayList<>();
                 if (code == 0) {
-                    JSONArray data = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < data.length(); i++) {
-                        JSONObject json = data.getJSONObject(i);
-                        HabitBean baby = new HabitBean();
-
-                        String ne = json.getString("name");
-                        String bi = json.getString("birthday");
-                        String sc = json.getString("school");
-                        baby.setName(ne);
-                        baby.setBirthday(bi);
-                        baby.setSchool(sc);
-                        mlist.add(baby);
-                    }
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    HabitBean baby = new HabitBean();
+                    String ne = data.getString("name");
+                    String bi = data.getString("birthday");
+                    String sc = data.getString("school");
+                    baby.setName(ne);
+                    baby.setBirthday(bi);
+                    baby.setSchool(sc);
+                    mlist.add(baby);
                     HabitResult map = new HabitResult();
                     map.setList(mlist);
                     map.setCode(code);

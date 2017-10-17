@@ -34,7 +34,6 @@ public class GuardActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_guard);
     ButterKnife.bind(this);
-
     initViews();
   }
 

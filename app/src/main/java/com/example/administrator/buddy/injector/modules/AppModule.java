@@ -20,10 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by zhuj on 16/12/30.
+ *
  */
 
 @Module public class AppModule {
-
+  //网络请求地址头
   public static final String DOMAIN = "http://47.92.49.151:8080";
 
   public static final int CACHE_TIME = 7 * 24 * 60 * 60; //接口缓存七天

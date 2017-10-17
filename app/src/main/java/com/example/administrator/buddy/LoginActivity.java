@@ -26,7 +26,7 @@ public class LoginActivity extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        //P层对象注入
         PresenterComponent authenticationComponent = DaggerPresenterComponent.builder()
                 .modelModule(new ModelModule(this))
                 .build();

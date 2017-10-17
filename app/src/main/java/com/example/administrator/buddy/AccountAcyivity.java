@@ -33,9 +33,9 @@ public class AccountAcyivity extends Activity {
     }
 
     private void twoseconds() {
-
+        //
         mDonwcount= Observable.timer(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())//界面主程序显示
                 .subscribe(new Subscriber<Long>() {
                     @Override public void onCompleted() {
                         finish();
@@ -45,7 +45,6 @@ public class AccountAcyivity extends Activity {
                         onCompleted();
                     }
                     @Override public void onNext(Long aLong) {
-
                         //退出全屏
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);

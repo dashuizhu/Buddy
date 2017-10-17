@@ -138,11 +138,15 @@ public class BabySetupAcivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.imageview_babysetup:
                 getIntent().putExtra("avatarurl", url);
+                getIntent().putExtra("babyName",mTvBabyName.getcontent().getText().toString());
                 setResult(RESULT_OK,getIntent());
                 finish();
                 break;
             case R.id.tv_baby_save:
                 twoseconds();
+                SharedPreferences.Editor editor = mapurl.edit();
+                editor.putString("name",mTvBabyName.getcontent().getText().toString());
+                editor.commit();
                 break;
             case R.id.imageview_babysetup1:
               PhotoPicker picker= new  PhotoPicker();
@@ -220,13 +224,16 @@ public class BabySetupAcivity extends BaseActivity {
 
     @Override public void success(final Object o) {
         super.success(o);
+        Log.e("baby1",o.toString());
+        //判断得到的o是否与List类型相同
         if (o instanceof List) {
             //mList = (List<HabitBean>) o;得到的mlist不能更新主线程的mlist用message方法封装得到的o传递给Handler更新UI
             //mAdapter.notifyDataSetChanged();
             Message mess = new Message();
             mess.obj = o;
-            mess.what = 1;
+            mess.what = 4;
             mHandler.sendMessage(mess);
+            Log.e("baby",o.toString());
         }
     }
 

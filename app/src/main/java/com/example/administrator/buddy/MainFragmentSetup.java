@@ -53,6 +53,8 @@ public class MainFragmentSetup extends Fragment {
             String url=data.getStringExtra("avatarurl");
             Log.e("uel",url);
             iamgeview_setup1.setImageURI(url);
+            String babyname= data.getStringExtra("babyName");
+            mname.setText(babyname);
         }
     }
 

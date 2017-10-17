@@ -27,15 +27,17 @@ public class LoginPresenter {
     private VerificationMdoel mVerMdoel;
     private HabitMdoel mHabitMdoel;
     private SetupMdoel mSetupMdoel;
-
+//@Inject 1) 如果是用在字段上,表示需要注入该字段的对象;
+//2) 如果用在构造方法上, 表示构造当前类对象通过此构造方法;
+//3) 如果是用在方法上, 表示当前类对象构造完成后, 立马调用该方法.
     @Inject public LoginPresenter(IBaseView l, LoginMdoel loginMdoel, RegisterMdel registerMdel,
             VerificationMdoel verMdoel, HabitMdoel habitMdoel, SetupMdoel setupMdoel) {
         this.mIBaseView = l;
         this.mLoginMdoel = loginMdoel;
-        mRegisterMdel = registerMdel;
-        mVerMdoel = verMdoel;
-        mHabitMdoel = habitMdoel;
-        mSetupMdoel = setupMdoel;
+        this.mRegisterMdel = registerMdel;
+        this.mVerMdoel = verMdoel;
+        this.mHabitMdoel = habitMdoel;
+        this.mSetupMdoel = setupMdoel;
     }
 
     public void login(final String accout, final String password) {

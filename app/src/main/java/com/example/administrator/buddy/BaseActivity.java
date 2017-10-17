@@ -45,7 +45,7 @@ public class BaseActivity extends Activity implements IBaseView{
         mToast.setDuration(Toast.LENGTH_LONG);
         mToast.show();
     }
-
+//参数 所有@xxxRes的注解 都是Res文件夹对应的andorid资源
     public void showToast(@StringRes int resId) {
         String str = getString(resId);
         showToast(str);

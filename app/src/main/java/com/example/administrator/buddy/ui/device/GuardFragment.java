@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.example.administrator.buddy.BaseFragment;
 import com.example.administrator.buddy.R;
 import com.example.administrator.buddy.view.BuddyCircleGroupView;
@@ -36,7 +35,7 @@ public class GuardFragment extends BaseFragment {
           @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.activity_guard, container, false);
     ButterKnife.bind(this, view);
-    String head = getContext().getSharedPreferences("userInfo", 0).getString("mapurl", "");
+    String head = getContext().getSharedPreferences("mapurl", 0).getString("url", "");
     if (!TextUtils.isEmpty(head)) {
       mDraweeView.setImageURI(Uri.parse(head));
     }
