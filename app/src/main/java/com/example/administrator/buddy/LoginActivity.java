@@ -142,10 +142,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override public void success(Object o) {
 
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
-        //intent.putExtra("user",nickName);//传递数据
-        startActivity(intent);//执行跳转
-        finish();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
+            //intent.putExtra("user",nickName);//传递数据
+            startActivity(intent);//执行跳转
+            finish();
+
+
         super.success(o);
     }
 

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class BabySetupAcivity extends BaseActivity {
     @BindView(R.id.tv_baby_school) CombinationControlsTwo mTvBabySchool;
     @BindView(R.id.tv_baby_schoolYear) CombinationControlsTwo mTvBabySchoolYear;
     @BindView(R.id.tv_baby_class) CombinationControlsTwo mTvBabyClass;
+    @BindView(R.id.et_setup2) EditText mText;
     private PoputextDialog mPoputextDialog;
     private LoginPresenter mLoginPresenter;
     private List<HabitBean> mList;
@@ -67,6 +69,7 @@ public class BabySetupAcivity extends BaseActivity {
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         mLoginPresenter.babysetupMdel();
+        //mText.setEnabled(false);
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {

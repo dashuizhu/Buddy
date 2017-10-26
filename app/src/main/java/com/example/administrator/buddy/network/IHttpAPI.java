@@ -1,6 +1,7 @@
 package com.example.administrator.buddy.network;
 
 import com.example.administrator.buddy.bean.DeviceContactsResult;
+import com.example.administrator.buddy.bean.DeviceWiFiResult;
 import com.example.administrator.buddy.bean.HabitDetailResult;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.LoginResult;
@@ -125,4 +126,21 @@ public interface IHttpAPI {
     Observable<NetworkResult> setSos(
             @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
 
+    /**
+     * 获得WIFI
+     */
+    @GET("api/devices/{deviceId}/wifi")
+    @Headers({
+            "Connection:close"
+    })
+    Observable<DeviceWiFiResult> getDeviceWiFIList(
+            @Path("deviceId") String deviceId,@Query("userId") String userId);
+
+    /**
+     * 添加wifi
+     *
+     */
+    @POST("api/devices/{deviceId}/wifi")
+    Observable<DeviceWiFiResult>addwifi( @Path("deviceId") String deviceId, @Query("userId") String userId,
+            @Body RequestBody body);
 }

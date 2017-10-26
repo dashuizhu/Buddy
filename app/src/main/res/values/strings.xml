@@ -5,6 +5,13 @@
     <string name="app_logo_regiter">请入验证码</string>
     <string name="app_logo_yzm">获取验证码</string>
 
+    <string name="label_contacts">联系人</string>
+    <string name="lable_add">添加</string>
+    <string name="label_delete">删除</string>
+    <string name="label_confirm">确认</string>
+    <string name="label_save">保存</string>
+    <string name="label_confirm_add">确认添加</string>
+    <string name="label_password">密码</string>
 
     <string name="title_weekday_select">日期选择</string>
     <string name="label_week_1">星期一</string>
@@ -43,13 +50,11 @@
     <string name="title_device_contacts_edit">编辑联系人</string>
     <string name="label_contacts_name">联系人关系</string>
     <string name="label_contacts_phone">联系人电话</string>
-    <string name="label_confirm_add">确认添加</string>
     <string name="label_device_relation_header">头像</string>
 
     <string name="label_device_relation">关系</string>
     <string name="label_device_nick">昵称</string>
     <string name="title_device_relation">与宝贝关系</string>
-    <string name="label_save">保存</string>
     <string name="relation_father">爸爸</string>
     <string name="relation_mother">妈妈</string>
     <string name="relation_grand_father">爷爷</string>
@@ -61,7 +66,9 @@
     <string name="label_device_phone_input">请输入联系人电话</string>
     <string name="label_device_nick_input">请输入联系人昵称</string>
 
-    <string name="label_contacts">联系人</string>
-    <string name="label_delete">删除</string>
-    <string name="label_confirm">确认</string>
+    <string name="title_device_wifi">手表WiFi</string>
+    <string name="title_device_wifi_add">添加WiFi</string>
+    <string name="label_device_wifi_nick">WiFi名称</string>
+    <string name="label_device_nick_wifi">请输入WiFi名称</string>
+    <string name="label_device_password_wifi">请输入WiFi密码</string>
 </resources>

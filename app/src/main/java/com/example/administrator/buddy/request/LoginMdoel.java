@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.LoginResult;
+import com.example.administrator.buddy.exception.CustomException;
 import com.example.administrator.buddy.injector.modules.Requestbody;
 import com.example.administrator.buddy.network.IHttpAPI;
 import com.example.administrator.buddy.utils.Md5Tools;
@@ -45,15 +46,14 @@ public class LoginMdoel {
                                 editor.putString("UserId", loginResult.getData().getUserId());
                                 editor.putString("nickName", loginResult.getData().getNickName());
                                 editor.putString("avatar", loginResult.getData().getAvatar());
+                                editor.putString("accessToken",loginResult.getData().getAccessToken());
                                 editor.putBoolean("login", true);//提交 true
                                 editor.commit();
-
                               SharedPreUser.getInstance().put(MyApplication.getContext(),
                                       SharedPreUser.KEY_USER_ID, loginResult.getData().getUserId());
                             }else {
-                                new Exception(loginResult.getMessage());
+                              throw  new CustomException(loginResult.getMessage());
                             }
-
 
                     }
                 });

@@ -35,16 +35,18 @@ public class DeviceContactsAdapter extends BGARecyclerViewAdapter<DeviceContacts
     BGASwipeItemLayout swipeItemLayout = helper.getView(R.id.layout_swipe);
     swipeItemLayout.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
       @Override
+      //打开滑动物品布局
       public void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout) {
+        //  关闭打开滑动项目布局与动画
         closeOpenedSwipeItemLayoutWithAnim();
         mOpenedSil.add(swipeItemLayout);
       }
-
+      //关闭
       @Override
       public void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout) {
         mOpenedSil.remove(swipeItemLayout);
       }
-
+      //开始打开
       @Override
       public void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout) {
         closeOpenedSwipeItemLayoutWithAnim();

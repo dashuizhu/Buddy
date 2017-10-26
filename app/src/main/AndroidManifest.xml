@@ -56,6 +56,8 @@
         </activity>
         <activity android:name=".BabySetupAcivity"></activity>
         <activity android:name=".MyServiceActivity"></activity>
+        <activity android:name=".ui.device.DeviceWifiActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.device.DeviceWifiAddActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.device.GuardActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.habit.UserHabitSystemEditActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceContactsActivity" android:screenOrientation="portrait"/>

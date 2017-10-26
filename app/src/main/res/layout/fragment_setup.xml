@@ -89,6 +89,7 @@
                 />
         </RelativeLayout>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_verified"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="实名认证"
@@ -97,6 +98,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_bill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="话费与流量查询"
@@ -116,6 +118,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_family"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="家庭成员"
@@ -124,6 +127,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_disable_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="禁用时段"
@@ -133,6 +137,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_wifi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="手表WiFi"
@@ -141,6 +146,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_positioning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="定位频率"
@@ -149,6 +155,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_safe_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="安全区域"
@@ -157,6 +164,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_unbundled_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="解绑手表"
@@ -165,6 +173,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_find_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="查找设备"
@@ -173,6 +182,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_shut_down_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="远程关机"
@@ -181,6 +191,7 @@
             >
         </com.example.administrator.buddy.controls.CombinationControls>
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_share_device"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="设备分享他人"
@@ -190,6 +201,7 @@
         </com.example.administrator.buddy.controls.CombinationControls>
 
         <com.example.administrator.buddy.controls.CombinationControls
+            android:id="@+id/item_APP_manage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             zxc:merge_setup_text="APP管理"

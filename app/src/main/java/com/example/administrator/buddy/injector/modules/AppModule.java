@@ -1,5 +1,6 @@
 package com.example.administrator.buddy.injector.modules;
 
+import android.content.SharedPreferences;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.network.IHttpAPI;
 import dagger.Module;
@@ -25,7 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module public class AppModule {
   //网络请求地址头
-  public static final String DOMAIN = "http://47.92.49.151:8080";
+  public static final String DOMAIN = "http://apptest.personbuddy.com:8082";
+  //public static final String DOMAIN = "http://47.92.49.151:8080";
 
   public static final int CACHE_TIME = 7 * 24 * 60 * 60; //接口缓存七天
   /**
@@ -63,6 +65,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
     //-------------------------------------------
     mOkHttpClient = mHttpClientBuilder.addInterceptor(LOG_INTERCEPTOR)
             .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
+            .addNetworkInterceptor(TOKEN_INTERCEPTOR)
             .cache(cache)
             .build();
     mRetrofit = new Retrofit.Builder().client(mOkHttpClient)
@@ -106,6 +109,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
           .build();
     }
   };
+  /**
+   * 重写token
+   */
+  private static final Interceptor TOKEN_INTERCEPTOR = new Interceptor() {
+    @Override public Response intercept(Chain chain) throws IOException {
+      SharedPreferences userInfo;
+      userInfo = MyApplication.getContext()
+              .getSharedPreferences("userInfo", 0);
+      String token=userInfo.getString("accessToken","");
+      //获得请求
+      Request request = chain.request();
+      Request.Builder requestBuilder = request.newBuilder();
+      //获得文件保存的Token
+      //String token = SharedPreUser.getInstance().getToken();
+      StringBuffer sb = new StringBuffer();
+      boolean b = request.url().toString().contains("?");
+      if (b) {
+        sb.append("&");
+      } else {
+        sb.append("?");
+      }
+      sb.append("access_token=");
+      sb.append(token);
+      requestBuilder.url(String.format("%s%s", request.url(), sb.toString()));
+
+      return chain.proceed(requestBuilder.build());
+  }
+};
 
   ///**
   // * 自定义超时时间
