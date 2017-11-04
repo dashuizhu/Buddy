@@ -1,10 +1,8 @@
 package com.example.administrator.buddy.ui.device;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -54,10 +52,12 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
         inview();
     }
 
+
+
     private void inview() {
         mAdapter = new DeviceWiFiAdapter(mRecyclerView);
-        mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback());
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+        //mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback());
+        //mItemTouchHelper.attachToRecyclerView(mRecyclerView);
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -99,12 +99,13 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
     }
 
     @Override public void success(Object o) {
-        super.success(o);
+
         Log.e("wifififi",o.toString());
         List<DeviceWiFiBean> list  = ((DeviceWiFiResult) o).getFamilyBeanList();
         mWiFiBeen = list;
         mAdapter.setData(mWiFiBeen);
         mRefreshLayout.endRefreshing();
+        super.success(o);
     }
 
     private void injectorPresenter() {
@@ -133,8 +134,17 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
 
     @OnClick(R.id.layout_header_right) public void onAdd() {
         Intent intent = new Intent(this, DeviceWifiAddActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,ACTIVITY_ADD);
     }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            mRefreshLayout.beginRefreshing();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
     //在BGARefresh上刷新
     @Override public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mPresenter.getWiFiList();
@@ -144,73 +154,73 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
         return false;
     }
 
-    private class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
-        public static final float ALPHA_FULL = 1.0f;
-
-        @Override public boolean isLongPressDragEnabled() {
-            //            return true;
-            return true;
-        }
-
-        @Override public boolean isItemViewSwipeEnabled() {
-            return false;
-        }
-
-        @Override
-        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            int dragFlags = ItemTouchHelper.UP
-                    | ItemTouchHelper.DOWN
-                    | ItemTouchHelper.LEFT
-                    | ItemTouchHelper.RIGHT;
-            int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-
-            // 当加了 HeaderAndFooterAdapter 时需要加上下面的判断
-            if (mAdapter.isHeaderOrFooter(viewHolder)) {
-                dragFlags = swipeFlags = ItemTouchHelper.ACTION_STATE_IDLE;
-            }
-
-            return makeMovementFlags(dragFlags, swipeFlags);
-        }
-
-        @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                RecyclerView.ViewHolder target) {
-            if (source.getItemViewType() != target.getItemViewType()) {
-                return false;
-            }
-
-            mAdapter.moveItem(source, target);
-
-            return true;
-        }
-
-        @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-            //mAdapter.removeItem(viewHolder);
-        }
-
-        @Override public void onChildDraw(Canvas c, RecyclerView recyclerView,
-                RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
-                boolean isCurrentlyActive) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-                View itemView = viewHolder.itemView;
-                float alpha = ALPHA_FULL - Math.abs(dX) / (float) itemView.getWidth();
-                ViewCompat.setAlpha(viewHolder.itemView, alpha);
-            }
-        }
-
-        @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
-            if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-                viewHolder.itemView.setSelected(true);
-            }
-            super.onSelectedChanged(viewHolder, actionState);
-        }
-
-        @Override
-        public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            super.clearView(recyclerView, viewHolder);
-            //ViewCompat.setAlpha(viewHolder.itemView, ALPHA_FULL);
-            //viewHolder.itemView.setSelected(false);
-        }
-    }
+    //private class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
+    //    public static final float ALPHA_FULL = 1.0f;
+    //
+    //    @Override public boolean isLongPressDragEnabled() {
+    //        //            return true;
+    //        return true;
+    //    }
+    //
+    //    @Override public boolean isItemViewSwipeEnabled() {
+    //        return false;
+    //    }
+    //
+    //    @Override
+    //    public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+    //        int dragFlags = ItemTouchHelper.UP
+    //                | ItemTouchHelper.DOWN
+    //                | ItemTouchHelper.LEFT
+    //                | ItemTouchHelper.RIGHT;
+    //        int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+    //
+    //        // 当加了 HeaderAndFooterAdapter 时需要加上下面的判断
+    //        if (mAdapter.isHeaderOrFooter(viewHolder)) {
+    //            dragFlags = swipeFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+    //        }
+    //
+    //        return makeMovementFlags(dragFlags, swipeFlags);
+    //    }
+    //
+    //    @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+    //            RecyclerView.ViewHolder target) {
+    //        if (source.getItemViewType() != target.getItemViewType()) {
+    //            return false;
+    //        }
+    //
+    //        mAdapter.moveItem(source, target);
+    //
+    //        return true;
+    //    }
+    //
+    //    @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+    //        //mAdapter.removeItem(viewHolder);
+    //    }
+    //
+    //    @Override public void onChildDraw(Canvas c, RecyclerView recyclerView,
+    //            RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
+    //            boolean isCurrentlyActive) {
+    //        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+    //        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+    //            View itemView = viewHolder.itemView;
+    //            float alpha = ALPHA_FULL - Math.abs(dX) / (float) itemView.getWidth();
+    //            ViewCompat.setAlpha(viewHolder.itemView, alpha);
+    //        }
+    //    }
+    //
+    //    @Override
+    //    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+    //        if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+    //            viewHolder.itemView.setSelected(true);
+    //        }
+    //        super.onSelectedChanged(viewHolder, actionState);
+    //    }
+    //
+    //    @Override
+    //    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+    //        super.clearView(recyclerView, viewHolder);
+    //        //ViewCompat.setAlpha(viewHolder.itemView, ALPHA_FULL);
+    //        //viewHolder.itemView.setSelected(false);
+    //    }
+    //}
 }

@@ -58,7 +58,53 @@ public class DeviceWiFiModel {
         }
 
         RequestBody body = JsonUtils.toRequestBody(list);
-        return iHttpApi.addContacts(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
+        return iHttpApi.addwifi(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
+            @Override public void call(NetworkResult networkResult) {
+                if (!networkResult.isSuccess()) {
+                    throw new CustomException(networkResult.getMessage());
+                }
+            }
+        });
+    }
+
+    public Observable<NetworkResult> deleteWiFisBean(List<DeviceWiFiBean> list) {
+        IHttpAPI iHttpApi = MyApplication.getIHttpApi();
+        String deviceId = AppString.deviceId;
+        String userId = SharedPreUser.getInstance().getKeyUserId();
+        int[] array = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i).getId();
+        }
+        RequestBody body = JsonUtils.toRequestBody(array);
+        return iHttpApi.deletewifi(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
+            @Override public void call(NetworkResult networkResult) {
+                if (!networkResult.isSuccess()) {
+                    throw new CustomException(networkResult.getMessage());
+                }
+            }
+        });
+    }
+    public Observable modifyWifiBean(List<DeviceWiFiBean> list) {
+        IHttpAPI iHttpApi = MyApplication.getIHttpApi();
+        String deviceId = AppString.deviceId;
+        String userId = SharedPreUser.getInstance().getKeyUserId();
+        JSONArray array = new JSONArray();
+        JSONObject obj;
+        DeviceWiFiBean familyBean;
+        for (int i=0; i< list.size(); i++) {
+            familyBean = list.get(i);
+            obj = new JSONObject();
+            try {
+                obj.put("id", familyBean.getId());
+                obj.put("ssid", familyBean.getSsid());
+                obj.put("password", familyBean.getPassword());
+                array.put(obj);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        RequestBody body = JsonUtils.toRequestBody(array);
+        return iHttpApi.modifyWifi(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
             @Override public void call(NetworkResult networkResult) {
                 if (!networkResult.isSuccess()) {
                     throw new CustomException(networkResult.getMessage());

@@ -55,6 +55,7 @@ public class DeviceWifiAddActivity extends BaseActivity {
         list.add(mWiFiBean);
         Log.e("wififi",list.toString());
         mWiFiPresenter.addWiFi(list);
+
     }
     private void injectorPresenter() {
 

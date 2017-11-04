@@ -30,7 +30,10 @@ public class SharedPreUser {
    * deviceId
    */
   public static final String KEY_DEVICE_ID = "deviceId";
-
+  /**
+   * bindCode
+   */
+  public static final String KEY_BIND_CODE = "bindCode";
   private SharedPreferences getSharedPreferences(Context context) {
     return context.getApplicationContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
   }
@@ -186,7 +189,9 @@ public class SharedPreUser {
   public String getDeviceId() {
     return (String) get(MyApplication.getContext(), KEY_DEVICE_ID, "");
   }
-
+  public String getBindCode() {
+    return (String) get(MyApplication.getContext(), KEY_BIND_CODE, "");
+  }
   //public String getUserNick() {
   //  return (String) get(AppApplication.getContext(), KEY_USER_NAME, "");
   //}

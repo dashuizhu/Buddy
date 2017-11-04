@@ -12,8 +12,10 @@ import com.example.administrator.buddy.request.LoginMdoel;
 import com.example.administrator.buddy.request.RegisterMdel;
 import com.example.administrator.buddy.request.SetupMdoel;
 import com.example.administrator.buddy.request.VerificationMdoel;
+import com.example.administrator.buddy.ui.BindDevice.model.DeviceBindMdoel;
 import com.example.administrator.buddy.ui.device.model.DeviceContactsModel;
 import com.example.administrator.buddy.ui.device.model.DeviceWiFiModel;
+import com.example.administrator.buddy.ui.device.model.UserConcernsListMdoel;
 import com.example.administrator.buddy.view.IBaseView;
 import dagger.Module;
 import dagger.Provides;
@@ -59,6 +61,13 @@ import dagger.Provides;
   }
   @Provides @Activity DeviceWiFiModel provideDeviceWiFiModel() {
     return new DeviceWiFiModel();
+  }
+
+  @Provides @Activity UserConcernsListMdoel UserConcernsListMdoel() {
+    return new UserConcernsListMdoel();
+  }
+  @Provides @Activity DeviceBindMdoel DeviceBindMdoel() {
+    return new DeviceBindMdoel();
   }
 
 }

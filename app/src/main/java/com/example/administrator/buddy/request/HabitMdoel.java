@@ -124,8 +124,8 @@ public class HabitMdoel {
                 .getSharedPreferences("userInfo", 0);
         String userId = userInfo.getString("UserId","");
         String deviceId = AppString.deviceId;
-
-        return iHttpApi.getHabitInfo(deviceId, userId, habitBean.getHabitId(), habitBean.getCategory()).doOnNext(new Action1<HabitDetailResult>() {
+        int i=0;
+        return iHttpApi.getHabitInfo(deviceId, userId, habitBean.getHabitId(), i).doOnNext(new Action1<HabitDetailResult>() {
             @Override public void call(HabitDetailResult networkResult) {
                 if (!networkResult.isSuccess()) {
                     throw new CustomException(networkResult.getMessage());

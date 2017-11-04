@@ -52,7 +52,8 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c05c9a0ae92fa7ae610c8a23463851f040c6d42c" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:launchMode="singleTask">
+
         </activity>
         <activity android:name=".BabySetupAcivity"></activity>
         <activity android:name=".MyServiceActivity"></activity>
@@ -63,8 +64,12 @@
         <activity android:name=".ui.device.DeviceContactsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceContactsEditActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceRelationSelectActivity" android:screenOrientation="portrait"/>
-
-
+        <activity android:name=".ui.device.UserConcernsListActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.device.UserConcernsAddActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.BindDevice.BindCodeDeviceActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.BindDevice.ScanQRcodeActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.BindDevice.AddDeviceActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.BindDevice.BindDeviceActivity" android:screenOrientation="portrait"></activity>
         <service android:name=".MyService"></service>
 
 

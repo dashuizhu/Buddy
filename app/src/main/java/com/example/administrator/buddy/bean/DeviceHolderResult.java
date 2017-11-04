@@ -1,5 +1,6 @@
 package com.example.administrator.buddy.bean;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,4 +24,6 @@ public class DeviceHolderResult extends NetworkResult{
     public int length() {
         return data.size();
     }
+
+    @SerializedName("data") private List<DeviceContactsBean> familyBeanList;
 }

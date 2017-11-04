@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class DeviceHolderBean implements Parcelable {
+
     protected String deviceId;
     protected String bindCode;
     protected String name;
@@ -23,6 +24,7 @@ public class DeviceHolderBean implements Parcelable {
     protected int relation;
     protected String school;
     protected String startSchool;
+    public  DeviceHolderBean(){}
     @Override public int describeContents() {
         return 0;
     }
@@ -69,4 +71,6 @@ public class DeviceHolderBean implements Parcelable {
             return new DeviceHolderBean[size];
         }
     };
+
+
 }

@@ -69,7 +69,8 @@ public class BabySetupAcivity extends BaseActivity {
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
         mLoginPresenter.babysetupMdel();
-        //mText.setEnabled(false);
+        mTvBabyBirthday.getcontent().setEnabled(false);
+
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -147,9 +148,6 @@ public class BabySetupAcivity extends BaseActivity {
                 break;
             case R.id.tv_baby_save:
                 twoseconds();
-                SharedPreferences.Editor editor = mapurl.edit();
-                editor.putString("name",mTvBabyName.getcontent().getText().toString());
-                editor.commit();
                 break;
             case R.id.imageview_babysetup1:
               PhotoPicker picker= new  PhotoPicker();
@@ -237,6 +235,11 @@ public class BabySetupAcivity extends BaseActivity {
             mess.what = 4;
             mHandler.sendMessage(mess);
             Log.e("baby",o.toString());
+        }
+        if (o instanceof String){
+            SharedPreferences.Editor editor = mapurl.edit();
+            editor.putString("name",mTvBabyName.getcontent().getText().toString());
+            editor.commit();
         }
     }
 

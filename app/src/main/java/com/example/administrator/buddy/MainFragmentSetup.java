@@ -17,8 +17,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.example.administrator.buddy.controls.CombinationControls;
+import com.example.administrator.buddy.ui.BindDevice.AddDeviceActivity;
 import com.example.administrator.buddy.ui.device.DeviceContactsActivity;
 import com.example.administrator.buddy.ui.device.DeviceWifiActivity;
+import com.example.administrator.buddy.ui.device.UserConcernsListActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -120,6 +122,8 @@ public class MainFragmentSetup extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.item_family:
+                intent = new Intent(getContext(), UserConcernsListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_disable_period:
                 break;
@@ -132,6 +136,8 @@ public class MainFragmentSetup extends Fragment {
             case R.id.item_safe_area:
                 break;
             case R.id.item_unbundled_device:
+                intent = new Intent(getContext(), AddDeviceActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_find_device:
                 break;

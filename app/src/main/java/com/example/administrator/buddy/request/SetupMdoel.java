@@ -1,11 +1,15 @@
 package com.example.administrator.buddy.request;
 
+import com.example.administrator.buddy.MyApplication;
+import com.example.administrator.buddy.bean.DeviceHolderResult;
 import com.example.administrator.buddy.bean.HabitBean;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.NetworkResult;
+import com.example.administrator.buddy.network.IHttpAPI;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
+import rx.Observable;
 
 /**
  * Created by zhuj on 2017/9/15 19:59.
@@ -74,6 +78,10 @@ public class SetupMdoel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+    public Observable<DeviceHolderResult> postDeviceHolderInformation(){
+        IHttpAPI iHttpAPI = MyApplication.getIHttpApi();
         return null;
     }
 }

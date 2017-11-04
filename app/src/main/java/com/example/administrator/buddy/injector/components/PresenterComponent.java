@@ -8,8 +8,10 @@ package com.example.administrator.buddy.injector.components;
 import com.example.administrator.buddy.injector.Activity;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
+import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindPresenter;
 import com.example.administrator.buddy.ui.device.presenter.DeviceContactsPresenter;
 import com.example.administrator.buddy.ui.device.presenter.DeviceWiFiPresenter;
+import com.example.administrator.buddy.ui.device.presenter.UserConcernsPresenter;
 import com.example.administrator.buddy.ui.habit.HabitPresenter;
 import dagger.Component;
 
@@ -22,4 +24,6 @@ import dagger.Component;
   HabitPresenter getHabitPresenter();
   DeviceContactsPresenter getDeviceContactsPresenter();
   DeviceWiFiPresenter getDeviceWiFiPresenter();
+  UserConcernsPresenter getUserConcernsPresenter();
+  DeviceBindPresenter getDeviceBindPresenter();
 }

@@ -21,6 +21,7 @@ public class NetworkResult {
     String avatar;
     String userId;
     String timestamp ;
+    String deviceId;
 
 
     /**

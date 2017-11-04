@@ -1,11 +1,13 @@
 package com.example.administrator.buddy.network;
 
 import com.example.administrator.buddy.bean.DeviceContactsResult;
+import com.example.administrator.buddy.bean.DeviceStatusResult;
 import com.example.administrator.buddy.bean.DeviceWiFiResult;
 import com.example.administrator.buddy.bean.HabitDetailResult;
 import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.LoginResult;
 import com.example.administrator.buddy.bean.NetworkResult;
+import com.example.administrator.buddy.bean.UserBindDeviceResult;
 import com.example.administrator.buddy.bean.UserConcernsResult;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -36,13 +38,7 @@ public interface IHttpAPI {
     Observable<HabitResult> habit(
             @Path("deviceId")String deviceId
             ,@Query("userId") String userId);
-    /**
-     * 获取用户关注设备的列表
-     */
-    @GET("api/devices/holder/list")
-    Observable<UserConcernsResult>getuserconcerns(
-            @Query("userId")String userId
-    );
+
     /**
      * 获取用户习惯详情
      */
@@ -141,6 +137,61 @@ public interface IHttpAPI {
      *
      */
     @POST("api/devices/{deviceId}/wifi")
-    Observable<DeviceWiFiResult>addwifi( @Path("deviceId") String deviceId, @Query("userId") String userId,
+    Observable<NetworkResult>addwifi( @Path("deviceId") String deviceId, @Query("userId") String userId,
+            @Body RequestBody body);
+    /**
+     * 删除wifi
+     *
+     */
+    @POST("api/devices/{deviceId}/wifi")
+    Observable<NetworkResult>deletewifi( @Path("deviceId") String deviceId, @Query("userId") String userId,
+            @Body RequestBody body);
+    /**
+     * 修改wifi
+     *
+     */
+    @PUT("api/devices/{deviceId}/wifi") Observable<NetworkResult> modifyWifi(
+            @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
+
+    /**
+     * 获取用户关注设备列表
+     *
+     */
+    @GET("api/devices/holder/list")
+    Observable<UserConcernsResult> getUserConcernsList(
+           @Query("userId") String userId);
+
+    /**
+     * 用户关注设备
+     *
+     */
+    @POST("api/devices/code/{bindCode}/follow")
+    Observable<DeviceContactsResult>attentionUser( @Path("bindCode") String bindCode,
+            @Query("userId") String userId,@Body RequestBody body);
+
+    /**
+     * 删除关注用户
+     *
+     */
+    @POST("api/devices/{deviceId}/familyMembers/delete")
+    Observable<NetworkResult>deleteUser( @Path("deviceId") String deviceId, @Query("userId") String userId,
+            @Body RequestBody body);
+
+    /**
+     * 获取设备状态
+     *
+     */
+    @GET("api/devices/code/{bindCode}/status")
+    Observable<DeviceStatusResult>getDeviceStatus(
+            @Path("bindCode") String bindCode
+    );
+
+    /**
+     * 绑定设备
+     *
+     */
+    @POST("api/devices/code/{bindCode}/bind")
+    Observable<UserBindDeviceResult>bindDevice(@Path("bindCode") String bindCode,
+            @Query("userId") String userId,
             @Body RequestBody body);
 }

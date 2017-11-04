@@ -21,7 +21,7 @@ public class DeviceContactsBean implements Parcelable {
    * isSos : false
    * seq : 0
    */
-
+  private String userName;
   private Integer id;
   private String name;
   private String mobile;
@@ -45,6 +45,7 @@ public class DeviceContactsBean implements Parcelable {
     dest.writeInt(this.relation);
     dest.writeByte(this.isSos ? (byte) 1 : (byte) 0);
     dest.writeInt(this.seq);
+    dest.writeString(this.userName);
   }
 
   protected DeviceContactsBean(Parcel in) {
@@ -55,6 +56,7 @@ public class DeviceContactsBean implements Parcelable {
     this.relation = in.readInt();
     this.isSos = in.readByte() != 0;
     this.seq = in.readInt();
+    this.userName=in.readString();
   }
 
   public static final Creator<DeviceContactsBean> CREATOR =

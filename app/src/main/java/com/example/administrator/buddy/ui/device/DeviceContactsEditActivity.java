@@ -1,6 +1,5 @@
 package com.example.administrator.buddy.ui.device;
 
-import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -70,7 +69,9 @@ public class DeviceContactsEditActivity extends BaseActivity {
   }
 
   private void initViews() {
+    //得到返回以前使用putExtra（）添加的项目的值
     mContactsBean = getIntent().getParcelableExtra(AppString.KEY_DEVICE_CONTACTS);
+
     if (mContactsBean == null) {
       mHeaderView.setTitle(R.string.title_device_contacts_add);
       mBtnConfirm.setText(R.string.label_confirm_add);

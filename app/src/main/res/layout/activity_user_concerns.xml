@@ -10,19 +10,32 @@
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:rightIcon="@mipmap/img_add"
         app:showBack="true"
         app:showRight="true"
-        app:rightText="@string/label_add"
-        app:titleText="@string/title_device_wifi" />
+        app:titleText="@string/title_User_concerns" />
+
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:drawableTop="@null"
+        android:text="保存"
+        style="@style/btn" />
 
 </LinearLayout>

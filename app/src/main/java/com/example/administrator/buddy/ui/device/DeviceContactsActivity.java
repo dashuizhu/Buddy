@@ -227,6 +227,7 @@ public class DeviceContactsActivity extends BaseActivity implements BGARefreshLa
       return false;
     }
 
+    //获得运动标志
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
       int dragFlags = ItemTouchHelper.UP
@@ -242,7 +243,7 @@ public class DeviceContactsActivity extends BaseActivity implements BGARefreshLa
 
       return makeMovementFlags(dragFlags, swipeFlags);
     }
-
+    //移动
     @Override public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
             RecyclerView.ViewHolder target) {
       if (source.getItemViewType() != target.getItemViewType()) {
@@ -253,11 +254,11 @@ public class DeviceContactsActivity extends BaseActivity implements BGARefreshLa
 
       return true;
     }
-
+    //滑动
     @Override public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
       //mAdapter.removeItem(viewHolder);
     }
-
+    //子视图 绘画
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
             float dX, float dY, int actionState, boolean isCurrentlyActive) {
@@ -268,14 +269,14 @@ public class DeviceContactsActivity extends BaseActivity implements BGARefreshLa
         ViewCompat.setAlpha(viewHolder.itemView, alpha);
       }
     }
-
+    //选择更改
     @Override public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
       if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
         viewHolder.itemView.setSelected(true);
       }
       super.onSelectedChanged(viewHolder, actionState);
     }
-
+    //查看
     @Override public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
       super.clearView(recyclerView, viewHolder);
       //ViewCompat.setAlpha(viewHolder.itemView, ALPHA_FULL);

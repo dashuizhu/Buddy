@@ -68,10 +68,49 @@ public class DeviceWiFiPresenter extends BasePresenter {
     }
 
     public void deleteWifI(List<DeviceWiFiBean> list){
+            mBaseView.displayDialog();
+            addSubscrier(mWiFiModel.deleteWiFisBean(list)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<NetworkResult>() {
+                        @Override public void onCompleted() {
+
+                        }
+
+                        @Override public void onError(Throwable throwable) {
+                            mBaseView.onError(throwable.getMessage());
+                            throwable.printStackTrace();
+                        }
+
+                        @Override public void onNext(NetworkResult networkResult) {
+                            mBaseView.shutDialg();
+                            networkResult.setTag(NetworkResult.TAG_DELETE);
+                            mBaseView.success(networkResult);
+                        }
+                    }));
 
     }
 
     public void modifyWifi(List<DeviceWiFiBean> list){
+        mBaseView.displayDialog();
+        addSubscrier(mWiFiModel.modifyWifiBean(list)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<NetworkResult>() {
+                    @Override public void onCompleted() {
 
+                    }
+
+                    @Override public void onError(Throwable throwable) {
+                        mBaseView.onError(throwable.getMessage());
+                        throwable.printStackTrace();
+                    }
+
+                    @Override public void onNext(NetworkResult networkResult) {
+                        mBaseView.shutDialg();
+                        networkResult.setTag(NetworkResult.TAG_MODIFY);
+                        mBaseView.success(networkResult);
+                    }
+                }));
     }
 }

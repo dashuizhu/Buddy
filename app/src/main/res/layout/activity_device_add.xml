@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.example.administrator.buddy.view.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showBack="true"
+        app:titleText="@string/title_device_bind_add" />
+    <RelativeLayout
+        android:id="@+id/rlt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/add_watch_img"
+            android:layout_margin="40dp"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="继续操作前，请确保设备：\n
+1.手表已开机并能显示时间等信息\n
+2.手表已经插入手机卡，并且手机卡可以正常使用"
+        android:textSize="12sp" />
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_confirm_add_start"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_gravity="bottom"
+        style="@style/btn"/>
+</LinearLayout>
