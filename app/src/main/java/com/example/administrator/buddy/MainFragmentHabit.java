@@ -17,7 +17,6 @@ import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import com.example.administrator.buddy.adapter.HabitRVAdapter;
 import com.example.administrator.buddy.adapter.RecyclerItemClickListener;
 import com.example.administrator.buddy.bean.HabitBean;
-import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
@@ -59,7 +58,6 @@ public class MainFragmentHabit extends BaseFragment
         //mAdapter =new HabitAdapter(getContext() ,mList);
         mAdapter = new HabitRVAdapter(getContext(), mList);
         mView.setAdapter(mAdapter);
-
 
         mView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {

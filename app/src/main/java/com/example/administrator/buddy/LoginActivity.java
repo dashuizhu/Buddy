@@ -8,10 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.administrator.buddy.bean.UserConcernsBean;
+import com.example.administrator.buddy.bean.UserConcernsResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
+import com.example.administrator.buddy.ui.BindDevice.AddDeviceActivity;
+import com.example.administrator.buddy.utils.SharedPreUser;
+import java.util.List;
 import java.util.TimerTask;
 
 public class LoginActivity extends BaseActivity {
@@ -31,6 +36,8 @@ public class LoginActivity extends BaseActivity {
                 .modelModule(new ModelModule(this))
                 .build();
         mLoginPresenter = authenticationComponent.getLoginPresenter();
+        userInfo = getSharedPreferences("userInfo",
+                0);//打开Preferences，名称为userInfo，如果存在则打开它，否则创建新的Preferencesw文件
         login();
     }
 
@@ -76,8 +83,7 @@ public class LoginActivity extends BaseActivity {
         acctount = (EditText) findViewById(R.id.et_zh);
         password = (EditText) findViewById(R.id.et_pssword);
         button = (Button) findViewById(R.id.btn_login);
-        userInfo = getSharedPreferences("userInfo",
-                0);//打开Preferences，名称为userInfo，如果存在则打开它，否则创建新的Preferencesw文件
+
         final String name = userInfo.getString("USER_NAME", "");
         final String passw = userInfo.getString("PASSWORD", "");
         acctount.setText(name);
@@ -141,13 +147,30 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override public void success(Object o) {
+        Boolean bind =userInfo.getBoolean("bind",true);
+        if (o instanceof UserConcernsResult){
+            List<UserConcernsBean> list  = ((UserConcernsResult) o).getFamilyBeanList();
+            if (list!=null){
+                SharedPreUser.getInstance().put(LoginActivity.this,
+                        SharedPreUser.KEY_DEVICE_ID,list.get(1).getDeviceId());
+            }else {
+                Intent intent = new Intent(LoginActivity.this, AddDeviceActivity.class);//跳转
+                //intent.putExtra("user",nickName);//传递数据
+                startActivity(intent);//执行跳转
+                finish();
+            }
 
+        } if (bind){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
             //intent.putExtra("user",nickName);//传递数据
             startActivity(intent);//执行跳转
             finish();
-
-
+        }else {
+            Intent intent = new Intent(LoginActivity.this, AddDeviceActivity.class);//跳转
+            //intent.putExtra("user",nickName);//传递数据
+            startActivity(intent);//执行跳转
+            finish();
+        }
         super.success(o);
     }
 
@@ -159,7 +182,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void twoseconds() {
-        mLoginPresenter.login(acctount.getText().toString(), password.getText().toString());
+        mLoginPresenter.loginSQL(acctount.getText().toString(), password.getText().toString());
         //displayDialog();
         //new Thread(new Runnable() {
         //    @Override public void run() {

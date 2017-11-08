@@ -3,7 +3,6 @@ package com.example.administrator.buddy.ui.device.presenter;
 import com.example.administrator.buddy.bean.DeviceContactsBean;
 import com.example.administrator.buddy.bean.DeviceContactsResult;
 import com.example.administrator.buddy.bean.NetworkResult;
-import com.example.administrator.buddy.bean.UserConcernsBean;
 import com.example.administrator.buddy.bean.UserConcernsResult;
 import com.example.administrator.buddy.ui.BasePresenter;
 import com.example.administrator.buddy.ui.device.model.UserConcernsListMdoel;
@@ -74,9 +73,9 @@ public class UserConcernsPresenter extends BasePresenter {
                     }
                 }));
     }
-    public void deleteUser(List<UserConcernsBean> list){
+    public void deleteUser(){
         mBaseView.displayDialog();
-        addSubscrier(mListMdoel.deleteUserBean(list)
+        addSubscrier(mListMdoel.deleteUserBean()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<NetworkResult>() {

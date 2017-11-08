@@ -1,6 +1,5 @@
 package com.example.administrator.buddy.ui.device.model;
 
-import com.example.administrator.buddy.AppString;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.DeviceWiFiBean;
 import com.example.administrator.buddy.bean.DeviceWiFiResult;
@@ -24,7 +23,7 @@ public class DeviceWiFiModel {
 
     public Observable<DeviceWiFiResult> getDeviceWiFiList(){
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String deviceId = AppString.deviceId;
+        String deviceId =SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
         //return null;
         return iHttpApi.getDeviceWiFIList(deviceId,userId)
@@ -39,7 +38,7 @@ public class DeviceWiFiModel {
 
     public Observable<NetworkResult> addwifiBean(List<DeviceWiFiBean> list) {
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String deviceId = AppString.deviceId;
+        String deviceId =SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
 
         JSONArray array = new JSONArray();
@@ -69,7 +68,7 @@ public class DeviceWiFiModel {
 
     public Observable<NetworkResult> deleteWiFisBean(List<DeviceWiFiBean> list) {
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String deviceId = AppString.deviceId;
+        String deviceId = SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
         int[] array = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
@@ -86,7 +85,7 @@ public class DeviceWiFiModel {
     }
     public Observable modifyWifiBean(List<DeviceWiFiBean> list) {
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String deviceId = AppString.deviceId;
+        String deviceId = SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
         JSONArray array = new JSONArray();
         JSONObject obj;

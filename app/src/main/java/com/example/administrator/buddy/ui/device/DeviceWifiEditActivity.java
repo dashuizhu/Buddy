@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by zhuj on 2017/9/29 21:33.
  */
-public class DeviceWifiAddActivity extends BaseActivity {
+public class DeviceWifiEditActivity extends BaseActivity {
 
     private DeviceWiFiBean mWiFiBean;
     private DeviceWiFiPresenter mWiFiPresenter;
@@ -38,24 +38,32 @@ public class DeviceWifiAddActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_wifi_add);
         ButterKnife.bind(this);
+        mWiFiBean =new DeviceWiFiBean();
+        mWiFiBean = getIntent().getParcelableExtra(AppString.KEY_DEVICE_CONTACTS);
+        inViews();
         injectorPresenter();
-
     }
 
+    private void inViews(){
+        mHeaderView.setTitle("编辑WiFi");
+        mBtnConfirm.setText(R.string.label_confirm);
+        mEditContactsName.setText(mWiFiBean.getSsid());
+        mEditContactsPhone.setText(mWiFiBean.getPassword());
+    }
+
+
+
     @OnClick(R.id.layout_header_back) public void onBack() {
-        Log.e("wifi","wifi");
         finish();
     }
 
     @OnClick(R.id.btn_confirm) public void onViewClicked() {
-        mWiFiBean = getIntent().getParcelableExtra(AppString.KEY_DEVICE_CONTACTS);
-        mWiFiBean =new DeviceWiFiBean();
         mWiFiBean.setSsid(mEditContactsName.getText().toString().trim());
         mWiFiBean.setPassword(mEditContactsPhone.getText().toString().trim());
         List<DeviceWiFiBean> list = new ArrayList<>();
         list.add(mWiFiBean);
         Log.e("wififi",list.toString());
-        mWiFiPresenter.addWiFi(list);
+        mWiFiPresenter.modifyWifi(list);
 
     }
     private void injectorPresenter() {
@@ -69,7 +77,7 @@ public class DeviceWifiAddActivity extends BaseActivity {
     @Override public void success(Object o) {
         if (o instanceof NetworkResult){
             String mesge=((NetworkResult)o).getMessage();
-            Toast.makeText(DeviceWifiAddActivity.this,"添加"+mesge,Toast.LENGTH_SHORT).show();
+            Toast.makeText(DeviceWifiEditActivity.this,mesge,Toast.LENGTH_SHORT).show();
             onBack();
         }
         super.success(o);

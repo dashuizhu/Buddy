@@ -1,6 +1,7 @@
 package com.example.administrator.buddy.network;
 
 import com.example.administrator.buddy.bean.DeviceContactsResult;
+import com.example.administrator.buddy.bean.DeviceHolderResult;
 import com.example.administrator.buddy.bean.DeviceStatusResult;
 import com.example.administrator.buddy.bean.DeviceWiFiResult;
 import com.example.administrator.buddy.bean.HabitDetailResult;
@@ -31,6 +32,19 @@ public interface IHttpAPI {
     @POST("api/apps/BUDDY_API_TEST/accounts/login")
     Observable<LoginResult> login(
           @Body RequestBody data);
+    /**
+     * 设置设备持有人信息
+     */
+    @POST("api/devices/{deviceId}/holder/profile")
+    Observable<NetworkResult>setDeviceHolderInfo(@Path("deviceId")String deviceId,
+            @Query("userId")String userId,@Body RequestBody data);
+    /**
+     * 获得设备持有人信息
+     */
+    @GET("api/devices/{deviceId}/holder/profile")
+    Observable<DeviceHolderResult>getDeviceHolderInfo(@Path("deviceId")String deviceId,
+            @Query("userId")String userId);
+
     /**
      *获取用户习惯
      */
@@ -143,14 +157,15 @@ public interface IHttpAPI {
      * 删除wifi
      *
      */
-    @POST("api/devices/{deviceId}/wifi")
+    @POST("api/devices/{deviceId}/wifi/delete")
     Observable<NetworkResult>deletewifi( @Path("deviceId") String deviceId, @Query("userId") String userId,
             @Body RequestBody body);
     /**
      * 修改wifi
      *
      */
-    @PUT("api/devices/{deviceId}/wifi") Observable<NetworkResult> modifyWifi(
+    @PUT("api/devices/{deviceId}/wifi")
+    Observable<NetworkResult> modifyWifi(
             @Path("deviceId") String deviceId,@Query("userId") String userId, @Body RequestBody data);
 
     /**
@@ -170,12 +185,12 @@ public interface IHttpAPI {
             @Query("userId") String userId,@Body RequestBody body);
 
     /**
-     * 删除关注用户
+     * 取消关注设备
      *
      */
-    @POST("api/devices/{deviceId}/familyMembers/delete")
-    Observable<NetworkResult>deleteUser( @Path("deviceId") String deviceId, @Query("userId") String userId,
-            @Body RequestBody body);
+    @POST("api/devices/{deviceId}/unfollow")
+    Observable<NetworkResult>deleteUser( @Path("deviceId") String deviceId, @Query("userId") String userId
+            );
 
     /**
      * 获取设备状态
@@ -194,4 +209,11 @@ public interface IHttpAPI {
     Observable<UserBindDeviceResult>bindDevice(@Path("bindCode") String bindCode,
             @Query("userId") String userId,
             @Body RequestBody body);
+    /**
+     * 解绑设备
+     *
+     */
+    @POST("api/devices/{deviceId}/unbind")
+    Observable<NetworkResult>removeBind(@Path("deviceId")String deviceId,
+            @Query("userId")String user);
 }

@@ -1,22 +1,24 @@
-package com.example.administrator.buddy.request;
+package com.example.administrator.buddy.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import com.example.administrator.buddy.Helper.HabitSql;
 import com.example.administrator.buddy.bean.HabitBean;
-import com.example.administrator.buddy.bean.HabitResult;
 import java.util.List;
 
 /**
  * Created by zhuj on 2017/9/14 20:52.
  */
 public class HabitSqlMdoel {
-    HabitSql dbhelper ;
+    DeviceListSQL dbhelper ;
+    static final String TABLE="habit";
+    public static String crateTable(){
+        return   "CREATE TABLE  "+"habit"+"(id INTEGER PRIMARY KEY AUTOINCREMENT,state text  ,playTime text,title text , playState text )";
+    }
     public HabitSqlMdoel(Context context){
-        dbhelper= new  HabitSql(context);
+        dbhelper= new  DeviceListSQL(context);
     }
 
     public void addtoSql(Long id,int state,String playTime ,String title,int playState){
@@ -29,7 +31,7 @@ public class HabitSqlMdoel {
         cv.put("title" ,title);
         cv.put("playState" ,playState);
         // insert 操作
-        db.insert(HabitSql.TABLE_NAME, null, cv);
+        db.insert(TABLE, null, cv);
         //关闭数据库
         Log.e("habit","插入数据库");
         db.close();
@@ -48,7 +50,7 @@ public class HabitSqlMdoel {
                cv.put("playTime", habit.getPlayTime());
                cv.put("title", habit.getTitle());
                cv.put("playState", habit.getPlayState());
-               db.insert(HabitSql.TABLE_NAME, null, cv);
+               db.insert(TABLE, null, cv);
            }catch (Exception e ){
                e.printStackTrace();
            }
@@ -59,15 +61,16 @@ public class HabitSqlMdoel {
         db.close();
     }
 
-    public void deleteSql(int  id){
-        //StringBuffer whereBuffer = new StringBuffer();
-        //whereBuffer.append("id").append(" = ").append("'").append("").append("'");
+    public void deleteSql(){
+        StringBuffer whereBuffer = new StringBuffer();
+        whereBuffer.append("id").append(" = ").append("'").append("").append("'");
         //获取写数据库
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         // delete 操作
         //db.delete(HabitSql.TABLE_NAME, whereBuffer.toString(), null);
-        db.delete("test_db","id=?",new String[]{String.valueOf(id)});
+        db.delete(TABLE,whereBuffer.toString(),null);
         //关闭数据库
+        Log.e("habitdELE","删除数据库");
         db.close();
     }
 

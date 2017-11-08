@@ -14,48 +14,53 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 import com.example.administrator.buddy.BaseActivity;
+import com.example.administrator.buddy.Helper.DeviceListSQLMdoel;
 import com.example.administrator.buddy.R;
 import com.example.administrator.buddy.adapter.UserContactsAdapter;
+import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.bean.UserConcernsBean;
 import com.example.administrator.buddy.bean.UserConcernsResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.ui.device.presenter.UserConcernsPresenter;
+import com.example.administrator.buddy.utils.SharedPreUser;
 import com.example.administrator.buddy.view.HeaderView;
 import com.example.administrator.buddy.view.RecyclerViewDivider;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zhuj on 2017/9/29 21:33.
  */
-public class UserConcernsListActivity extends BaseActivity implements BGARefreshLayout.BGARefreshLayoutDelegate{
+public class UserConcernsListActivity extends BaseActivity
+        implements BGARefreshLayout.BGARefreshLayoutDelegate {
     private final int ACTIVITY_ADD = 12;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.refreshLayout) BGARefreshLayout mRefreshLayout;
     @BindView(R.id.btn_add) Button mBtnAdd;
     @BindView(R.id.headerView) HeaderView mHeaderView;
     private UserConcernsPresenter mPresenter;
-    private List<UserConcernsBean> mUserBeen;
+    private List<UserConcernsBean> mUserBeanList;
     private ItemTouchHelper mItemTouchHelper;
     private UserContactsAdapter mAdapter;
+    protected DeviceListSQLMdoel mSQLMdoel;
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_concerns);
         ButterKnife.bind(this);
+        mSQLMdoel = new DeviceListSQLMdoel(this);
         injectorPresenter();
         inview();
     }
 
     private void inview() {
         mAdapter = new UserContactsAdapter(mRecyclerView);
-
         //mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback());
         //mItemTouchHelper.attachToRecyclerView(mRecyclerView);
         LinearLayoutManager layoutManager =
@@ -75,33 +80,41 @@ public class UserConcernsListActivity extends BaseActivity implements BGARefresh
         //开始刷新
         mRefreshLayout.beginRefreshing();
 
-
-
         mAdapter.setOnItemChildClickListener(new BGAOnItemChildClickListener() {
             @Override public void onItemChildClick(ViewGroup parent, View view, int i) {
-
-                //if(!checkPermission())return;
-                int position = i;
-                List<UserConcernsBean> list = new ArrayList<UserConcernsBean>();
                 switch (view.getId()) {
                     case R.id.tv_delete:
-                        list.add(mUserBeen.get(i));
-                        mPresenter.deleteUser(list);
+                        SharedPreUser.getInstance()
+                                .put(UserConcernsListActivity.this, SharedPreUser.KEY_DEVICE_ID,
+                                        mUserBeanList.get(i));
+                        mPresenter.deleteUser();
                         break;
                 }
             }
-
         });
-
+        mAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
+            @Override public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+                int i = position;
+                SharedPreUser.getInstance()
+                        .put(UserConcernsListActivity.this, SharedPreUser.KEY_DEVICE_ID,
+                                mUserBeanList.get(i).getDeviceId());
+            }
+        });
     }
 
     @Override public void success(Object o) {
+        if (o instanceof UserConcernsResult) {
+            Log.e("wifififi", o.toString());
+            List<UserConcernsBean> list = ((UserConcernsResult) o).getFamilyBeanList();
+            mUserBeanList = list;
+            mAdapter.setData(mUserBeanList);
+            mRefreshLayout.endRefreshing();
+        }
+        if (o instanceof NetworkResult) {
+
+        }
+
         super.success(o);
-        Log.e("wifififi",o.toString());
-        List<UserConcernsBean> list  = ((UserConcernsResult) o).getFamilyBeanList();
-        mUserBeen = list;
-        mAdapter.setData(mUserBeen);
-        mRefreshLayout.endRefreshing();
     }
 
     @OnClick(R.id.layout_header_back) public void onBack() {
@@ -110,29 +123,33 @@ public class UserConcernsListActivity extends BaseActivity implements BGARefresh
 
     @OnClick(R.id.layout_header_right) public void onAdd() {
         Intent intent = new Intent(this, UserConcernsAddActivity.class);
-        Bundle bundle=new Bundle();
-        bundle.putBoolean("bind_status",true);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("bind_status", true);
         intent.putExtras(bundle);
         startActivityForResult(intent, ACTIVITY_ADD);
     }
 
     private void injectorPresenter() {
-
         PresenterComponent authenticationComponent =
                 DaggerPresenterComponent.builder().modelModule(new ModelModule(this)).build();
         mPresenter = authenticationComponent.getUserConcernsPresenter();
     }
 
     @OnClick(R.id.btn_add) public void onViewClicked() {
+        //HabitSqlMdoel sqlMdoel =new HabitSqlMdoel(this);
+        //sqlMdoel.deleteSql();
     }
 
     @Override public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        mPresenter.getUserList();
+        //mPresenter.getUserList();
+        mSQLMdoel.inquireSql();
+        mRefreshLayout.endRefreshing();
     }
 
     @Override public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
         return false;
     }
+
 
 
     //private class ItemTouchHelperCallback extends ItemTouchHelper.Callback {

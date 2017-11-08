@@ -2,6 +2,7 @@ package com.example.administrator.buddy.ui.BindDevice.presenter;
 
 import android.util.Log;
 import com.example.administrator.buddy.bean.DeviceStatusResult;
+import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.bean.UserBindDeviceBean;
 import com.example.administrator.buddy.bean.UserBindDeviceResult;
 import com.example.administrator.buddy.ui.BasePresenter;
@@ -54,6 +55,7 @@ public class DeviceBindPresenter extends BasePresenter {
     }
 
     public void bindeDevice(List<UserBindDeviceBean> list){
+        mBaseView.displayDialog();
         addSubscrier(mListMdoel.postbindDevice(list)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -73,27 +75,25 @@ public class DeviceBindPresenter extends BasePresenter {
                     }
                 }));
     }
-    //public void deleteUser(List<UserConcernsBean> list){
-    //    mBaseView.displayDialog();
-    //    addSubscrier(mListMdoel.deleteUserBean(list)
-    //            .subscribeOn(Schedulers.io())
-    //            .observeOn(AndroidSchedulers.mainThread())
-    //            .subscribe(new Subscriber<NetworkResult>() {
-    //                @Override public void onCompleted() {
-    //
-    //                }
-    //
-    //                @Override public void onError(Throwable throwable) {
-    //                    mBaseView.onError(throwable.getMessage());
-    //                    throwable.printStackTrace();
-    //                }
-    //
-    //                @Override public void onNext(NetworkResult networkResult) {
-    //                    mBaseView.shutDialg();
-    //                    networkResult.setTag(NetworkResult.TAG_DELETE);
-    //                    mBaseView.success(networkResult);
-    //                }
-    //            }));
-    //
-    //}
+  public void unBind(){
+      mBaseView.displayDialog();
+      addSubscrier(mListMdoel.unBind()
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(new Subscriber<NetworkResult>() {
+          @Override public void onCompleted() {
+
+          }
+
+          @Override public void onError(Throwable e) {
+              mBaseView.onError(e.getMessage());
+              e.printStackTrace();
+          }
+
+          @Override public void onNext(NetworkResult result) {
+              mBaseView.shutDialg();
+              mBaseView.success(result);
+          }
+      }));
+  }
 }

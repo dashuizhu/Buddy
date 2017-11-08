@@ -1,6 +1,7 @@
 package com.example.administrator.buddy.view;
 
 /**
+ *
  * Created by zhuj on 2017/9/3 12:09.
  */
 public interface IBaseView {

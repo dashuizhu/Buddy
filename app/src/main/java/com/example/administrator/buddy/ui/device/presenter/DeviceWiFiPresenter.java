@@ -38,9 +38,9 @@ public class DeviceWiFiPresenter extends BasePresenter {
                         throwable.printStackTrace();
                     }
 
-                    @Override public void onNext(DeviceWiFiResult networkResult) {
+                    @Override public void onNext(DeviceWiFiResult deviceWiFiResult) {
                         mBaseView.shutDialg();
-                        mBaseView.success(networkResult);
+                        mBaseView.success(deviceWiFiResult);
                     }
                 }));
     }

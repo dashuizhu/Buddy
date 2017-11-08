@@ -9,18 +9,22 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
+import com.example.administrator.buddy.AppString;
 import com.example.administrator.buddy.BaseActivity;
 import com.example.administrator.buddy.R;
 import com.example.administrator.buddy.adapter.DeviceWiFiAdapter;
 import com.example.administrator.buddy.bean.DeviceWiFiBean;
 import com.example.administrator.buddy.bean.DeviceWiFiResult;
+import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
@@ -52,7 +56,30 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
         inview();
     }
 
+    @Override protected void onStart() {
+        super.onStart();
+    }
 
+    @Override protected void onResume() {
+        super.onResume();
+    }
+
+    @Override protected void onPause() {
+        super.onPause();
+    }
+
+    @Override protected void onStop() {
+        super.onStop();
+    }
+
+    @Override protected void onRestart() {
+        mRefreshLayout.beginRefreshing();
+        super.onRestart();
+    }
+
+    @Override protected void onDestroy() {
+        super.onDestroy();
+    }
 
     private void inview() {
         mAdapter = new DeviceWiFiAdapter(mRecyclerView);
@@ -84,27 +111,34 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
                     case R.id.tv_delete:
                         list.add(mWiFiBeen.get(i));
                         mPresenter.deleteWifI(list);
+                        //mRefreshLayout.beginRefreshing();
                         break;
                 }
             }
         });
-        //mAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
-        //    @Override public void onRVItemClick(ViewGroup viewGroup, View view, int i) {
-        //        if(!checkPermission())return;
-        //        Intent intent = new Intent(DeviceContactsActivity.this, DeviceContactsEditActivity.class);
-        //        intent.putExtra(AppString.KEY_DEVICE_CONTACTS, mWiFiBeen.get(i));
-        //        startActivityForResult(intent, ACTIVITY_UPDATE);
-        //    }
-        //});
+        mAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
+            @Override public void onRVItemClick(ViewGroup viewGroup, View view, int i) {
+                //if(!checkPermission())return;
+                Intent intent = new Intent(DeviceWifiActivity.this, DeviceWifiEditActivity.class);
+                intent.putExtra(AppString.KEY_DEVICE_CONTACTS, mWiFiBeen.get(i));
+                startActivityForResult(intent, ACTIVITY_UPDATE);
+            }
+        });
     }
 
     @Override public void success(Object o) {
-
-        Log.e("wifififi",o.toString());
-        List<DeviceWiFiBean> list  = ((DeviceWiFiResult) o).getFamilyBeanList();
-        mWiFiBeen = list;
-        mAdapter.setData(mWiFiBeen);
-        mRefreshLayout.endRefreshing();
+        if (o instanceof DeviceWiFiResult){
+            Log.e("wifififi",o.toString());
+            List<DeviceWiFiBean> list  = ((DeviceWiFiResult) o).getFamilyBeanList();
+            mWiFiBeen = list;
+            mAdapter.setData(mWiFiBeen);
+            mRefreshLayout.endRefreshing();
+        }else if (o instanceof NetworkResult){
+            String mesge=((NetworkResult)o).getMessage();
+            Toast.makeText(DeviceWifiActivity.this,mesge,Toast.LENGTH_SHORT).show();
+            mRefreshLayout.beginRefreshing();
+        }
+        //mRefreshLayout.beginRefreshing();
         super.success(o);
     }
 
@@ -139,12 +173,18 @@ public class DeviceWifiActivity extends BaseActivity implements BGARefreshLayout
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+            //刷新
             mRefreshLayout.beginRefreshing();
         }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-
+    @Override public void shutDialg() {
+        if (mRefreshLayout != null) {
+            mRefreshLayout.endRefreshing();
+        }
+        super.shutDialg();
+    }
     //在BGARefresh上刷新
     @Override public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mPresenter.getWiFiList();

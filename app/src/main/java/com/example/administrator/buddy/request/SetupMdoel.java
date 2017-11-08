@@ -3,13 +3,16 @@ package com.example.administrator.buddy.request;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.DeviceHolderResult;
 import com.example.administrator.buddy.bean.HabitBean;
-import com.example.administrator.buddy.bean.HabitResult;
 import com.example.administrator.buddy.bean.NetworkResult;
+import com.example.administrator.buddy.exception.CustomException;
 import com.example.administrator.buddy.network.IHttpAPI;
-import java.util.ArrayList;
+import com.example.administrator.buddy.utils.JsonUtils;
+import com.example.administrator.buddy.utils.SharedPreUser;
 import java.util.List;
+import okhttp3.RequestBody;
 import org.json.JSONObject;
 import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * Created by zhuj on 2017/9/15 19:59.
@@ -17,71 +20,49 @@ import rx.Observable;
 public class SetupMdoel {
     protected List<HabitBean> mlist;
 
-    public HabitResult setupget() {
-        try {
-            JSONObject object = new JSONObject();
-            String req = new Model().requsetGet(object.toString(),//access_token : 单点登入账号
-                    "http://47.92.49.151:8080/api/devices/777777777777777/holder/profile?access_token=c2c5e568-4a15-40c1-b890-e1bcabc566a4&userId=4bc7e2383c404841b6b66b18ac1c9321");
-            if (req == null) {
-                return null;
-            } else {
-                JSONObject jsonObject = new JSONObject(req);
-                int code = jsonObject.getInt("code");
-                String message = jsonObject.getString("message");
-                mlist = new ArrayList<>();
-                if (code == 0) {
-                    JSONObject data = jsonObject.getJSONObject("data");
-                    HabitBean baby = new HabitBean();
-                    String ne = data.getString("name");
-                    String bi = data.getString("birthday");
-                    String sc = data.getString("school");
-                    baby.setName(ne);
-                    baby.setBirthday(bi);
-                    baby.setSchool(sc);
-                    mlist.add(baby);
-                    HabitResult map = new HabitResult();
-                    map.setList(mlist);
-                    map.setCode(code);
-                    map.setMessage(message);
-                    return map;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
+    public Observable<DeviceHolderResult> getDeviceHolderInformation(){
+        IHttpAPI iHttpAPI=MyApplication.getIHttpApi();
+        String deviceId =SharedPreUser.getInstance().getDeviceId();
+        String userId =SharedPreUser.getInstance().getKeyUserId();
+        return iHttpAPI.getDeviceHolderInfo(deviceId,userId)
+                .doOnNext(new Action1<DeviceHolderResult>() {
+                    @Override public void call(DeviceHolderResult deviceHolderResult) {
+                    if (!deviceHolderResult.isSuccess()){
+                        throw new CustomException(deviceHolderResult.getMessage());
+                    }
+                    }
+                });
     }
 
-    public NetworkResult setipPost(String name, String birthday, String school,
-            String startSchool) {
-        try {
-            JSONObject object = new JSONObject();
-            object.put("name", name);
-            object.put("birthday", birthday);
-            object.put("school", school);
-            object.put("startSchool", startSchool);
-            String req = new Model().requsetPost(object.toString(),
-                    "http://47.92.49.151:8080/api/devices/777777777777777/holder/profile?access_token=c2c5e568-4a15-40c1-b890-e1bcabc566a4&userId=4bc7e2383c404841b6b66b18ac1c9321");
-            if (req == null) {
-                return null;
-            } else {
-                JSONObject json = new JSONObject(req);
-                int code = json.getInt("code");
-                String message = json.getString("message");
-                String timestamp = json.getString("timestamp");
-                NetworkResult map = new NetworkResult();
-                map.setTimestamp(timestamp);
-                map.setCode(code);
-                map.setMessage(message);
-                return map;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public Observable<DeviceHolderResult> postDeviceHolderInformation(){
+    public Observable<NetworkResult> setDeviceHolderInformation(final String name, final String birthday, final String school,
+            final String startSchool,final String url){
         IHttpAPI iHttpAPI = MyApplication.getIHttpApi();
-        return null;
+        String deviceId = SharedPreUser.getInstance().getDeviceId();
+        String userId=SharedPreUser.getInstance().getKeyUserId();
+
+        JSONObject object=new JSONObject();
+
+            try {
+                object.put("name",name);
+                //object.put("sim",holderBean.getSim());
+                object.put("birthday",birthday);
+                //object.put("gender",holderBean.getGender());
+                object.put("avatar",url);
+                object.put("school",school);
+                object.put("startSchool",startSchool);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        RequestBody data = JsonUtils.toRequestBody(object);
+        return iHttpAPI.setDeviceHolderInfo(deviceId,userId,data)
+                .doOnNext(new Action1<NetworkResult>() {
+                    @Override public void call(NetworkResult deviceHolderResult) {
+                        if (!deviceHolderResult.isSuccess()) {
+                            throw new CustomException(deviceHolderResult.getMessage());
+                        }
+
+                    }
+                });
     }
 }

@@ -1,7 +1,6 @@
 package com.example.administrator.buddy.bean;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,19 +10,19 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class DeviceHolderResult extends NetworkResult{
-    protected List<DeviceHolderBean> data;
+    //protected List<DeviceHolderBean> data;
+    //
+    //public List<DeviceHolderBean> getList() {
+    //    return data;
+    //}
+    //
+    //public void setList(List<DeviceHolderBean> l) {
+    //    this.data = l;
+    //}
+    //
+    //public int length() {
+    //    return data.size();
+    //}
 
-    public List<DeviceHolderBean> getList() {
-        return data;
-    }
-
-    public void setList(List<DeviceHolderBean> l) {
-        this.data = l;
-    }
-
-    public int length() {
-        return data.size();
-    }
-
-    @SerializedName("data") private List<DeviceContactsBean> familyBeanList;
+    @SerializedName("data") private DeviceHolderBean familyBeanList;
 }

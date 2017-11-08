@@ -67,6 +67,12 @@ public class UserConcernsAddActivity extends BaseActivity {
         finish();
     }
 
+    private void intViewS(){
+
+    }
+
+
+
     private void injectorPresenter() {
 
         PresenterComponent authenticationComponent =

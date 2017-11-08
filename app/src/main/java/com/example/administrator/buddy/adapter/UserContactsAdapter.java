@@ -33,6 +33,7 @@ public class UserContactsAdapter extends BGARecyclerViewAdapter<UserConcernsBean
       public void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout) {
         //  关闭打开滑动项目布局与动画
         closeOpenedSwipeItemLayoutWithAnim();
+        //添加List数据
         mOpenedSil.add(swipeItemLayout);
       }
       //关闭
@@ -49,7 +50,7 @@ public class UserContactsAdapter extends BGARecyclerViewAdapter<UserConcernsBean
     helper.setItemChildClickListener(R.id.tv_delete);
     //helper.setItemChildCheckedChangeListener(R.id.cb_family_sos);
   }
-
+  //填充数据
   @Override
   protected void fillData(BGAViewHolderHelper bgaViewHolderHelper, int i, UserConcernsBean bean) {
     bgaViewHolderHelper.setText(R.id.tv_family_name, bean.getName());

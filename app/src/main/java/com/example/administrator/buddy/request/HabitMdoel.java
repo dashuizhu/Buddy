@@ -33,10 +33,6 @@ public class HabitMdoel {
             @Override public void call(HabitResult habitResult) {
                 if (habitResult.isSuccess()) {
                     Log.e("habit",habitResult.getData().toString());
-                    //mList =  habitResult.getData();
-                    //HabitSqlMdoel mHabitSql;
-                    //mHabitSql = new HabitSqlMdoel(MyApplication.getContext());
-                    //mHabitSql.addtoSqlList(mList);
                 }else {
                     throw new CustomException(habitResult.getMessage());
                 }

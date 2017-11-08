@@ -40,7 +40,6 @@ import dagger.Provides;
   @Provides @Activity IBaseView provideBaseView() {
     return mBaseView;
   }
-
   @Provides @Activity LoginMdoel provideLoginModel() {
     return new LoginMdoel();
   }

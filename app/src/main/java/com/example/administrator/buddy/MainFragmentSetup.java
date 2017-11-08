@@ -3,7 +3,6 @@ package com.example.administrator.buddy;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +11,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import com.example.administrator.buddy.Dialog.LoadDialogBoxDialog;
+import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.controls.CombinationControls;
-import com.example.administrator.buddy.ui.BindDevice.AddDeviceActivity;
+import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
+import com.example.administrator.buddy.injector.components.PresenterComponent;
+import com.example.administrator.buddy.injector.modules.ModelModule;
+import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindPresenter;
 import com.example.administrator.buddy.ui.device.DeviceContactsActivity;
 import com.example.administrator.buddy.ui.device.DeviceWifiActivity;
 import com.example.administrator.buddy.ui.device.UserConcernsListActivity;
@@ -26,7 +31,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /**
  * Created by zhuj on 2017/8/16 14:41.
  */
-public class MainFragmentSetup extends Fragment {
+public class MainFragmentSetup extends BaseFragment {
     @BindView(R.id.iamgeview_setup1) SimpleDraweeView mIamgeviewSetup1;
     @BindView(R.id.textview_setup1) TextView mTextviewSetup1;
     @BindView(R.id.imageview_setup2) RelativeLayout mImageviewSetup2;
@@ -51,12 +56,15 @@ public class MainFragmentSetup extends Fragment {
     private SimpleDraweeView iamgeview_setup1;
     private TextView mname;
     private String url = null;
+    private LoadDialogBoxDialog mDialog;
+    private DeviceBindPresenter mPresenter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         //对View中控件的操作方法
         View view = inflater.inflate(R.layout.fragment_setup, container, false);
+        injectorPresenter();
         userInfo = getActivity().getSharedPreferences("mapurl", 0);
         setup1 = (RelativeLayout) view.findViewById(R.id.imageview_setup2);
         iamgeview_setup1 = (SimpleDraweeView) view.findViewById(R.id.iamgeview_setup1);
@@ -79,20 +87,7 @@ public class MainFragmentSetup extends Fragment {
         }
     }
 
-    private void signOntButton() {
-        // dropOut =(TextView)view().findViewById(R.id.tv_setup_dropOut);
 
-    }
-
-    protected void babysetup() {
-        //setup1.setOnClickListener(new View.OnClickListener() {
-        //    @Override public void onClick(View v) {
-        //        Intent intent = new Intent(getContext(), BabySetupAcivity.class);
-        //        intent.putExtra("Avatar", 1);
-        //        startActivityForResult(intent, 11);
-        //    }
-        //});
-    }
 
     @Override public void onDestroyView() {
         super.onDestroyView();
@@ -114,6 +109,8 @@ public class MainFragmentSetup extends Fragment {
                 startActivityForResult(intent, 11);
                 break;
             case R.id.item_verified:
+                intent = new Intent(getContext(), UserConcernsListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_bill:
                 break;
@@ -136,8 +133,21 @@ public class MainFragmentSetup extends Fragment {
             case R.id.item_safe_area:
                 break;
             case R.id.item_unbundled_device:
-                intent = new Intent(getContext(), AddDeviceActivity.class);
-                startActivity(intent);
+                mDialog =new LoadDialogBoxDialog(view.getContext());
+                mDialog.show();
+                mDialog.setOnClickconfirm(new LoadDialogBoxDialog.onClickconfirm() {
+                    @Override public void onDetermine() {
+
+                        //mPresenter.unBind();
+                        mDialog.dismiss();
+                    }
+
+                    @Override public void onCancel() {
+                        mDialog.dismiss();
+                    }
+                });
+                //intent = new Intent(getContext(), AddDeviceActivity.class);
+                //startActivity(intent);
                 break;
             case R.id.item_find_device:
                 break;
@@ -162,5 +172,21 @@ public class MainFragmentSetup extends Fragment {
         }
     }
 
+    @Override public void success(Object o) {
+        if (o instanceof NetworkResult){
+            Toast.makeText(getContext(),((NetworkResult) o).getMessage(),Toast.LENGTH_SHORT).show();
+            userInfo = getActivity().getSharedPreferences("userInfo",
+                    0);
+            userInfo.edit().putBoolean("bind",false);
+            userInfo.edit().putBoolean("login",false);
+            userInfo.edit().commit();
+        }
+        super.success(o);
+    }
 
+    private void injectorPresenter() {
+        PresenterComponent component =
+                DaggerPresenterComponent.builder().modelModule(new ModelModule(this)).build();
+        mPresenter = component.getDeviceBindPresenter();
+    }
 }

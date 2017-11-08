@@ -6,7 +6,6 @@ import com.example.administrator.buddy.bean.DeviceStatusResult;
 import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.bean.UserBindDeviceBean;
 import com.example.administrator.buddy.bean.UserBindDeviceResult;
-import com.example.administrator.buddy.bean.UserConcernsBean;
 import com.example.administrator.buddy.exception.CustomException;
 import com.example.administrator.buddy.network.IHttpAPI;
 import com.example.administrator.buddy.utils.JsonUtils;
@@ -68,16 +67,11 @@ public class DeviceBindMdoel {
 
     }
 
-    public Observable<NetworkResult> deleteUserBean(List<UserConcernsBean> list) {
+    public Observable<NetworkResult> unBind() {
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
         String deviceId = SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
-        int[] array = new int[list.size()];
-        //for (int i = 0; i < list.size(); i++) {
-        //    array[i] = list.get(i).getId();
-        //}
-        RequestBody body = JsonUtils.toRequestBody(array);
-        return iHttpApi.deleteUser(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
+        return iHttpApi.removeBind(deviceId, userId).doOnNext(new Action1<NetworkResult>() {
             @Override public void call(NetworkResult networkResult) {
                 if (!networkResult.isSuccess()) {
                     throw new CustomException(networkResult.getMessage());

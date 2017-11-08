@@ -1,6 +1,5 @@
 package com.example.administrator.buddy.ui.device.model;
 
-import com.example.administrator.buddy.AppString;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.DeviceContactsBean;
 import com.example.administrator.buddy.bean.DeviceContactsResult;
@@ -29,7 +28,7 @@ public class DeviceContactsModel {
    */
   public Observable<DeviceContactsResult> getDeviceContactsList() {
     IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-    String deviceId = AppString.deviceId;
+    String deviceId = SharedPreUser.getInstance().getDeviceId();
     String userId = SharedPreUser.getInstance().getKeyUserId();
     return iHttpApi.getDeviceContactsList(deviceId, userId)
             .doOnNext(new Action1<DeviceContactsResult>() {
@@ -46,7 +45,7 @@ public class DeviceContactsModel {
    */
   public Observable<NetworkResult> addContactsBean(List<DeviceContactsBean> list) {
     IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-    String deviceId = AppString.deviceId;
+    String deviceId = SharedPreUser.getInstance().getDeviceId();
     String userId = SharedPreUser.getInstance().getKeyUserId();
 
     JSONArray array = new JSONArray();
@@ -79,7 +78,7 @@ public class DeviceContactsModel {
 
   public Observable modifyContactsBean(List<DeviceContactsBean> list) {
     IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-    String deviceId = AppString.deviceId;
+    String deviceId = SharedPreUser.getInstance().getDeviceId();
     String userId = SharedPreUser.getInstance().getKeyUserId();
     JSONArray array = new JSONArray();
     JSONObject obj;
@@ -110,7 +109,7 @@ public class DeviceContactsModel {
 
   public Observable<NetworkResult> deleteContactsBean(List<DeviceContactsBean> list) {
     IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-    String deviceId = AppString.deviceId;
+    String deviceId = SharedPreUser.getInstance().getDeviceId();
     String userId = SharedPreUser.getInstance().getKeyUserId();
     int[] array = new int[list.size()];
     for (int i = 0; i < list.size(); i++) {
@@ -131,7 +130,7 @@ public class DeviceContactsModel {
    */
   public Observable setSos(List<DeviceContactsBean> list) {
     IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-    String deviceId = AppString.deviceId;
+    String deviceId = SharedPreUser.getInstance().getDeviceId();
     String userId = SharedPreUser.getInstance().getKeyUserId();
     JSONArray array = new JSONArray();
     JSONObject obj;

@@ -1,5 +1,7 @@
 package com.example.administrator.buddy.ui.device.model;
 
+import android.util.Log;
+import com.example.administrator.buddy.Helper.DeviceListSQLMdoel;
 import com.example.administrator.buddy.MyApplication;
 import com.example.administrator.buddy.bean.DeviceContactsBean;
 import com.example.administrator.buddy.bean.DeviceContactsResult;
@@ -57,23 +59,29 @@ public class UserConcernsListMdoel {
                         @Override public void call(UserConcernsResult deviceContactsResult) {
                             if (!deviceContactsResult.isSuccess()) {
                                 throw new CustomException(deviceContactsResult.getMessage());
+                            }else {
+                                DeviceListSQLMdoel mSql=new DeviceListSQLMdoel(MyApplication.getContext());
+                                List<UserConcernsBean> mlist = deviceContactsResult.getFamilyBeanList();
+                                if (mlist!=null){
+                                    mSql.addtoSqlList(mlist);
+                                    Log.e("devicelist",mlist.toString());
+                                }
                             }
-
                         }
                     });
 
     }
 
-    public Observable<NetworkResult> deleteUserBean(List<UserConcernsBean> list) {
+    public Observable<NetworkResult> deleteUserBean() {
         IHttpAPI iHttpApi = MyApplication.getIHttpApi();
         String deviceId = SharedPreUser.getInstance().getDeviceId();
         String userId = SharedPreUser.getInstance().getKeyUserId();
-        int[] array = new int[list.size()];
+        //int[] array = new int[list.size()];
         //for (int i = 0; i < list.size(); i++) {
         //    array[i] = list.get(i).getId();
         //}
-        RequestBody body = JsonUtils.toRequestBody(array);
-        return iHttpApi.deleteUser(deviceId, userId, body).doOnNext(new Action1<NetworkResult>() {
+        //RequestBody body = JsonUtils.toRequestBody(array);
+        return iHttpApi.deleteUser(deviceId, userId).doOnNext(new Action1<NetworkResult>() {
             @Override public void call(NetworkResult networkResult) {
                 if (!networkResult.isSuccess()) {
                     throw new CustomException(networkResult.getMessage());
