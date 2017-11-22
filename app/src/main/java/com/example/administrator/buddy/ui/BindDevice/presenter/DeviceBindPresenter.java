@@ -6,7 +6,6 @@ import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.bean.UserBindDeviceBean;
 import com.example.administrator.buddy.bean.UserBindDeviceResult;
 import com.example.administrator.buddy.ui.BasePresenter;
-import com.example.administrator.buddy.ui.BindDevice.model.DeviceBindMdoel;
 import com.example.administrator.buddy.view.IBaseView;
 import java.util.List;
 import javax.inject.Inject;
@@ -54,7 +53,7 @@ public class DeviceBindPresenter extends BasePresenter {
 
     }
 
-    public void bindeDevice(List<UserBindDeviceBean> list){
+    public void bindeDevice( List<UserBindDeviceBean> list){
         mBaseView.displayDialog();
         addSubscrier(mListMdoel.postbindDevice(list)
                 .subscribeOn(Schedulers.io())

@@ -13,7 +13,7 @@
         app:rightIcon="@mipmap/img_add"
         app:showBack="true"
         app:showRight="true"
-        app:titleText="@string/title_User_concerns" />
+        app:titleText="关注者" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/refreshLayout"

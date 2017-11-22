@@ -12,7 +12,7 @@ import com.example.administrator.buddy.request.LoginMdoel;
 import com.example.administrator.buddy.request.RegisterMdel;
 import com.example.administrator.buddy.request.SetupMdoel;
 import com.example.administrator.buddy.request.VerificationMdoel;
-import com.example.administrator.buddy.ui.BindDevice.model.DeviceBindMdoel;
+import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindMdoel;
 import com.example.administrator.buddy.ui.device.model.DeviceContactsModel;
 import com.example.administrator.buddy.ui.device.model.DeviceWiFiModel;
 import com.example.administrator.buddy.ui.device.model.UserConcernsListMdoel;

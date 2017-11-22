@@ -17,7 +17,6 @@ import com.example.administrator.buddy.injector.components.DaggerPresenterCompon
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindPresenter;
-import com.example.administrator.buddy.ui.device.UserConcernsAddActivity;
 import com.example.administrator.buddy.utils.SharedPreUser;
 
 /**
@@ -117,7 +116,7 @@ public class BindCodeDeviceActivity extends BaseActivity {
         }
             //Intent integer = new Intent(BindCodeDeviceActivity.this, BindDeviceActivity.class);
             //startActivity(integer);
-        Intent integer = new Intent(BindCodeDeviceActivity.this, UserConcernsAddActivity.class);
+        Intent integer = new Intent(BindCodeDeviceActivity.this, UserConcernsActivity.class);
         integer.putExtras(bundle);
         startActivity(integer);
         finish();

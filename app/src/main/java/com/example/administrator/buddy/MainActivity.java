@@ -24,10 +24,7 @@ public class MainActivity extends FragmentActivity {
     Fragment mMainFragmentBaby;
     Fragment mFragment;
     BGARefreshLayout mLayout;
-    //TextView tvmap;
-    //TextView tvhabit;
-    //TextView tvsetup;
-    //TextView tvbaby;
+
     @BindView(R.id.tv_habit) TextView mTvHabit;
     @BindView(R.id.tv_map) TextView mTvMap;
     @BindView(R.id.tv_baby) TextView mTvBaby;

@@ -92,10 +92,7 @@ public class LoginPresenter extends BasePresenter {
         mLoginMdoel.login(accout, password)
                 .flatMap(new Func1<LoginResult, Observable<?>>() {
                     @Override public Observable<?> call(LoginResult loginResult) {
-
-                        getUserList();
-
-                        return null;
+                        return mListMdoel.getlist();
                     }
                 })
                 .subscribeOn(Schedulers.io())
@@ -117,25 +114,25 @@ public class LoginPresenter extends BasePresenter {
                 });
     }
 
-    public void getUserList() {
-        mIBaseView.displayDialog();
-        addSubscrier(mListMdoel.getlist()
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<UserConcernsResult>() {
-                    @Override public void onCompleted() {
-
-                    }
-
-                    @Override public void onError(Throwable throwable) {
-                        mIBaseView.onError(throwable.getMessage());
-                        throwable.printStackTrace();
-                    }
-
-                    @Override public void onNext(UserConcernsResult networkResult) {
-                        mIBaseView.shutDialg();
-                        mIBaseView.success(networkResult);
-                    }
-                }));
+    //public void getUserList() {
+    //    mIBaseView.displayDialog();
+    //    addSubscrier(mListMdoel.getlist()
+    //            .subscribeOn(Schedulers.io())
+    //            .subscribe(new Subscriber<UserConcernsResult>() {
+    //                @Override public void onCompleted() {
+    //
+    //                }
+    //
+    //                @Override public void onError(Throwable throwable) {
+    //                    mIBaseView.onError(throwable.getMessage());
+    //                    throwable.printStackTrace();
+    //                }
+    //
+    //                @Override public void onNext(UserConcernsResult networkResult) {
+    //                    mIBaseView.shutDialg();
+    //                    mIBaseView.success(networkResult);
+    //                }
+    //            }));
         //    IHttpAPI iHttpApi = MyApplication.getIHttpApi();
         //    String userId = SharedPreUser.getInstance().getKeyUserId();
         //    return iHttpApi.getUserConcernsList( userId)
@@ -150,7 +147,7 @@ public class LoginPresenter extends BasePresenter {
         //                    }
         //                }
         //            });
-    }
+
 
     public void habitMdel() {
         //mIBaseView.displayDialog();

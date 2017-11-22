@@ -1,9 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:zxc="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:zxc="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,216 +12,204 @@
         android:orientation="horizontal"
 
         >
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/home_setup"
-            android:visibility="invisible"
             android:layout_marginLeft="16dp"
-            />
+            android:src="@mipmap/home_setup"
+            android:visibility="invisible" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
             android:text="设置"
             android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:padding="10dp"
-            />
+            android:textSize="18sp" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/home_setup"
             android:layout_gravity="center_vertical"
             android:paddingRight="16dp"
             android:paddingTop="5dp"
-            />
+            android:src="@mipmap/home_setup" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/line_setup"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <RelativeLayout
-            android:id="@+id/imageview_setup2"
-            android:orientation="horizontal"
+        <LinearLayout
+            android:id="@+id/line_setup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/list_blue"
+            android:orientation="vertical">
 
-            >
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iamgeview_setup1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                fresco:placeholderImage="@mipmap/tabbar_head_default_img"
-                fresco:placeholderImageScaleType="fitCenter"
-                fresco:roundAsCircle="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="10dp"
+            <RelativeLayout
+                android:id="@+id/imageview_setup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_blue"
+                android:orientation="horizontal"
+
+                >
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/iamgeview_setup1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    fresco:placeholderImage="@mipmap/tabbar_head_default_img"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:id="@+id/textview_setup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iamgeview_setup1"
+                    android:text="芈月"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:focusable="false"
+                    android:padding="10dp"
+                    android:src="@mipmap/nav_right_arrow" />
+            </RelativeLayout>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_verified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="实名认证"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="话费与流量查询"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                />
-            <TextView
-                android:id="@+id/textview_setup1"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="手表通讯录"
+                zxc:right_button="@mipmap/list_right_arrow"
+
+                ></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_family"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="芈月"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="家庭成员"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_disable_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                zxc:merge_setup_right_text="21:00-6:00(次日)"
+                zxc:merge_setup_text="禁用时段"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="手表WiFi"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_positioning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text="21:00-6:00(次日)"
+                zxc:merge_setup_text="定位频率"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_safe_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="安全区域"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_unbundled_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="解绑手表"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_find_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="查找设备"
+                zxc:right_button="@mipmap/mine_baby_search_img"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_shut_down_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="远程关机"
+                zxc:right_button="@mipmap/close_img"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_share_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="设备分享他人"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <com.example.administrator.buddy.controls.CombinationControls
+                android:id="@+id/item_APP_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                zxc:merge_setup_right_text=" "
+                zxc:merge_setup_text="APP管理"
+                zxc:right_button="@mipmap/list_right_arrow"></com.example.administrator.buddy.controls.CombinationControls>
+
+            <Button
+                android:id="@+id/tv_setup_dropOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="退出登入"
+                android:textColor="@drawable/text_bluechangwhite"
                 android:textSize="16sp"
-                android:layout_marginLeft="10dp"
-                android:textColor="#FFFFFF"
-                android:layout_toRightOf="@+id/iamgeview_setup1"
-                android:layout_centerVertical="true"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/nav_right_arrow"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:focusable="false"
-                android:padding="10dp"
-                />
-        </RelativeLayout>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_verified"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="实名认证"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="话费与流量查询"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_contacts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="手表通讯录"
-            android:layout_marginTop="10dp"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_family"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="家庭成员"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_disable_period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="禁用时段"
-            zxc:merge_setup_right_text="21:00-6:00(次日)"
-            zxc:right_button="@mipmap/list_right_arrow"
-            android:layout_marginTop="10dp"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_wifi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="手表WiFi"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_positioning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="定位频率"
-            zxc:merge_setup_right_text="21:00-6:00(次日)"
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_safe_area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="安全区域"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_unbundled_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="解绑手表"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_find_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="查找设备"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/mine_baby_search_img"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_shut_down_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="远程关机"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/close_img"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_share_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="设备分享他人"
-            zxc:merge_setup_right_text=" "
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-
-        <com.example.administrator.buddy.controls.CombinationControls
-            android:id="@+id/item_APP_manage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            zxc:merge_setup_text="APP管理"
-            zxc:merge_setup_right_text=" "
-            android:layout_marginTop="10dp"
-            zxc:right_button="@mipmap/list_right_arrow"
-            >
-        </com.example.administrator.buddy.controls.CombinationControls>
-        <Button
-            android:id="@+id/tv_setup_dropOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退出登入"
-            android:textColor="@drawable/text_bluechangwhite"
-            style="@style/btn"
-            android:textSize="16sp"
-           android:layout_margin="10dp"
-            android:gravity="center"
-            />
-    </LinearLayout>
+                style="@style/btn" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

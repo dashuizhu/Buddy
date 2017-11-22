@@ -11,6 +11,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserConcernsResult extends NetworkResult {
-
     @SerializedName("data") private List<UserConcernsBean> familyBeanList;
 }

@@ -10,19 +10,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class DeviceHolderResult extends NetworkResult{
-    //protected List<DeviceHolderBean> data;
-    //
-    //public List<DeviceHolderBean> getList() {
-    //    return data;
-    //}
-    //
-    //public void setList(List<DeviceHolderBean> l) {
-    //    this.data = l;
-    //}
-    //
-    //public int length() {
-    //    return data.size();
-    //}
-
     @SerializedName("data") private DeviceHolderBean familyBeanList;
 }

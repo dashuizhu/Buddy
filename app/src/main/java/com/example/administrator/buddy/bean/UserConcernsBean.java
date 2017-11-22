@@ -20,7 +20,7 @@ public class UserConcernsBean implements Parcelable {
      * avatar : http://x.x.x.x/x.jpg
      * isAdmin : true
      */
-
+    private int id;
     private String deviceId;
     private String bindCode;
     private String name;
@@ -28,12 +28,16 @@ public class UserConcernsBean implements Parcelable {
     private String avatar;
     private boolean isAdmin;
 
+    public UserConcernsBean(){
+
+    }
 
     @Override public int describeContents() {
         return 0;
     }
 
     @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
         dest.writeString(this.deviceId);
         dest.writeString(this.bindCode);
         dest.writeString(this.name);
@@ -41,25 +45,24 @@ public class UserConcernsBean implements Parcelable {
         dest.writeString(this.avatar);
         dest.writeByte(this.isAdmin ? (byte) 1 : (byte) 0);
     }
-    protected UserConcernsBean(Parcel in) {
-        this.deviceId = in.readString();
-        this.name = in.readString();
-        this.bindCode = in.readString();
-        this.avatar = in.readString();
-        this.sim = in.readString();
-        this.isAdmin = in.readByte() != 0;
 
+    protected UserConcernsBean(Parcel in) {
+        this.id = in.readInt();
+        this.deviceId = in.readString();
+        this.bindCode = in.readString();
+        this.name = in.readString();
+        this.sim = in.readString();
+        this.avatar = in.readString();
+        this.isAdmin = in.readByte() != 0;
     }
 
-    public static final Creator<UserConcernsBean> CREATOR =
-            new Creator<UserConcernsBean>() {
-                @Override public UserConcernsBean createFromParcel(Parcel source) {
-                    return new UserConcernsBean(source);
-                }
+    public static final Creator<UserConcernsBean> CREATOR = new Creator<UserConcernsBean>() {
+        @Override public UserConcernsBean createFromParcel(Parcel source) {
+            return new UserConcernsBean(source);
+        }
 
-                @Override public UserConcernsBean[] newArray(int size) {
-                    return new UserConcernsBean[size];
-                }
-            };
-
+        @Override public UserConcernsBean[] newArray(int size) {
+            return new UserConcernsBean[size];
+        }
+    };
 }

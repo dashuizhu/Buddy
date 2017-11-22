@@ -24,69 +24,67 @@ import rx.functions.Action1;
  */
 public class UserConcernsListMdoel {
 
-    public Observable<DeviceContactsResult>attentionUser(List<DeviceContactsBean> list){
-        IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String userId = SharedPreUser.getInstance().getKeyUserId();
-        JSONObject obj= new JSONObject();
-        DeviceContactsBean familyBean;
-        for (int i=0; i< list.size(); i++) {
-            familyBean = list.get(i);
-            obj = new JSONObject();
-            try {
-                obj.put("userName", familyBean.getUserName());
-                obj.put("avatar", familyBean.getAvatar());
-                obj.put("relation", familyBean.getRelation());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+  public Observable<DeviceContactsResult>attentionUser(List<DeviceContactsBean> list){
+    IHttpAPI iHttpApi = MyApplication.getIHttpApi();
+    String userId = SharedPreUser.getInstance().getKeyUserId();
+    JSONObject obj= new JSONObject();
+    DeviceContactsBean familyBean;
+    for (int i=0; i< list.size(); i++) {
+      familyBean = list.get(i);
+      obj = new JSONObject();
+      try {
+        obj.put("userName", familyBean.getUserName());
+        obj.put("avatar", familyBean.getAvatar());
+        obj.put("relation", familyBean.getRelation());
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+    }
+    RequestBody body = JsonUtils.toRequestBody(obj);
+    String bindCode = SharedPreUser.getInstance().getBindCode();
+    return iHttpApi.attentionUser(bindCode,userId,body).doOnNext(new Action1<DeviceContactsResult>() {
+      @Override public void call(DeviceContactsResult networkResult) {
+        if (!networkResult.isSuccess()) {
+          throw new CustomException(networkResult.getMessage());
         }
-        RequestBody body = JsonUtils.toRequestBody(obj);
-        String bindCode = SharedPreUser.getInstance().getBindCode();
-        return iHttpApi.attentionUser(bindCode,userId,body).doOnNext(new Action1<DeviceContactsResult>() {
-            @Override public void call(DeviceContactsResult networkResult) {
-                if (!networkResult.isSuccess()) {
-                    throw new CustomException(networkResult.getMessage());
-                }
-            }
-        });
-    }
+      }
+    });
+  }
 
-    public Observable<UserConcernsResult> getlist() {
-        IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String userId = SharedPreUser.getInstance().getKeyUserId();
-            return iHttpApi.getUserConcernsList( userId)
-                    .doOnNext(new Action1<UserConcernsResult>() {
-                        @Override public void call(UserConcernsResult deviceContactsResult) {
-                            if (!deviceContactsResult.isSuccess()) {
-                                throw new CustomException(deviceContactsResult.getMessage());
-                            }else {
-                                DeviceListSQLMdoel mSql=new DeviceListSQLMdoel(MyApplication.getContext());
-                                List<UserConcernsBean> mlist = deviceContactsResult.getFamilyBeanList();
-                                if (mlist!=null){
-                                    mSql.addtoSqlList(mlist);
-                                    Log.e("devicelist",mlist.toString());
-                                }
-                            }
-                        }
-                    });
+  public Observable<UserConcernsResult> getlist() {
+    IHttpAPI iHttpApi = MyApplication.getIHttpApi();
+    String userId = SharedPreUser.getInstance().getKeyUserId();
+    return iHttpApi.getUserConcernsList(userId).doOnNext(new Action1<UserConcernsResult>() {
+      @Override public void call(UserConcernsResult deviceContactsResult) {
+        if (!deviceContactsResult.isSuccess()) {
+          throw new CustomException(deviceContactsResult.getMessage());
+        } else {
+          DeviceListSQLMdoel mSql = new DeviceListSQLMdoel(MyApplication.getContext());
+          List<UserConcernsBean> mlist = deviceContactsResult.getFamilyBeanList();
+          if (mlist != null) {
+            mSql.addtoSqlList(mlist);
+            Log.e("devicelist", mlist.toString());
+          }
+        }
+      }
+    });
+  }
 
-    }
-
-    public Observable<NetworkResult> deleteUserBean() {
-        IHttpAPI iHttpApi = MyApplication.getIHttpApi();
-        String deviceId = SharedPreUser.getInstance().getDeviceId();
-        String userId = SharedPreUser.getInstance().getKeyUserId();
-        //int[] array = new int[list.size()];
-        //for (int i = 0; i < list.size(); i++) {
-        //    array[i] = list.get(i).getId();
-        //}
-        //RequestBody body = JsonUtils.toRequestBody(array);
-        return iHttpApi.deleteUser(deviceId, userId).doOnNext(new Action1<NetworkResult>() {
-            @Override public void call(NetworkResult networkResult) {
-                if (!networkResult.isSuccess()) {
-                    throw new CustomException(networkResult.getMessage());
-                }
-            }
-        });
-    }
+  public Observable<NetworkResult> deleteUserBean() {
+      IHttpAPI iHttpApi = MyApplication.getIHttpApi();
+      String deviceId = SharedPreUser.getInstance().getDeviceId();
+      String userId = SharedPreUser.getInstance().getKeyUserId();
+      //int[] array = new int[list.size()];
+      //for (int i = 0; i < list.size(); i++) {
+      //    array[i] = list.get(i).getId();
+      //}
+      //RequestBody body = JsonUtils.toRequestBody(array);
+      return iHttpApi.deleteUser(deviceId, userId).doOnNext(new Action1<NetworkResult>() {
+          @Override public void call(NetworkResult networkResult) {
+              if (!networkResult.isSuccess()) {
+                  throw new CustomException(networkResult.getMessage());
+              }
+          }
+      });
+  }
 }

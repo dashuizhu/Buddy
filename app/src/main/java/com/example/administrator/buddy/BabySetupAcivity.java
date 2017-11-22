@@ -253,40 +253,7 @@ public class BabySetupAcivity extends BaseActivity {
                 mTvBabyBirthday.getcontent().getText().toString(),
                 mTvBabySchool.getcontent().getText().toString(),
                 mTvBabySchoolYear.getcontent().getText().toString(), url);
-        //mLoginPresenter.babySetupMdelPost(mTvBabyName.getcontent().getText().toString(),
-        //        mTvBabyBirthday.getcontent().getText().toString(),
-        //        mTvBabySchool.getcontent().getText().toString(),
-        //        mTvBabySchoolYear.getcontent().getText().toString());
-        //mLoadDialog = new LoadDialog(this);
-        //mLoadDialog.show();
-        //new Thread(new Runnable() {
-        //    @Override public void run() {
-        //        String nam = name.getcontent().getText().toString();
-        //        String bir = birthday.getcontent().getText().toString();
-        //        String sch = school.getcontent().getText().toString();
-        //        String yea = schoolYear.getcontent().getText().toString();
-        //        JSONObject json = new JSONObject();
-        //        try {
-        //            json.put("name", nam);
-        //            json.put("sim", "13800000001");
-        //            json.put("birthday", bir);
-        //            json.put("gender", 0);
-        //            json.put("height", 120);
-        //            json.put("weight", 30);
-        //            json.put("grade", 0);
-        //            json.put("avatar", 2);
-        //            json.put("school", sch);
-        //            json.put("startSchool", yea);
-        //            Log.e("login", json.toString());
-        //            boolean req = requsetPost(json.toString());
-        //            if (!req) {
-        //                mHandler.sendEmptyMessage(2);
-        //            }
-        //        } catch (JSONException e) {
-        //            e.printStackTrace();
-        //        }
-        //    }
-        //}).start();
+
     }
 
     //关闭时线程动作

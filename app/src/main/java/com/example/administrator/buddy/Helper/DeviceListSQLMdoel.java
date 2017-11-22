@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.example.administrator.buddy.bean.UserConcernsBean;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,8 +79,6 @@ public class DeviceListSQLMdoel {
     }
 
     public void deleteSql(int id) {
-        StringBuffer whereBuffer = new StringBuffer();
-        whereBuffer.append("id").append(" = ").append("'").append("").append("'");
         //获取写数据库
         SQLiteDatabase db = mSQL.getWritableDatabase();
         // delete 操作
@@ -88,39 +87,49 @@ public class DeviceListSQLMdoel {
         db.close();
     }
 
-    public void inquireSql() {
-        //StringBuffer whereBuffer = new StringBuffer();
-        //
-        ////列的输出样式
-        //whereBuffer.append("id").append("deviceId").append("bindCode").append("name").append("sim").append("avatar").append("isAdmin");
-        String[] columns = {TABLE};
+    public List<UserConcernsBean> inquireDeviceIdList() {
         SQLiteDatabase db = mSQL.getReadableDatabase();
         Cursor cursor = null;
+        List<UserConcernsBean> list=new ArrayList<>();
         cursor = db.rawQuery("SELECT * FROM device_list", null);
         try {
-            //判断游标是否为空
-            //遍历游标
-            while (cursor.moveToNext()) {
-                int i = 0;
-
-                Log.e("deviceList", cursor.getColumnName(i));
+            while ( cursor.moveToNext())  {
+                UserConcernsBean bean=new UserConcernsBean();
+                bean.setId(cursor.getInt(cursor.getColumnIndex("id"))) ;
+                bean.setDeviceId(cursor.getString(cursor.getColumnIndex("deviceId")));
+                bean.setBindCode(cursor.getString(cursor.getColumnIndex("bindCode")));
+                bean.setName(cursor.getString(cursor.getColumnIndex("name")));
+                bean.setSim(cursor.getString(cursor.getColumnIndex("sim")));
+                bean.setAvatar(cursor.getString(cursor.getColumnIndex("avatar")));
+                bean.setAdmin((cursor.getColumnIndex("isAdmin") != 0));
+                list.add(bean);
             }
-
-            //获得ID
-            //cursor.move(i);
-            //Log.e("deviceList",cursor.getColumnName(i));
-            //String playTime = cursor.getString(0);
-            ////获得用户名
-            //String state = cursor.getString(1);
-            ////获得密码
-            //String password = cursor.getString(2);
-            ////输出用户信息 System.out.println(id+":"+playTime+":"+state);
-
+            Log.e("SQlinquire",list.toString());
+            return list;
         } catch (Exception e) {
             e.printStackTrace();
         }
         cursor.close();
 
         db.close();
+        return null;
+    }
+
+    public String inquireDeviceId() {
+
+        SQLiteDatabase db = mSQL.getReadableDatabase();
+        Cursor cursor = null;
+        cursor = db.rawQuery("SELECT * FROM device_list", null);
+        try {
+          if ( cursor.moveToNext()) {
+              return cursor.getString(cursor.getColumnIndex("deviceId"));
+          }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        cursor.close();
+
+        db.close();
+        return null;
     }
 }

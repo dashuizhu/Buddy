@@ -22,7 +22,6 @@ import com.example.administrator.buddy.injector.components.DaggerPresenterCompon
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindPresenter;
-import com.example.administrator.buddy.ui.device.UserConcernsAddActivity;
 import com.example.administrator.buddy.utils.SharedPreUser;
 import com.example.administrator.buddy.view.HeaderView;
 import com.example.administrator.buddy.view.MyItemView;
@@ -128,7 +127,7 @@ public class BindDeviceActivity extends BaseActivity {
             NetworkResult list  = (DeviceContactsResult) o;
             SharedPreUser.getInstance().put(this,SharedPreUser.KEY_USER_ID,list.getUserId());
             SharedPreUser.getInstance().put(this,SharedPreUser.KEY_DEVICE_ID,list.getDeviceId());
-            Intent integer = new Intent(BindDeviceActivity.this, UserConcernsAddActivity.class);
+            Intent integer = new Intent(BindDeviceActivity.this, UserConcernsActivity.class);
             startActivity(integer);
         }
         super.success(o);

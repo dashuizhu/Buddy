@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.administrator.buddy.Helper.DeviceListSQLMdoel;
 import com.example.administrator.buddy.bean.UserConcernsBean;
 import com.example.administrator.buddy.bean.UserConcernsResult;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
 import com.example.administrator.buddy.presenter.LoginPresenter;
+
 import com.example.administrator.buddy.ui.BindDevice.AddDeviceActivity;
 import com.example.administrator.buddy.utils.SharedPreUser;
 import java.util.List;
@@ -147,29 +149,22 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override public void success(Object o) {
-        Boolean bind =userInfo.getBoolean("bind",true);
+        //Boolean bind =userInfo.getBoolean("bind",true);
+        DeviceListSQLMdoel mdoel=new DeviceListSQLMdoel(this);
         if (o instanceof UserConcernsResult){
             List<UserConcernsBean> list  = ((UserConcernsResult) o).getFamilyBeanList();
             if (list!=null){
                 SharedPreUser.getInstance().put(LoginActivity.this,
-                        SharedPreUser.KEY_DEVICE_ID,list.get(1).getDeviceId());
+                        SharedPreUser.KEY_DEVICE_ID,mdoel.inquireDeviceId());
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
+                startActivity(intent);//执行跳转
+                finish();
             }else {
                 Intent intent = new Intent(LoginActivity.this, AddDeviceActivity.class);//跳转
-                //intent.putExtra("user",nickName);//传递数据
                 startActivity(intent);//执行跳转
                 finish();
             }
 
-        } if (bind){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);//跳转
-            //intent.putExtra("user",nickName);//传递数据
-            startActivity(intent);//执行跳转
-            finish();
-        }else {
-            Intent intent = new Intent(LoginActivity.this, AddDeviceActivity.class);//跳转
-            //intent.putExtra("user",nickName);//传递数据
-            startActivity(intent);//执行跳转
-            finish();
         }
         super.success(o);
     }

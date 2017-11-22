@@ -5,6 +5,7 @@ buildscript {
 
   dependencies {
     classpath 'io.fabric.tools:gradle:1.+'
+
   }
 }
 apply plugin: 'com.android.application'
@@ -27,6 +28,7 @@ android {
     }
   }
   defaultConfig {
+    multiDexEnabled true
     applicationId "com.example.buddy"
     minSdkVersion 15
     targetSdkVersion 25
@@ -53,6 +55,8 @@ android {
 }
 
 dependencies {
+
+  compile 'com.android.support:multidex:1.0.1'
   compile 'com.android.support:support-v4:25.3.1'
   compile fileTree(include: ['*.jar'], dir: 'libs')
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

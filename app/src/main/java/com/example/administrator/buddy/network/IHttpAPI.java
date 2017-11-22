@@ -10,6 +10,7 @@ import com.example.administrator.buddy.bean.LoginResult;
 import com.example.administrator.buddy.bean.NetworkResult;
 import com.example.administrator.buddy.bean.UserBindDeviceResult;
 import com.example.administrator.buddy.bean.UserConcernsResult;
+import com.example.administrator.buddy.injector.modules.Requestbody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -65,6 +66,11 @@ public interface IHttpAPI {
             @Query("flag") int flag);
 
 
+
+    //@GET("api/devices/holder/list")
+    //Observable<UserConcernsResult>getUserConcernsList(
+    //        @Query("userId") String userId
+    //);
 
     /**
      * 订阅习惯， 也就是添加

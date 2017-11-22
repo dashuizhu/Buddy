@@ -22,10 +22,11 @@ import com.example.administrator.buddy.controls.CombinationControls;
 import com.example.administrator.buddy.injector.components.DaggerPresenterComponent;
 import com.example.administrator.buddy.injector.components.PresenterComponent;
 import com.example.administrator.buddy.injector.modules.ModelModule;
+import com.example.administrator.buddy.ui.BindDevice.AddDeviceActivity;
+import com.example.administrator.buddy.ui.BindDevice.UserConcernsActivity;
 import com.example.administrator.buddy.ui.BindDevice.presenter.DeviceBindPresenter;
 import com.example.administrator.buddy.ui.device.DeviceContactsActivity;
 import com.example.administrator.buddy.ui.device.DeviceWifiActivity;
-import com.example.administrator.buddy.ui.device.UserConcernsListActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
@@ -109,7 +110,7 @@ public class MainFragmentSetup extends BaseFragment {
                 startActivityForResult(intent, 11);
                 break;
             case R.id.item_verified:
-                intent = new Intent(getContext(), UserConcernsListActivity.class);
+                intent = new Intent(getContext(),UserConcernsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.item_bill:
@@ -119,8 +120,8 @@ public class MainFragmentSetup extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.item_family:
-                intent = new Intent(getContext(), UserConcernsListActivity.class);
-                startActivity(intent);
+                //intent = new Intent(getContext(), UserConcernsListActivity.class);
+                //startActivity(intent);
                 break;
             case R.id.item_disable_period:
                 break;
@@ -146,8 +147,8 @@ public class MainFragmentSetup extends BaseFragment {
                         mDialog.dismiss();
                     }
                 });
-                //intent = new Intent(getContext(), AddDeviceActivity.class);
-                //startActivity(intent);
+                intent = new Intent(getContext(), AddDeviceActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_find_device:
                 break;

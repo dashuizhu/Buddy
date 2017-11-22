@@ -2,6 +2,7 @@ package com.example.administrator.buddy;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import com.example.administrator.buddy.injector.components.AppComponent;
 import com.example.administrator.buddy.injector.components.DaggerAppComponent;
 import com.example.administrator.buddy.injector.modules.AppModule;
@@ -23,6 +24,12 @@ public class MyApplication extends Application {
         Fresco.initialize(this);
 
     }
+
+    @Override protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     public static IHttpAPI getIHttpApi() {
         return mAppComponent.getHttpApi();
     }

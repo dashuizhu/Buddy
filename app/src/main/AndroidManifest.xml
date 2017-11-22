@@ -65,8 +65,9 @@
         <activity android:name=".ui.device.DeviceContactsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceContactsEditActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ui.device.DeviceRelationSelectActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ui.device.UserConcernsListActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.device.UserConcernsAddActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.BindDevice.UserConcernsActivity" android:launchMode="standard"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".ui.BindDevice.BindCodeDeviceActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.BindDevice.ScanQRcodeActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".ui.BindDevice.AddDeviceActivity" android:screenOrientation="portrait"></activity>
